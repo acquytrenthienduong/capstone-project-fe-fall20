@@ -1,23 +1,17 @@
 <template>
   <div class="root">
-    <Header />
     <Slides />
     <TanningOptions />
-    <Footer />
   </div>
 </template>
 
 <script>
-import Header from "../components/Header/header";
-import Slides from "../components/Slides/slides";
-import Footer from "../components/Footer/footer";
-import TanningOptions from "../components/TanningOptions/tanningOptions";
+import Slides from "@/components/Slides/slides";
+import TanningOptions from "@/components/TanningOptions/tanningOptions";
 export default {
   name: "homepage",
   components: {
-    Header,
     Slides,
-    Footer,
     TanningOptions,
   },
 };

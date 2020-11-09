@@ -4,7 +4,7 @@
       <slide>
         <div class="slide">
           <img
-            src="../../assets/slides/slide1.jpg"
+            src="../../assets/slides/slide2.jpg"
             class="slide-img"
             alt="banner"
           />
@@ -21,7 +21,7 @@
       <slide>
         <div class="slide">
           <img
-            src="../../assets/slides/slide2.jpg"
+            src="../../assets/slides/slide1.jpg"
             class="slide-img"
             alt="banner"
           />

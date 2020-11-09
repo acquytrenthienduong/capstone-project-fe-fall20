@@ -2,15 +2,15 @@
   <div class="root">
     <div class="content">
       <div class="left">
-        <button class="menu-btn">
+        <router-link tag="button" class="menu-btn" to="/">
           Khám phá
-        </button>
-        <button class="menu-btn">
+        </router-link>
+        <router-link tag="button" class="menu-btn" to="/schedules">
           Lịch hẹn
-        </button>
-        <button class="menu-btn">
+        </router-link>
+        <router-link tag="button" class="menu-btn" to="/about">
           About us
-        </button>
+        </router-link>
       </div>
       <div class="middle">
         <div class="logo">
