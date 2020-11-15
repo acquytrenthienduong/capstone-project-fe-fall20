@@ -8,7 +8,7 @@
         <router-link tag="button" class="menu-btn" to="/schedules">
           Lịch hẹn
         </router-link>
-        <router-link tag="button" class="menu-btn" to="/about">
+        <router-link tag="button" class="menu-btn" to="/test">
           About us
         </router-link>
       </div>
