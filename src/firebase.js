@@ -1,6 +1,8 @@
 // TODO: Replace the following with your app's Firebase project configuration
-import firebase from "@firebase/app";
-require('firebase/auth');
+import firebase from 'firebase/app';
+ 
+// These imports load individual services into the firebase namespace.
+import 'firebase/auth';
 
 var firebaseConfig = {
     // ...
@@ -15,5 +17,7 @@ var firebaseConfig = {
 };
 
 // Initialize Firebase
-const fb = firebase.initializeApp(firebaseConfig)
+// const fb = firebase.initializeApp(firebaseConfig)
+var fb = firebase.initializeApp(firebaseConfig);
+
 export { fb }
