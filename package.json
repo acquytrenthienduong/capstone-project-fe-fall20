@@ -13,8 +13,9 @@
     "core-js": "^3.6.5",
     "firebase": "^8.0.2",
     "normalize.css": "^8.0.1",
+    "swiper": "5.x",
     "vue": "^2.6.11",
-    "vue-carousel": "^0.18.0",
+    "vue-awesome-swiper": "^4.1.1",
     "vue-router": "^3.2.0",
     "vuetify": "^2.3.17"
   },
