@@ -1,51 +1,42 @@
 <template>
   <div class="root">
-    <carousel :perPage="1" class="slider">
-      <slide>
-        <div class="slide">
-          <img
-            src="../../assets/slides/slide2.jpg"
-            class="slide-img"
-            alt="banner"
-          />
-          <div class="slide-content">
-            <div class="slide-title">
-              TANNING STUDIO ĐẦU TIÊN TẠI VIỆT NAM
-            </div>
-            <button class="slide-cta-btn">
-              Đặt lịch ngay
-            </button>
-          </div>
+    <swiper ref="mySwiper" :options="swiperOptions" class="slider">
+      <swiper-slide v-for="item in slides" :key="item" class="slide">
+        <img
+          :src="`https://source.unsplash.com/random/1280x720?${item}`"
+          class="slide-img"
+          alt="banner"
+        />
+        <div class="slide-content">
+          <div class="slide-title">TANNING STUDIO ĐẦU TIÊN TẠI VIỆT NAM</div>
+          <button class="slide-cta-btn">Đặt lịch ngay</button>
         </div>
-      </slide>
-      <slide>
-        <div class="slide">
-          <img
-            src="../../assets/slides/slide1.jpg"
-            class="slide-img"
-            alt="banner"
-          />
-          <div class="slide-content">
-            <div class="slide-title">
-              TANNING STUDIO ĐẦU TIÊN TẠI VIỆT NAM
-            </div>
-            <button class="slide-cta-btn">
-              Đặt lịch ngay
-            </button>
-          </div>
-        </div>
-      </slide>
-    </carousel>
+      </swiper-slide>
+      <div class="swiper-pagination" slot="pagination"></div>
+    </swiper>
   </div>
 </template>
 
 <script>
-import { Carousel, Slide } from "vue-carousel";
 export default {
   name: "slides",
-  components: {
-    Carousel,
-    Slide,
+  components: {},
+  data() {
+    return {
+      swiperOptions: {
+        autoplay: {
+          delay: 3500,
+          disableOnInteraction: false,
+        },
+        pagination: {
+          el: ".swiper-pagination",
+        },
+        slidesPerView: 1,
+        spaceBetween: 30,
+        loop: true,
+      },
+      slides: [1, 2, 3, 4, 5],
+    };
   },
 };
 </script>
@@ -57,7 +48,10 @@ export default {
     .slide {
       position: relative;
       .slide-img {
-        max-width: 100%;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
       }
       .slide-content {
         position: absolute;
