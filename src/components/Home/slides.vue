@@ -2,11 +2,17 @@
   <div class="root">
     <swiper ref="mySwiper" :options="swiperOptions" class="slider">
       <swiper-slide v-for="item in slides" :key="item" class="slide">
-        <img
-          :src="`https://source.unsplash.com/random/1280x720?${item}`"
-          class="slide-img"
-          alt="banner"
-        />
+        <v-skeleton-loader type="image">
+          <v-img
+            :lazy-src="`https://source.unsplash.com/random/1280x720?${item}`"
+            :src="`https://source.unsplash.com/random/1280x720?${item}`"
+            class="slide-img"
+            :aspect-ratio="16 / 9"
+            alt="banner"
+          >
+          </v-img>
+        </v-skeleton-loader>
+
         <div class="slide-content">
           <div class="slide-title">TANNING STUDIO ĐẦU TIÊN TẠI VIỆT NAM</div>
           <button class="slide-cta-btn">Đặt lịch ngay</button>
@@ -24,10 +30,10 @@ export default {
   data() {
     return {
       swiperOptions: {
-        autoplay: {
-          delay: 3500,
-          disableOnInteraction: false,
-        },
+        // autoplay: {
+        // delay: 13500,
+        //   disableOnInteraction: false,
+        // },
         pagination: {
           el: ".swiper-pagination",
         },
@@ -44,10 +50,15 @@ export default {
 <style lang="scss" scoped>
 .root {
   .slider {
+    min-height: 56.25vw;
     max-height: 970px;
     .slide {
       position: relative;
+      width: 100%;
+      height: 100%;
       .slide-img {
+        background: #c6c6c6;
+        position: relative;
         width: 100%;
         height: 100%;
         object-fit: cover;
