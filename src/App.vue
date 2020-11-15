@@ -10,7 +10,9 @@
 html {
   font-family: "Montserrat", sans-serif;
   max-width: 1920px;
+  min-width: 1170px;
   margin: 0 auto;
+  background: #e5e5e5;
 }
 </style>
 <script>

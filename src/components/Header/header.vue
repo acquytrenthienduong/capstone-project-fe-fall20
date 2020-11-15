@@ -1,10 +1,16 @@
 <template>
   <div class="root">
+    <div
+      class="backdrop"
+      :class="{ visible: showMenu }"
+      @click="showMenu = false"
+    ></div>
+
     <div class="content">
       <div class="left">
-        <router-link tag="button" class="menu-btn" to="/">
+        <button class="menu-btn" @click="toggleMenuHandler">
           Khám phá
-        </router-link>
+        </button>
         <router-link tag="button" class="menu-btn" to="/schedules">
           Lịch hẹn
         </router-link>
@@ -13,9 +19,9 @@
         </router-link>
       </div>
       <div class="middle">
-        <div class="logo">
-          <img src="../../assets/header-logo.png" />
-        </div>
+        <router-link tag="div" class="logo" to="/">
+          <img src="../../assets/header-logo.png" alt="logo" />
+        </router-link>
       </div>
       <div class="right">
         <button class="menu-btn-cta">
@@ -23,20 +29,48 @@
         </button>
       </div>
     </div>
+    <MenuExplore :isVisible="showMenu" />
   </div>
 </template>
 
 <script>
+import MenuExplore from "./menu-explore";
 export default {
   name: "header",
+  components: { MenuExplore },
+  methods: {
+    toggleMenuHandler() {
+      this.showMenu = !this.showMenu;
+    },
+  },
   data() {
-    return {};
+    return {
+      showMenu: false,
+    };
   },
 };
 </script>
 <style lang="scss" scoped>
 .root {
+  position: relative;
   background: #000000;
+  .logo {
+    cursor: pointer;
+  }
+  .backdrop {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0);
+    z-index: -9999;
+    transition: 0.3s ease background;
+    &.visible {
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 9;
+    }
+  }
   .content {
     max-width: 1620px;
     display: flex;
