@@ -1,6 +1,6 @@
 <template>
   <div class="root">
-    <div class="title">TANNING LOTION</div>
+    <div class="title">SUGGEST PRODUCTS</div>
     <div class="subtitle">Choose your options below</div>
     <div class="products">
       <v-container class="grey lighten-5">

@@ -8732,13 +8732,6 @@ vue-router@^3.2.0:
   resolved "https://registry.npm.taobao.org/vue-router/download/vue-router-3.4.9.tgz#c016f42030ae2932f14e4748b39a1d9a0e250e66"
   integrity sha1-wBb0IDCuKTLxTkdIs5odmg4lDmY=
 
-vue-stripe-menu@^1.4.0:
-  version "1.4.0"
-  resolved "https://registry.yarnpkg.com/vue-stripe-menu/-/vue-stripe-menu-1.4.0.tgz#a89f5f516d6a775941cf36dc20a64f758fda7290"
-  integrity sha512-FQ6+NQ27pZllD1TNi64OJycmAHLKAhlil3j4Vh7XBMHmQMf/MXdrz38WGXv0oz7FCHGW8my4TJnOUdXSYL4Y/g==
-  dependencies:
-    vue "^2.6.12"
-
 vue-style-loader@^4.1.0, vue-style-loader@^4.1.2:
   version "4.1.2"
   resolved "https://registry.npm.taobao.org/vue-style-loader/download/vue-style-loader-4.1.2.tgz#dedf349806f25ceb4e64f3ad7c0a44fba735fcf8"
@@ -8760,7 +8753,7 @@ vue-template-es2015-compiler@^1.9.0:
   resolved "https://registry.npm.taobao.org/vue-template-es2015-compiler/download/vue-template-es2015-compiler-1.9.1.tgz#1ee3bc9a16ecbf5118be334bb15f9c46f82f5825"
   integrity sha1-HuO8mhbsv1EYvjNLsV+cRvgvWCU=
 
-vue@^2.6.11, vue@^2.6.12:
+vue@^2.6.11:
   version "2.6.12"
   resolved "https://registry.npm.taobao.org/vue/download/vue-2.6.12.tgz#f5ebd4fa6bd2869403e29a896aed4904456c9123"
   integrity sha1-9evU+mvShpQD4pqJau1JBEVskSM=

@@ -8,10 +8,8 @@
 
     <div class="content">
       <div class="left">
-        <button class="menu-btn" @click="toggleMenuHandler">
-          Khám phá
-        </button>
-        <router-link tag="button" class="menu-btn" to="/schedules">
+        <button class="menu-btn" @click="toggleMenuHandler">Khám phá</button>
+        <router-link tag="button" class="menu-btn" to="/schedule">
           Lịch hẹn
         </router-link>
         <router-link tag="button" class="menu-btn" to="/test">
@@ -24,9 +22,7 @@
         </router-link>
       </div>
       <div class="right">
-        <button class="menu-btn-cta">
-          Đặt lịch hẹn
-        </button>
+        <button class="menu-btn-cta">Đặt lịch hẹn</button>
       </div>
     </div>
     <MenuExplore :isVisible="showMenu" />
@@ -36,7 +32,7 @@
 <script>
 import MenuExplore from "./menu-explore";
 export default {
-  name: "header",
+  name: "header-custom",
   components: { MenuExplore },
   methods: {
     toggleMenuHandler() {

@@ -17,7 +17,7 @@
           <v-col v-for="n in 3" :key="n" cols="12" md="4">
             <v-card class="mx-auto service-card" max-width="240">
               <v-img
-                src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
+                :src="`https://source.unsplash.com/random/1280x720?${n}`"
                 height="150px"
               ></v-img>
 
@@ -48,9 +48,13 @@ export default {
   display: none;
   position: absolute;
   background: white;
-  transform: translateX(5%);
+  top: 80px;
+  left: calc(max(50%, 375px) + 25px);
+  transform: translateX(min(-50%, -750px));
   padding: 72px 128px;
   z-index: 10;
+  min-width: 1170px;
+  max-width: max(75vw, 1170px);
   &.visible {
     display: flex;
   }

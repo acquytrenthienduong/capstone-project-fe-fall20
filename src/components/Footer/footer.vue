@@ -8,7 +8,7 @@
 </template>
 
 <script>
-export default { name: "footer" };
+export default { name: "footer-custom" };
 </script>
 
 <style lang="scss" scoped>
