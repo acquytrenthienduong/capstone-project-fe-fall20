@@ -7,6 +7,16 @@ import router from "./router";
 Vue.config.productionTip = false;
 
 Vue.use(VueAwesomeSwiper /* { default options with global component } */);
+
+
+Vue.filter("priceVndFormat", function (value) {
+  if (!value) return "";
+  return Intl.NumberFormat("vi-VN", {
+    style: "currency",
+    currency: "VND",
+  }).format(value);
+});
+
 new Vue({
   vuetify,
   router,

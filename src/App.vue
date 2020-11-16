@@ -1,12 +1,23 @@
 <template>
   <div id="app">
-    <Header />
-    <router-view />
-    <Footer />
+    <v-app>
+      <Header />
+      <router-view />
+      <Footer />
+    </v-app>
   </div>
 </template>
-<style>
+<style lang="scss" scoped>
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&display=swap");
+$body-font-family: "Montserrat";
+$title-font: "Montserrat";
+.v-application {
+  font-family: $body-font-family, sans-serif !important;
+  .title {
+    // To pin point specific classes of some components
+    font-family: $title-font, sans-serif !important;
+  }
+}
 html {
   font-family: "Montserrat", sans-serif;
   max-width: 1920px;
