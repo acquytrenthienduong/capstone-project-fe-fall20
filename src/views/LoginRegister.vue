@@ -1,167 +1,107 @@
 <template>
   <v-row justify="center">
-    <v-dialog v-model="dialog" persistent max-width="600px">
+    <v-dialog v-model="dialog" persistent content-class="login-register-dialog">
       <template v-slot:activator="{ on, attrs }">
-        <v-btn menu-btn-cta v-bind="attrs" v-on="on">
-          Đăng Ký
-        </v-btn>
-        <v-btn menu-btn-cta v-bind="attrs" v-on="on">
-          Đăng Nhập
-        </v-btn>
+        <v-btn menu-btn-cta v-bind="attrs" v-on="on"> Tài khoản </v-btn>
       </template>
-      <v-tabs>
-        <v-tab>Đăng Ký</v-tab>
-        <v-tab>Đăng Nhập</v-tab>
-        <v-icon class="close-button" @click="dialog = false">{{
-          mdiClose
-        }}</v-icon>
-        <v-tab-item>
-          <v-card>
-            <v-card-title class="center">
-              <span class="headline">Đăng ký tài khoản mới</span>
-              <img class="img" src="../assets/logo1.jpg" alt="xxx" />
-            </v-card-title>
-            <v-card-text>
-              <v-container>
-                <v-row class="align-items">
-                  <v-col cols="12" sm="1">
-                    <v-icon>{{ svgPath }}</v-icon>
-                  </v-col>
-                  <v-col cols="12" sm="11">
-                    <v-text-field
-                      label="Số điện thoại của bạn"
-                      required
-                    ></v-text-field>
-                  </v-col>
+      <div class="content">
+        <v-icon class="close-button" @click="dialog = false"> mdi-plus </v-icon>
+        <v-tabs class="dialog-tabs">
+          <v-tab class="tab-title">Đăng Ký</v-tab>
+          <v-tab class="tab-title"> Đăng Nhập</v-tab>
 
-                  <v-col cols="12" sm="1">
-                    <v-icon>{{ mdiLock }}</v-icon>
-                  </v-col>
-                  <v-col cols="12" sm="11">
-                    <v-text-field
-                      label="Mật khẩu*"
-                      type="password"
-                      required
-                    ></v-text-field>
-                  </v-col>
-                  <v-col cols="12" sm="1">
-                    <v-icon>{{ mdiLock }}</v-icon>
-                  </v-col>
-                  <v-col cols="12" sm="11">
-                    <v-text-field
-                      label="Nhập lại mật khẩu*"
-                      type="password"
-                      required
-                    ></v-text-field>
-                  </v-col>
-                </v-row>
-              </v-container>
-            </v-card-text>
-            <v-card-actions>
-              <v-btn color="blue darken-1" text @click="dialog = false">
-                Tiếp tục
-              </v-btn>
-            </v-card-actions>
-          </v-card>
-        </v-tab-item>
-        <v-tab-item>
-          <v-card>
-            <v-card-title class="center">
-              <span class="headline">Đăng nhập bằng tài khoản của bạn</span>
-            </v-card-title>
-            <v-card-text>
-              <v-container>
-                <v-row class="align-items">
-                  <v-col cols="12" sm="1">
-                    <v-icon>{{ svgPath }}</v-icon>
-                  </v-col>
-                  <v-col cols="12" sm="11">
-                    <v-text-field
-                      label="Số điện thoại của bạn"
-                      required
-                    ></v-text-field>
-                  </v-col>
+          <v-tab-item>
+            <RegisterSteps :dialog="dialog" />
+          </v-tab-item>
+          <v-tab-item>
+            <v-card class="pa-6">
+              <v-card-title class="justify-center">
+                Đăng nhập bằng tài khoản của bạn
+              </v-card-title>
+              <v-card-text>
+                <v-container>
+                  <v-text-field
+                    prepend-inner-icon="mdi-phone"
+                    label="Số điện thoại của bạn"
+                    outlined
+                    required
+                  ></v-text-field>
 
-                  <v-col cols="12" sm="1">
-                    <v-icon>{{ mdiLock }}</v-icon>
-                  </v-col>
-                  <v-col cols="12" sm="11">
-                    <v-text-field
-                      label="Mật khẩu*"
-                      type="password"
-                      required
-                    ></v-text-field>
-                  </v-col>
-                </v-row>
-              </v-container>
-            </v-card-text>
-            <v-card-actions>
-              <v-btn
-                class="center-button"
-                color="blue darken-1"
-                @click="dialog = false"
-              >
-                Đăng nhập
-              </v-btn>
-            </v-card-actions>
-          </v-card>
-        </v-tab-item>
-      </v-tabs>
+                  <v-text-field
+                    prepend-inner-icon="mdi-lock"
+                    label="Mật khẩu"
+                    type="password"
+                    outlined
+                    required
+                  ></v-text-field>
+                </v-container>
+              </v-card-text>
+              <v-card-actions>
+                <v-btn
+                  class="center-button white--text py-2 login-btn"
+                  color="blue darken-1"
+                  @click="dialog = false"
+                >
+                  Đăng nhập
+                </v-btn>
+              </v-card-actions>
+            </v-card>
+          </v-tab-item>
+        </v-tabs>
+      </div>
     </v-dialog>
   </v-row>
 </template>
 
 <script>
-import { mdiPhone, mdiLock, mdiCloseBox } from "@mdi/js";
+import RegisterSteps from "@/components/Register/register";
 
 export default {
+  name: "login-register",
+  components: {
+    RegisterSteps,
+  },
   data() {
     return {
       dialog: false,
-      svgPath: mdiPhone,
-      mdiLock: mdiLock,
-      mdiClose: mdiCloseBox,
     };
   },
 };
 </script>
-
-<style>
-.menu-btn-cta {
-  height: 41px;
-  background: transparent;
-  color: #ffffff;
-  font-size: 18px;
-  line-height: 23px;
-  padding: 6px 12px;
-  border: 1px solid #ffffff;
-  text-transform: uppercase;
-  cursor: pointer;
+<style lang="scss">
+.v-dialog.login-register-dialog {
+  box-shadow: none;
 }
-
-.align-items {
-  align-items: center;
-}
-
-.center {
-  display: flex;
-  justify-content: center;
-}
-
-.close-button {
-  margin-left: auto;
-  margin-bottom: 25px;
-}
-
-.v-card__actions > .v-btn {
-  margin-left: auto !important;
-  margin-right: auto !important;
-}
-
-.img {
-  background-color: black;
-  width: auto;
-  width: 100%;
-  height: auto;
+</style>
+<style lang="scss" scoped>
+.login-register-dialog {
+  border-radius: 0;
+  .content {
+    position: relative;
+    width: 600px;
+    padding: 16px;
+    margin: 0 auto;
+    .close-button {
+      position: absolute;
+      right: 0;
+      top: 0;
+      padding: 4px;
+      background: #696969;
+      border-radius: 50%;
+      color: #ffffff;
+      transform: rotate(45deg);
+      z-index: 2;
+    }
+    .dialog-tabs {
+      box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2),
+        0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12);
+      .tab-title {
+        width: 50%;
+      }
+    }
+    .login-btn {
+      width: 100%;
+    }
+  }
 }
 </style>
