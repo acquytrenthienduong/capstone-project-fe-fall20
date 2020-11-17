@@ -3,7 +3,7 @@
     <div class="text-center py-4">
       <img class="logo-headline" src="@/assets/logo-black.svg" alt="logo" />
     </div>
-    <v-stepper v-model="step">
+    <v-stepper v-model="step" class="elevation-0">
       <v-stepper-items>
         <v-stepper-content step="1">
           <v-card class="step-1-card">
