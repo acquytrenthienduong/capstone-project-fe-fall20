@@ -14,40 +14,49 @@
             <RegisterSteps :dialog="dialog" />
           </v-tab-item>
           <v-tab-item>
-            <v-card class="pa-6">
-              <v-card-title class="justify-center">
-                Đăng nhập bằng tài khoản của bạn
-              </v-card-title>
-              <v-card-text>
-                <v-container>
-                  <v-text-field
-                    v-model="username"
-                    prepend-inner-icon="mdi-phone"
-                    label="Số điện thoại của bạn"
-                    outlined
-                    required
-                  ></v-text-field>
+            <div class="container">
+              <div class="text-center py-4">
+                <img
+                  class="logo-headline"
+                  src="@/assets/logo-black.svg"
+                  alt="logo"
+                />
+              </div>
+              <v-card class="pa-6 elevation-0">
+                <v-card-title class="justify-center">
+                  Đăng nhập bằng tài khoản của bạn
+                </v-card-title>
+                <v-card-text>
+                  <v-container>
+                    <v-text-field
+                      v-model="username"
+                      prepend-inner-icon="mdi-phone"
+                      label="Số điện thoại của bạn"
+                      outlined
+                      required
+                    ></v-text-field>
 
-                  <v-text-field
-                    v-model="password"
-                    prepend-inner-icon="mdi-lock"
-                    label="Mật khẩu"
-                    type="password"
-                    outlined
-                    required
-                  ></v-text-field>
-                </v-container>
-              </v-card-text>
-              <v-card-actions>
-                <v-btn
-                  class="center-button white--text py-2 login-btn"
-                  color="blue darken-1"
-                  @click="loginCustomer"
-                >
-                  Đăng nhập
-                </v-btn>
-              </v-card-actions>
-            </v-card>
+                    <v-text-field
+                      v-model="password"
+                      prepend-inner-icon="mdi-lock"
+                      label="Mật khẩu"
+                      type="password"
+                      outlined
+                      required
+                    ></v-text-field>
+                  </v-container>
+                </v-card-text>
+                <v-card-actions>
+                  <v-btn
+                    class="center-button white--text py-2 login-btn"
+                    color="blue darken-1"
+                    @click="dialog = false"
+                  >
+                    Đăng nhập
+                  </v-btn>
+                </v-card-actions>
+              </v-card>
+            </div>
           </v-tab-item>
         </v-tabs>
       </div>
