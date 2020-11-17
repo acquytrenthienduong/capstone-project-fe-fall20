@@ -15,30 +15,29 @@
       </div>
 
       <div class="rightarea">
-        <v-radio-group v-model="selectType" row>
-          <v-radio label="Tanning" :value="1"></v-radio>
-          <v-radio label="Massage" :value="2"></v-radio>
-        </v-radio-group>
-        <div v-if="selectType === 1" class="myTitle">
-          Chọn khoảng thời gian tanning
+        <div class="container">
+          <v-radio-group v-model="selectType" row>
+            <v-radio label="Tanning" :value="1"></v-radio>
+            <v-radio label="Massage" :value="2"></v-radio>
+          </v-radio-group>
+          <div v-if="selectType === 1" class="myTitle">
+            Chọn khoảng thời gian tanning
+          </div>
+          <div v-if="selectType === 2" class="myTitle">Chọn gói Massage</div>
+          <v-select
+            :items="durationOptions"
+            item-text="name"
+            item-value="value"
+            label="Duration"
+            class="duration-selector"
+            outlined
+            v-model="selectedDuration"
+          ></v-select>
+          <div class="option-price">
+            {{ money | priceVndFormat }}
+          </div>
+          <ScheduleModal />
         </div>
-        <div v-if="selectType === 2" class="myTitle">
-          Chọn gói Massage
-        </div>
-        <v-select
-          :items="durationOptions"
-          item-text="name"
-          item-value="value"
-          label="Duration"
-          class="duration-selector"
-          outlined
-          v-model="selectedDuration"
-        ></v-select>
-        <div class="option-price">
-          {{ money | priceVndFormat }}
-        </div>
-
-        <button class="cta-btn">ĐẶT LỊCH NGAY</button>
       </div>
     </div>
     <Products />
@@ -47,10 +46,11 @@
 
 <script>
 import Products from "../components/Schedule/products";
+import ScheduleModal from "@/components/Schedule/scheduleModal";
 import axios from "axios";
 export default {
   name: "product-detail",
-  components: { Products },
+  components: { Products, ScheduleModal },
   computed: {
     optionPrice() {
       return this.selectedDuration * 20000;
@@ -106,11 +106,11 @@ export default {
   },
 
   watch: {
-    selectType: function(val) {
+    selectType: function (val) {
       this.loadSubService(val);
     },
 
-    selectedDuration: function(val) {
+    selectedDuration: function (val) {
       console.log("val", val);
       axios
         .get("http://localhost:8000/subServiceFindOne/" + val)
@@ -128,7 +128,7 @@ export default {
 <style lang="scss" scoped>
 .root {
   .details {
-    background: #e5e5e5;
+    // background: #e5e5e5;
     display: flex;
     padding: 32px;
     .leftarea {
@@ -146,9 +146,11 @@ export default {
       flex: 1;
       width: 50%;
       display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: flex-start;
+      align-items: center;
+      .container {
+        max-width: 500px;
+        margin-left: 0;
+      }
       .myTitle {
         // font-family: "SVN-Gotham", sans-serif;
         font-style: normal;
@@ -178,7 +180,7 @@ export default {
         text-align: center;
 
         color: #000000;
-        margin-bottom: 200px;
+        margin-top: 40px;
       }
       .cta-btn {
         padding: 16px 72px;
