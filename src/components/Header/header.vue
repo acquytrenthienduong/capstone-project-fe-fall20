@@ -23,6 +23,7 @@
       </div>
       <div class="right">
         <button v-if="!customerName" class="menu-btn-cta">Đặt lịch hẹn</button>
+        <LoginRegister />
         <div v-if="customerName">
           <button class="menu-btn-cta space-right">Đăng Ký</button>
           <button class="menu-btn-cta">Đăng Nhập</button>
@@ -35,9 +36,10 @@
 
 <script>
 import MenuExplore from "./menu-explore";
+import LoginRegister from "../../views/LoginRegister";
 export default {
   name: "header-custom",
-  components: { MenuExplore },
+  components: { MenuExplore, LoginRegister },
   methods: {
     toggleMenuHandler() {
       this.showMenu = !this.showMenu;
