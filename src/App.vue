@@ -36,5 +36,8 @@ export default {
     Header,
     Footer,
   },
+  mounted() {
+    document.title = "Capstone Frontend";
+  },
 };
 </script>
