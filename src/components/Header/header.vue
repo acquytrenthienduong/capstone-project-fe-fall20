@@ -157,4 +157,8 @@ export default {
 .space-right {
   margin-right: 5px;
 }
+
+.justify-center {
+  justify-content: inherit !important;
+}
 </style>

@@ -2,7 +2,9 @@
   <v-row justify="center">
     <v-dialog v-model="dialog" persistent content-class="login-register-dialog">
       <template v-slot:activator="{ on, attrs }">
-        <v-btn menu-btn-cta v-bind="attrs" v-on="on"> Tài khoản </v-btn>
+        <v-btn class="right" menu-btn-cta v-bind="attrs" v-on="on">
+          Tài khoản
+        </v-btn>
       </template>
       <div class="content">
         <v-icon class="close-button" @click="dialog = false"> mdi-plus </v-icon>
@@ -110,6 +112,11 @@ export default {
 }
 </style>
 <style lang="scss" scoped>
+.right {
+  display: flex;
+  justify-content: inherit;
+}
+
 .login-register-dialog {
   border-radius: 0;
   .content {
