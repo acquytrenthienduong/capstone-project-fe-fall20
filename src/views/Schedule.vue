@@ -13,17 +13,29 @@
           <div class="swiper-pagination" slot="pagination"></div>
         </swiper>
       </div>
+
       <div class="rightarea">
-        <div class="myTitle">Chọn khoảng thời gian tanning</div>
+        <v-radio-group v-model="selectType" row>
+          <v-radio label="Tanning" :value="1"></v-radio>
+          <v-radio label="Massage" :value="2"></v-radio>
+        </v-radio-group>
+        <div v-if="selectType === 1" class="myTitle">
+          Chọn khoảng thời gian tanning
+        </div>
+        <div v-if="selectType === 2" class="myTitle">
+          Chọn gói Massage
+        </div>
         <v-select
           :items="durationOptions"
+          item-text="name"
+          item-value="value"
           label="Duration"
           class="duration-selector"
           outlined
           v-model="selectedDuration"
         ></v-select>
         <div class="option-price">
-          {{ optionPrice | priceVndFormat }}
+          {{ money | priceVndFormat }}
         </div>
 
         <button class="cta-btn">ĐẶT LỊCH NGAY</button>
@@ -35,6 +47,7 @@
 
 <script>
 import Products from "../components/Schedule/products";
+import axios from "axios";
 export default {
   name: "product-detail",
   components: { Products },
@@ -53,14 +66,62 @@ export default {
           clickable: true,
         },
       },
-      selectedDuration: 20,
-      durationOptions: [
-        { text: "20 minutes", value: 20 },
-        { text: "50 minutes", value: 50 },
-        { text: "100 minutes", value: 100 },
-        { text: "200 minutes", value: 200 },
-      ],
+      selectedDuration: {},
+      durationOptions: [],
+      money: 0,
+      selectType: 1,
     };
+  },
+
+  methods: {
+    loadSubService(type) {
+      axios
+        .get("http://localhost:8000/getAllSubService/" + type)
+        .then((res) => {
+          console.log("res", res);
+          this.durationOptions = [];
+          res.data.forEach((element) => {
+            let selectItem = {};
+            if (element.type === 1) {
+              selectItem.name = element.time;
+              selectItem.value = element.sub_service_id;
+              selectItem.money = element.money;
+            } else {
+              selectItem.name = element.session;
+              selectItem.value = element.sub_service_id;
+              selectItem.money = element.money;
+            }
+            this.durationOptions.push(selectItem);
+          });
+          console.log("this", this.durationOptions);
+        })
+        .catch((e) => {
+          this.errors.push(e);
+        });
+    },
+  },
+
+  mounted() {
+    this.loadSubService(1);
+  },
+
+  watch: {
+    selectType: function(val) {
+      this.loadSubService(val);
+    },
+
+    selectedDuration: function(val) {
+      console.log("val", val);
+      axios
+        .get("http://localhost:8000/subServiceFindOne/" + val)
+        .then((res) => {
+          console.log("res", res);
+          this.money = res.data.money;
+        })
+        .catch((e) => {
+          this.errors.push(e);
+        });
+    },
   },
 };
 </script>
@@ -133,7 +194,7 @@ export default {
         text-align: center;
         text-transform: uppercase;
 
-        color: #FFFFFF;
+        color: #ffffff;
       }
     }
   }

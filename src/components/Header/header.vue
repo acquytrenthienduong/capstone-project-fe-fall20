@@ -22,7 +22,11 @@
         </router-link>
       </div>
       <div class="right">
-        <button class="menu-btn-cta">Đặt lịch hẹn</button>
+        <button v-if="!customerName" class="menu-btn-cta">Đặt lịch hẹn</button>
+        <div v-if="customerName">
+          <button class="menu-btn-cta space-right">Đăng Ký</button>
+          <button class="menu-btn-cta">Đăng Nhập</button>
+        </div>
       </div>
     </div>
     <MenuExplore :isVisible="showMenu" />
@@ -42,6 +46,7 @@ export default {
   data() {
     return {
       showMenu: false,
+      customerName: localStorage.getItem("customerName"),
     };
   },
 };
@@ -114,5 +119,9 @@ export default {
       }
     }
   }
+}
+
+.space-right {
+  margin-right: 5px;
 }
 </style>
