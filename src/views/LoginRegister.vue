@@ -21,6 +21,7 @@
               <v-card-text>
                 <v-container>
                   <v-text-field
+                    v-model="username"
                     prepend-inner-icon="mdi-phone"
                     label="Số điện thoại của bạn"
                     outlined
@@ -28,6 +29,7 @@
                   ></v-text-field>
 
                   <v-text-field
+                    v-model="password"
                     prepend-inner-icon="mdi-lock"
                     label="Mật khẩu"
                     type="password"
@@ -40,7 +42,7 @@
                 <v-btn
                   class="center-button white--text py-2 login-btn"
                   color="blue darken-1"
-                  @click="dialog = false"
+                  @click="loginCustomer"
                 >
                   Đăng nhập
                 </v-btn>
@@ -55,6 +57,7 @@
 
 <script>
 import RegisterSteps from "@/components/Register/register";
+import axios from "axios";
 
 export default {
   name: "login-register",
@@ -64,7 +67,30 @@ export default {
   data() {
     return {
       dialog: false,
+      username: "",
+      password: "",
     };
+  },
+
+  methods: {
+    loginCustomer() {
+      axios
+        .post(`http://localhost:8000/loginCustomer`, {
+          username: this.username,
+          password: this.password,
+        })
+        .then((response) => {
+          console.log(response);
+          // this.reset();
+          localStorage.setItem("customerName", response.data.name);
+          localStorage.setItem("customerPhone", response.data.account);
+          localStorage.setItem("customerId", response.data.customer_id);
+          this.dialog = false;
+        })
+        .catch((e) => {
+          this.errors.push(e);
+        });
+    },
   },
 };
 </script>
