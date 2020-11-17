@@ -9,17 +9,19 @@
   },
   "dependencies": {
     "@firebase/app": "^0.6.13",
+    "@mdi/js": "^5.8.55",
     "axios": "^0.21.0",
     "core-js": "^3.6.5",
     "firebase": "^8.0.2",
     "normalize.css": "^8.0.1",
-    "swiper": "5.x",
+    "swiper": "^5.4.5",
     "vue": "^2.6.11",
     "vue-awesome-swiper": "^4.1.1",
     "vue-router": "^3.2.0",
     "vuetify": "^2.3.17"
   },
   "devDependencies": {
+    "@mdi/font": "^5.8.55",
     "@vue/cli-plugin-babel": "~4.5.0",
     "@vue/cli-plugin-eslint": "~4.5.0",
     "@vue/cli-plugin-router": "~4.5.0",
