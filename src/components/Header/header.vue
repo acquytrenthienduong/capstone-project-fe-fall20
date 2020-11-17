@@ -22,11 +22,13 @@
         </router-link>
       </div>
       <div class="right">
-        <button v-if="!customerName" class="menu-btn-cta">Đặt lịch hẹn</button>
-        <LoginRegister />
-        <div v-if="customerName">
-          <button class="menu-btn-cta space-right">Đăng Ký</button>
-          <button class="menu-btn-cta">Đăng Nhập</button>
+        <!-- <button class="menu-btn-cta">Đặt lịch hẹn</button> -->
+        <LoginRegister v-if="!customerName" />
+        <div v-if="customerName" class="flex">
+          <button class="menu-btn-cta space-right">
+            Đặt lịch hẹn
+          </button>
+          <v-icon class="menu-btn-cta">{{ mdiAccount }}</v-icon>
         </div>
       </div>
     </div>
@@ -37,6 +39,8 @@
 <script>
 import MenuExplore from "./menu-explore";
 import LoginRegister from "../../views/LoginRegister";
+import { mdiAccount } from "@mdi/js";
+
 export default {
   name: "header-custom",
   components: { MenuExplore, LoginRegister },
@@ -49,6 +53,7 @@ export default {
     return {
       showMenu: false,
       customerName: localStorage.getItem("customerName"),
+      mdiAccount: mdiAccount,
     };
   },
 };
@@ -121,6 +126,16 @@ export default {
       }
     }
   }
+}
+
+.space-right {
+  margin-right: 5px;
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+  justify-content: inherit;
 }
 
 .space-right {

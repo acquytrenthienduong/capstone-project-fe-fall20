@@ -14,13 +14,16 @@
               <v-container>
                 <v-form>
                   <v-text-field
+                    v-model="phone"
                     prepend-inner-icon="mdi-phone"
                     label="Số điện thoại của bạn"
                     outlined
                     required
                   ></v-text-field>
+                  <div id="recaptcha-container"></div>
 
                   <v-text-field
+                    v-model="password"
                     prepend-inner-icon="mdi-lock"
                     label="Mật khẩu*"
                     type="password"
@@ -29,6 +32,7 @@
                   ></v-text-field>
 
                   <v-text-field
+                    v-model="repassword"
                     prepend-inner-icon="mdi-lock"
                     label="Nhập lại mật khẩu*"
                     type="password"
@@ -42,7 +46,7 @@
               <v-btn
                 class="first-step-btn"
                 color="blue darken-1"
-                @click="step = 2"
+                @click="sendCode"
               >
                 Tiếp tục
               </v-btn>
@@ -57,6 +61,7 @@
             </div>
             <v-form>
               <v-text-field
+                v-model="code"
                 prepend-inner-icon="mdi-shield-check"
                 label="Mã xác nhận"
                 type="text"
@@ -74,7 +79,7 @@
               <div class="container--fluid align-content-stretch">
                 <v-btn
                   class="blue white--text otp-confirm-btn"
-                  @click="step = 3"
+                  @click="enterCode"
                   >Xác nhận
                 </v-btn>
               </div>
@@ -87,6 +92,7 @@
             <div class="text-center pb-4">Nhập họ tên và email của bạn</div>
             <v-form>
               <v-text-field
+                v-model="name"
                 prepend-inner-icon="mdi-account"
                 label="Họ tên"
                 type="text"
@@ -95,6 +101,7 @@
                 required
               ></v-text-field>
               <v-text-field
+                v-model="email"
                 prepend-inner-icon="mdi-email"
                 label="Email"
                 type="email"
@@ -104,7 +111,9 @@
               ></v-text-field>
 
               <div class="container--fluid align-content-stretch">
-                <v-btn class="blue white--text complete-profile-btn"
+                <v-btn
+                  class="blue white--text complete-profile-btn"
+                  @click="register"
                   >Hoàn tất
                 </v-btn>
               </div>
@@ -118,6 +127,9 @@
 
 <script>
 import { mdiPhone, mdiLock, mdiCloseBox } from "@mdi/js";
+import firebase from "@firebase/app";
+import { fb } from "@/firebase";
+import axios from "axios";
 
 export default {
   name: "register-steps",
@@ -134,19 +146,95 @@ export default {
       console.log(val);
       return "WRONG OTP";
     },
+
+    initRecaptcha() {
+      fb.auth().languageCode = "vi";
+      window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier(
+        "recaptcha-container"
+      );
+      window.recaptchaVerifier.render();
+    },
+
+    register() {
+      axios
+        .post(`http://localhost:8000/register`, {
+          account: this.phone,
+          password: this.password,
+          email: this.email,
+          gender: 1,
+          name: this.name,
+        })
+        .then((response) => {
+          console.log(response);
+          this.reset();
+        })
+        .catch((e) => {
+          this.errors.push(e);
+        });
+    },
+
+    enterCode: function() {
+      this.step = 3;
+      let code = this.code;
+      var credential = firebase.auth.PhoneAuthProvider.credential(
+        window.confirmationResult.verificationId,
+        code
+      );
+
+      firebase
+        .auth()
+        .signInWithCredential(credential)
+        .then((credential) => {
+          console.log("asdasdas", credential);
+        });
+    },
+
+    sendCode: function() {
+      let phone = this.phone;
+      this.step = 2;
+      var appVerifier = window.recaptchaVerifier;
+      firebase
+        .auth()
+        .signInWithPhoneNumber(phone, appVerifier)
+        .then(function(confirmationResult) {
+          console.log("confirmationResult", confirmationResult.verificationId);
+          window.confirmationResult = confirmationResult;
+        })
+        .catch((error) => {
+          this.errors.push(error);
+        });
+    },
+
+    reset() {
+      this.phone = "";
+      this.code = "";
+      this.password = "";
+      this.repassword = "";
+      this.name = "";
+      this.email = "";
+    },
   },
   data() {
     return {
       step: 1,
-
       svgPath: mdiPhone,
       mdiLock: mdiLock,
       mdiClose: mdiCloseBox,
+      error: [],
+      phone: "",
+      code: "",
+      password: "",
+      repassword: "",
+      name: "",
+      email: "",
     };
+  },
+  mounted() {
+    this.initRecaptcha();
   },
 };
 </script>
- <style lang="scss" scoped>
+<style lang="scss" scoped>
 .first-step-btn {
   color: #fff;
   width: 100%;
