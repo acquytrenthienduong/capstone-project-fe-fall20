@@ -10,7 +10,7 @@
 
       <v-container fluid class="grey lighten-5">
         <v-row>
-          <v-col cols="8" class="left-col pa-8">
+          <v-col :cols="showReceipt ? 8 : 12" class="left-col pa-8">
             <p class="title">Thông tin dịch vụ</p>
 
             <v-row>
@@ -65,6 +65,7 @@
                       readonly
                       v-bind="attrs"
                       v-on="on"
+                      outlined
                     ></v-text-field>
                   </template>
                   <v-date-picker v-model="date" no-title scrollable>
@@ -83,7 +84,7 @@
                 <v-select
                   :items="timeSlots"
                   label="Timeslot"
-                  outline
+                  outlined
                 ></v-select>
               </v-col>
             </v-row>
@@ -97,6 +98,7 @@
                   type="number"
                   min="1"
                   max="10"
+                  outlined
                   required
                 ></v-text-field>
               </v-col>
@@ -112,7 +114,7 @@
           </v-col>
 
           <!-- right -->
-          <v-col cols="4" class="right-col pa-8" v-show="showReceipt">
+          <v-col cols="4" class="right-col pa-8" v-if="showReceipt">
             <img
               class="logo-headline"
               src="@/assets/logo-black.svg"
@@ -175,8 +177,16 @@ export default {
       this.menu = false;
     },
   },
+  watch: {
+    dialog(value) {
+      if (!value) {
+        this.showReceipt = false;
+      }
+    },
+  },
   data() {
     return {
+      dialog: false,
       date: new Date().toISOString().substr(0, 10),
       menu: false,
       timeSlots: ["5am", "6am", "7am"],
