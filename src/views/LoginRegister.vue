@@ -19,6 +19,7 @@
           <v-card>
             <v-card-title class="center">
               <span class="headline">Đăng ký tài khoản mới</span>
+              <img class="img" src="../assets/logo1.jpg" alt="xxx" />
             </v-card-title>
             <v-card-text>
               <v-container>
@@ -155,5 +156,12 @@ export default {
 .v-card__actions > .v-btn {
   margin-left: auto !important;
   margin-right: auto !important;
+}
+
+.img {
+  background-color: black;
+  width: auto;
+  width: 100%;
+  height: auto;
 }
 </style>
