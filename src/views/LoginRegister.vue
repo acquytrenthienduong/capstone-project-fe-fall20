@@ -50,7 +50,7 @@
                   <v-btn
                     class="center-button white--text py-2 login-btn"
                     color="blue darken-1"
-                    @click="dialog = false"
+                    @click="loginCustomer"
                   >
                     Đăng nhập
                   </v-btn>
@@ -95,6 +95,7 @@ export default {
           localStorage.setItem("customerPhone", response.data.account);
           localStorage.setItem("customerId", response.data.customer_id);
           this.dialog = false;
+          window.location.reload();
         })
         .catch((e) => {
           this.errors.push(e);

@@ -25,10 +25,11 @@
         <!-- <button class="menu-btn-cta">Đặt lịch hẹn</button> -->
         <LoginRegister v-if="!customerName" />
         <div v-if="customerName" class="flex">
-          <button class="menu-btn-cta space-right">
+          <v-icon class="menu-btn-cta space-right">{{ mdiEmail }}</v-icon>
+          <v-icon class="menu-btn-cta space-right">{{ mdiAccount }}</v-icon>
+          <button class="menu-btn-cta " @click="logoutCustomer">
             Đặt lịch hẹn
           </button>
-          <v-icon class="menu-btn-cta">{{ mdiAccount }}</v-icon>
         </div>
       </div>
     </div>
@@ -39,7 +40,8 @@
 <script>
 import MenuExplore from "./menu-explore";
 import LoginRegister from "../../views/LoginRegister";
-import { mdiAccount } from "@mdi/js";
+import { mdiAccount, mdiEmail } from "@mdi/js";
+import axios from "axios";
 
 export default {
   name: "header-custom",
@@ -48,12 +50,26 @@ export default {
     toggleMenuHandler() {
       this.showMenu = !this.showMenu;
     },
+    logoutCustomer() {
+      if (localStorage.getItem("customerName")) {
+        localStorage.removeItem("customerName");
+        localStorage.removeItem("customerPhone");
+        localStorage.removeItem("customerId");
+        axios.get("http://localhost:8000/logoutCustomer").then((response) => {
+          console.log(response);
+          window.location.reload();
+        });
+
+        this.$router.push("/login");
+      }
+    },
   },
   data() {
     return {
       showMenu: false,
       customerName: localStorage.getItem("customerName"),
       mdiAccount: mdiAccount,
+      mdiEmail: mdiEmail,
     };
   },
 };
