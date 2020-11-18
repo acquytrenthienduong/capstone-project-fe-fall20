@@ -106,11 +106,11 @@ export default {
   },
 
   watch: {
-    selectType: function (val) {
+    selectType: function(val) {
       this.loadSubService(val);
     },
 
-    selectedDuration: function (val) {
+    selectedDuration: function(val) {
       console.log("val", val);
       axios
         .get("http://localhost:8000/subServiceFindOne/" + val)

@@ -1,5 +1,4 @@
-
-  <template>
+<template>
   <v-row class="ml-0">
     <v-dialog v-model="dialog" max-width="1170">
       <template v-slot:activator="{ on, attrs }">
@@ -15,7 +14,10 @@
 
             <v-row>
               <v-col cols="4">
-                <p class="font-weight-bold">TANNING</p>
+                <v-radio-group v-model="selectType" row>
+                  <v-radio label="Tanning" :value="1"></v-radio>
+                  <v-radio label="Massage" :value="2"></v-radio>
+                </v-radio-group>
               </v-col>
               <v-col cols="8"
                 ><v-select
@@ -30,7 +32,7 @@
               ></v-col>
             </v-row>
 
-            <v-row>
+            <!-- <v-row>
               <v-col>
                 <p class="font-weight-bold">MASSAGE</p>
 
@@ -43,7 +45,7 @@
                   ></v-radio>
                 </v-radio-group>
               </v-col>
-            </v-row>
+            </v-row> -->
 
             <v-row>
               <v-col>
@@ -79,12 +81,34 @@
                 </v-menu>
               </v-col>
               <v-col>
-                <p class="font-weight-bold">Gio check in</p>
-                <v-select
-                  :items="timeSlots"
-                  label="Timeslot"
-                  outline
-                ></v-select>
+                <v-menu
+                  ref="menu"
+                  v-model="menu2"
+                  :close-on-content-click="false"
+                  :nudge-right="40"
+                  :return-value.sync="time"
+                  transition="scale-transition"
+                  offset-y
+                  max-width="290px"
+                  min-width="290px"
+                >
+                  <template v-slot:activator="{ on, attrs }">
+                    <v-text-field
+                      v-model="time"
+                      label="Chọn Giờ"
+                      prepend-icon="mdi-clock-time-four-outline"
+                      readonly
+                      v-bind="attrs"
+                      v-on="on"
+                    ></v-text-field>
+                  </template>
+                  <v-time-picker
+                    v-if="menu2"
+                    v-model="time"
+                    full-width
+                    @click:minute="$refs.menu.save(time)"
+                  ></v-time-picker>
+                </v-menu>
               </v-col>
             </v-row>
             <v-row>
@@ -103,7 +127,7 @@
               <v-col class="justify-center align-center d-flex">
                 <v-btn
                   class="black white--text flex-grow-1 py-6"
-                  @click="showReceipt = true"
+                  @click="showBill"
                 >
                   Tiếp tục
                 </v-btn>
@@ -121,8 +145,8 @@
             <p class="title">Thông tin thanh toán</p>
             <div class="customer">
               <p class="customerTitle font-weight-bold">KHÁCH HÀNG</p>
-              <p class="name">Cao Minh Sơn</p>
-              <p class="phone">123123123</p>
+              <p class="name">{{ customerName }}</p>
+              <p class="phone">{{ customerPhone }}</p>
               <p class="email">son@gmail.com</p>
             </div>
             <div class="services">
@@ -155,7 +179,10 @@
               </div>
             </div>
             <div class="confirm d-flex">
-              <v-btn class="black white--text flex-grow-1 py-6">
+              <v-btn
+                class="black white--text flex-grow-1 py-6"
+                @click="createNewReservation"
+              >
                 ĐẶT HẸN
               </v-btn>
             </div>
@@ -167,12 +194,86 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   name: "schedule-modal",
   methods: {
     saveDate(date) {
       this.$refs.menu.save(date);
       this.menu = false;
+    },
+
+    showBill() {
+      this.showReceipt = true;
+      let a = {
+        customer_id: parseInt(localStorage.getItem("customerId"), 10),
+        checkin_time: this.time,
+        reservation_date: this.date,
+        status: 0,
+        sub_service_sub_service_id: this.selectedDuration,
+        is_access: 0,
+      };
+      console.log("aaaaaaaaa", a);
+    },
+
+    loadSubService(type) {
+      axios
+        .get("http://localhost:8000/getAllSubService/" + type)
+        .then((res) => {
+          console.log("res", res);
+          this.durationOptions = [];
+          res.data.forEach((element) => {
+            let selectItem = {};
+            if (element.type === 1) {
+              selectItem.name = element.time;
+              selectItem.value = element.sub_service_id;
+              selectItem.money = element.money;
+            } else {
+              selectItem.name = element.session;
+              selectItem.value = element.sub_service_id;
+              selectItem.money = element.money;
+            }
+            this.durationOptions.push(selectItem);
+          });
+          console.log("this", this.durationOptions);
+        })
+        .catch((e) => {
+          this.errors.push(e);
+        });
+    },
+
+    createNewReservation() {
+      // console.log(this.selectSubService.value);
+      // this.overlay = true;
+      // setTimeout(() => (this.isHidden = false), 500);
+
+      axios
+        .post("http://localhost:8000/createNewReservation", {
+          customer_id: parseInt(localStorage.getItem("customerId"), 10),
+          checkin_time: this.time,
+          reservation_date: this.date,
+          status: 0,
+          sub_service_sub_service_id: this.selectedDuration,
+          is_access: 0,
+        })
+        .then((response) => {
+          console.log("res", response);
+          setTimeout(() => {
+            this.dialog = false;
+            // this.closeDialog();
+          }, 1000);
+          axios
+            .post("http://localhost:8000/createNotification", {
+              content: "You got a reservation from" + this.customerName,
+            })
+            .then((response) => {
+              console.log(response);
+            });
+        })
+        .catch((e) => {
+          this.errors.push(e);
+        });
     },
   },
   data() {
@@ -181,7 +282,27 @@ export default {
       menu: false,
       timeSlots: ["5am", "6am", "7am"],
       showReceipt: false,
+      numOfPeople: 0,
+      radioGroup: 1,
+      selectedDuration: {},
+      durationOptions: [],
+      dialog: false,
+      selectType: 1,
+      time: null,
+      menu2: false,
+      customerName: localStorage.getItem("customerName"),
+      customerPhone: localStorage.getItem("customerPhone"),
     };
+  },
+
+  mounted() {
+    this.loadSubService(1);
+  },
+
+  watch: {
+    selectType: function(val) {
+      this.loadSubService(val);
+    },
   },
 };
 </script>

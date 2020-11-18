@@ -26,7 +26,7 @@
         <div v-if="customerName" class="flex">
           <NotiMenu />
           <AccountMenu />
-          <button class="menu-btn-cta" @click="logoutCustomer">
+          <button class="menu-btn-cta">
             Đặt lịch hẹn
           </button>
         </div>
@@ -41,7 +41,6 @@ import MenuExplore from "./menu-explore";
 import LoginRegister from "../../views/LoginRegister";
 import NotiMenu from "./noti-menu";
 import AccountMenu from "./account-menu";
-import axios from "axios";
 
 export default {
   name: "header-custom",
@@ -54,19 +53,6 @@ export default {
   methods: {
     toggleMenuHandler() {
       this.showMenu = !this.showMenu;
-    },
-    logoutCustomer() {
-      if (localStorage.getItem("customerName")) {
-        localStorage.removeItem("customerName");
-        localStorage.removeItem("customerPhone");
-        localStorage.removeItem("customerId");
-        axios.get("http://localhost:8000/logoutCustomer").then((response) => {
-          console.log(response);
-          window.location.reload();
-        });
-
-        this.$router.push("/login");
-      }
     },
   },
   data() {
