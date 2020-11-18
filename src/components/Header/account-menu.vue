@@ -68,7 +68,7 @@
 
 <script>
 import axios from "axios";
-
+import EditInfoModal from "../Schedule/scheduleModal";
 export default {
   name: "account-menu",
   props: ["logout"],
@@ -93,7 +93,6 @@ export default {
     ordersHistoryHandler() {
       this.$router.push("/orders").catch(() => {});
     },
-    logoutHandler() {},
     closeAccountMenu() {
       this.menu = false;
     },
