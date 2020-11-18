@@ -43,13 +43,13 @@
         <v-list>
           <v-list-item-group>
             <v-list-item>
-              <v-list-item-content @click="editProfileHandler">
+              <v-list-item-content @click="ordersHistoryHandler">
                 <v-list-item-title> Lịch hẹn</v-list-item-title>
               </v-list-item-content>
             </v-list-item>
             <v-list-item>
-              <v-list-item-content @click="editProfileHandler">
-                <v-list-item-title> Chỉnh sửa thông tin</v-list-item-title>
+              <v-list-item-content>
+                <EditInfoModal :closeAccountMenu="closeAccountMenu" />
               </v-list-item-content>
             </v-list-item>
           </v-list-item-group>
@@ -67,11 +67,20 @@
 </template>
 
 <script>
+import EditInfoModal from "@/components/Account/editInfoModal";
 export default {
   name: "account-menu",
+  components: {
+    EditInfoModal,
+  },
   methods: {
-    editProfileHandler() {},
+    ordersHistoryHandler() {
+      this.$router.push("/orders").catch(() => {});
+    },
     logoutHandler() {},
+    closeAccountMenu() {
+      this.menu = false;
+    },
   },
   data() {
     return { menu: false };
