@@ -94,7 +94,6 @@ export default {
           name: this.name,
         })
         .then((response) => {
-          console.log(response);
         })
         .catch((e) => {
           this.errors.push(e);

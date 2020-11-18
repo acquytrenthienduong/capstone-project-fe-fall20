@@ -78,7 +78,6 @@ export default {
       axios
         .get("http://localhost:8000/getAllSubService/" + type)
         .then((res) => {
-          console.log("res", res);
           this.durationOptions = [];
           res.data.forEach((element) => {
             let selectItem = {};
@@ -93,7 +92,6 @@ export default {
             }
             this.durationOptions.push(selectItem);
           });
-          console.log("this", this.durationOptions);
         })
         .catch((e) => {
           this.errors.push(e);
@@ -111,11 +109,9 @@ export default {
     },
 
     selectedDuration: function(val) {
-      console.log("val", val);
       axios
         .get("http://localhost:8000/subServiceFindOne/" + val)
         .then((res) => {
-          console.log("res", res);
           this.money = res.data.money;
         })
         .catch((e) => {

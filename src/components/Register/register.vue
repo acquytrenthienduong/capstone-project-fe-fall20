@@ -158,8 +158,7 @@ export default {
           gender: 1,
           name: this.name,
         })
-        .then((response) => {
-          console.log(response);
+        .then(() => {
           this.reset();
           this.dialog = false;
         })
@@ -179,8 +178,7 @@ export default {
       firebase
         .auth()
         .signInWithCredential(credential)
-        .then((credential) => {
-          console.log("asdasdas", credential);
+        .then(() => {
         });
     },
 
@@ -193,10 +191,6 @@ export default {
           .auth()
           .signInWithPhoneNumber(phone, appVerifier)
           .then(function(confirmationResult) {
-            console.log(
-              "confirmationResult",
-              confirmationResult.verificationId
-            );
             window.confirmationResult = confirmationResult;
           })
           .catch((error) => {
