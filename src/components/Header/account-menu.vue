@@ -68,7 +68,7 @@
 
 <script>
 import axios from "axios";
-import EditInfoModal from "../Schedule/scheduleModal";
+import EditInfoModal from "../Account/editInfoModal";
 export default {
   name: "account-menu",
   props: ["logout"],
@@ -76,7 +76,6 @@ export default {
     EditInfoModal,
   },
   methods: {
-    editProfileHandler() {},
     logoutHandler() {
       if (localStorage.getItem("customerName")) {
         localStorage.removeItem("customerName");

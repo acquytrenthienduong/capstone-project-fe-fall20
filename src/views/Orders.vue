@@ -6,28 +6,46 @@
       </div>
     </div>
     <v-container class="orders pt-10">
-      <v-row v-for="n in 5" :key="n" class="order">
+      <v-row v-for="item in history" :key="item.reservation_id" class="order">
         <div class="container my-4">
           <v-row>
             <v-col cols="4" class="text-right">
               <img
                 class="service-image"
-                :src="`https://source.unsplash.com/random/128x128?${n}`"
+                :src="
+                  `https://source.unsplash.com/random/128x128?${item.reservation_id}`
+                "
                 alt="demo"
               />
             </v-col>
             <v-col cols="8" class="d-flex flex-column pl-10">
-              <p>Ngày đặt 10/10/2020</p>
+              <p>Ngày đặt {{ item.reservation_date }}</p>
               <div>
-                <span>GÓI TANNING {{ n }} phút</span>
-                <v-chip label class="ml-4"> chua thuc hien</v-chip>
+                <span>GÓI TANNING {{ item.sub_service.time }} phút</span>
+                <v-chip v-if="item.is_access === 0" label class="ml-4 pending">
+                  Chưa được duyệt
+                </v-chip>
+                <v-chip
+                  v-if="item.is_access === 1 && item.status === 0"
+                  label
+                  class="ml-4 not-used"
+                >
+                  Chưa thực hiện
+                </v-chip>
+                <v-chip
+                  v-if="item.is_access === 1 && item.status === 1"
+                  label
+                  class="ml-4 used"
+                >
+                  Đã thực hiện
+                </v-chip>
               </div>
               <v-row style="max-width: 600px">
                 <v-col>
-                  <p>Ngày hẹn 10/10/2099</p>
+                  <p>Ngày hẹn {{ item.reservation_date }}</p>
                 </v-col>
                 <v-col>
-                  <p>Khung giờ hẹn 10:40</p>
+                  <p>Khung giờ hẹn {{ item.checkin_time }}</p>
                 </v-col>
               </v-row>
               <v-btn
@@ -48,12 +66,33 @@
 </template>
 
 <script>
+import axios from "axios";
 export default {
   name: "category",
   data() {
     return {
       page: 1,
+      customerId: parseInt(localStorage.getItem("customerId"), 10),
+      history: [],
     };
+  },
+
+  methods: {
+    loadReservationHistory() {
+      axios
+        .get(
+          "http://localhost:8000/findAllReservationOfCustomer/" +
+            this.customerId
+        )
+        .then((res) => {
+          console.log("history", res);
+          this.history = res.data;
+        });
+    },
+  },
+
+  mounted() {
+    this.loadReservationHistory();
   },
 };
 </script>
@@ -87,5 +126,17 @@ export default {
       }
     }
   }
+}
+
+.pending {
+  background-color: gray !important;
+}
+
+.used {
+  background-color: green !important;
+}
+
+.not-used {
+  background-color: palevioletred !important;
 }
 </style>
