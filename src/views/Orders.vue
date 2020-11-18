@@ -85,7 +85,6 @@ export default {
             this.customerId
         )
         .then((res) => {
-          console.log("history", res);
           this.history = res.data;
         });
     },

@@ -159,8 +159,8 @@ export default {
   data() {
     return {
       dialog: false,
-      email: "caosonminh@gmail.com",
-      name: "SON TINH",
+      email: localStorage.getItem('customerEmail'),
+      name: localStorage.getItem('customerName'),
       changePasswordDialog: false,
       changePhoneDialog: false,
       confirmPhoneDialog: false,

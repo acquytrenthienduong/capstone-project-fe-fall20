@@ -91,11 +91,11 @@ export default {
           password: this.password,
         })
         .then((response) => {
-          console.log(response);
           // this.reset();
           localStorage.setItem("customerName", response.data.name);
           localStorage.setItem("customerPhone", response.data.account);
           localStorage.setItem("customerId", response.data.customer_id);
+          localStorage.setItem("customerEmail", response.data.email);
           this.dialog = false;
           window.location.reload();
         })

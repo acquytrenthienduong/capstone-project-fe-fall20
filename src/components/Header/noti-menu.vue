@@ -59,7 +59,6 @@ export default {
             localStorage.getItem("customerId")
         )
         .then((response) => {
-          console.log(response);
           this.listNoti = response.data;
           this.numberUnseen = response.data.length;
           // window.location.reload();

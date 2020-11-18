@@ -177,7 +177,7 @@
               <div
                 class="align-right red--text font-weight-bold text--darken-4"
               >
-                {{ 500000 | priceVndFormat }}
+                {{ selectedDuration.money | priceVndFormat }}
               </div>
             </div>
             <div class="confirm d-flex">
@@ -208,22 +208,12 @@ export default {
 
     showBill() {
       this.showReceipt = true;
-      let a = {
-        customer_id: parseInt(localStorage.getItem("customerId"), 10),
-        checkin_time: this.time,
-        reservation_date: this.date,
-        status: 0,
-        sub_service_sub_service_id: this.selectedDuration,
-        is_access: 0,
-      };
-      console.log("aaaaaaaaa", a);
     },
 
     loadSubService(type) {
       axios
         .get("http://localhost:8000/getAllSubService/" + type)
         .then((res) => {
-          console.log("res", res);
           this.durationOptions = [];
           res.data.forEach((element) => {
             let selectItem = {};
@@ -238,7 +228,6 @@ export default {
             }
             this.durationOptions.push(selectItem);
           });
-          console.log("this", this.durationOptions);
         })
         .catch((e) => {
           this.errors.push(e);
@@ -246,9 +235,6 @@ export default {
     },
 
     createNewReservation() {
-      // console.log(this.selectSubService.value);
-      // this.overlay = true;
-      // setTimeout(() => (this.isHidden = false), 500);
 
       axios
         .post("http://localhost:8000/createNewReservation", {
@@ -259,18 +245,15 @@ export default {
           sub_service_sub_service_id: this.selectedDuration,
           is_access: 0,
         })
-        .then((response) => {
-          console.log("res", response);
+        .then(() => {
           setTimeout(() => {
             this.dialog = false;
-            // this.closeDialog();
           }, 1000);
           axios
             .post("http://localhost:8000/createNotification", {
-              content: "You got a reservation from" + this.customerName,
+              content: "You got a reservation from " + this.customerName,
             })
-            .then((response) => {
-              console.log(response);
+            .then(() => {
             });
         })
         .catch((e) => {
