@@ -284,6 +284,10 @@ export default {
         this.showReceipt = false;
       }
     },
+
+    selectType: function(val) {
+      this.loadSubService(val);
+    },
   },
   data() {
     return {
@@ -296,7 +300,6 @@ export default {
       radioGroup: 1,
       selectedDuration: {},
       durationOptions: [],
-      dialog: false,
       selectType: 1,
       time: null,
       menu2: false,
@@ -307,12 +310,6 @@ export default {
 
   mounted() {
     this.loadSubService(1);
-  },
-
-  watch: {
-    selectType: function(val) {
-      this.loadSubService(val);
-    },
   },
 };
 </script>
