@@ -24,10 +24,8 @@
             </v-list-item-avatar>
 
             <v-list-item-content>
-              <v-list-item-title>Cao Sao Vang</v-list-item-title>
-              <v-list-item-subtitle
-                >meoconlonton@gmail.com</v-list-item-subtitle
-              >
+              <v-list-item-title>{{ name }}</v-list-item-title>
+              <v-list-item-subtitle>{{ email }}</v-list-item-subtitle>
             </v-list-item-content>
 
             <v-list-item-action>
@@ -67,23 +65,40 @@
 </template>
 
 <script>
-import EditInfoModal from "@/components/Account/editInfoModal";
+import axios from "axios";
+import EditInfoModal from "../Account/editInfoModal";
 export default {
   name: "account-menu",
+  props: ["logout"],
   components: {
     EditInfoModal,
   },
   methods: {
+    logoutHandler() {
+      if (localStorage.getItem("customerName")) {
+        localStorage.removeItem("customerName");
+        localStorage.removeItem("customerPhone");
+        localStorage.removeItem("customerId");
+        axios.get("http://localhost:8000/logoutCustomer").then(() => {
+          window.location.reload();
+        });
+
+        this.$router.push("/login");
+      }
+    },
     ordersHistoryHandler() {
       this.$router.push("/orders").catch(() => {});
     },
-    logoutHandler() {},
     closeAccountMenu() {
       this.menu = false;
     },
   },
   data() {
-    return { menu: false };
+    return {
+      menu: false,
+      email: localStorage.getItem("customerEmail"),
+      name: localStorage.getItem("customerName"),
+    };
   },
 };
 </script>
