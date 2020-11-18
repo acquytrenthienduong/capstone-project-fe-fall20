@@ -24,7 +24,9 @@
           class="pa-2"
         >
           <div class="container--fluid">
-            <a href="#"> {{ noti.content }} </a>
+            <a href="#" @click="seenNoti(noti)">
+              {{ noti.content }}
+            </a>
             <!-- You have successfully scheduled a session! -->
           </div>
         </v-list-item>
@@ -33,7 +35,7 @@
       <v-card-actions>
         <v-spacer></v-spacer>
 
-        <v-btn color="primary" text @click="menu = false"> Clear all </v-btn>
+        <v-btn color="primary" text> Clear all </v-btn>
       </v-card-actions>
     </v-card>
   </v-menu>
@@ -64,10 +66,31 @@ export default {
           // window.location.reload();
         });
     },
+
+    seenNoti(noti) {
+      noti.seen = 1;
+      axios
+        .post(`http://localhost:8000/UserSeenNoti/` + noti.notification_id, {
+          noti,
+        })
+        .then((response) => {
+          console.log(response);
+          this.menu = false;
+          this.loadNotificationOfCustomer();
+          this.$router.push("/orders");
+        })
+        .catch((e) => {
+          this.errors.push(e);
+        });
+    },
   },
 
   mounted() {
     this.loadNotificationOfCustomer();
+
+    setInterval(() => {
+      this.loadNotificationOfCustomer();
+    }, 10000);
   },
 };
 </script>
