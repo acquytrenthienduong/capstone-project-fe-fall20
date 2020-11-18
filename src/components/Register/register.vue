@@ -68,7 +68,6 @@
                 name="otp"
                 outlined
                 required
-                :rules="[validateOTP]"
               ></v-text-field>
 
               <v-row class="mb-8 text-center">
@@ -142,11 +141,6 @@ export default {
     },
   },
   methods: {
-    validateOTP(val) {
-      console.log(val);
-      return "WRONG OTP";
-    },
-
     initRecaptcha() {
       fb.auth().languageCode = "vi";
       window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier(
@@ -167,6 +161,7 @@ export default {
         .then((response) => {
           console.log(response);
           this.reset();
+          this.dialog = false;
         })
         .catch((e) => {
           this.errors.push(e);
@@ -190,19 +185,24 @@ export default {
     },
 
     sendCode: function() {
-      let phone = this.phone;
-      this.step = 2;
-      var appVerifier = window.recaptchaVerifier;
-      firebase
-        .auth()
-        .signInWithPhoneNumber(phone, appVerifier)
-        .then(function(confirmationResult) {
-          console.log("confirmationResult", confirmationResult.verificationId);
-          window.confirmationResult = confirmationResult;
-        })
-        .catch((error) => {
-          this.errors.push(error);
-        });
+      if (this.phone != "" && this.password != "" && this.repassword != "") {
+        let phone = this.phone;
+        this.step = 2;
+        var appVerifier = window.recaptchaVerifier;
+        firebase
+          .auth()
+          .signInWithPhoneNumber(phone, appVerifier)
+          .then(function(confirmationResult) {
+            console.log(
+              "confirmationResult",
+              confirmationResult.verificationId
+            );
+            window.confirmationResult = confirmationResult;
+          })
+          .catch((error) => {
+            this.errors.push(error);
+          });
+      }
     },
 
     reset() {

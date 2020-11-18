@@ -67,11 +67,26 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   name: "account-menu",
+  props: ["logout"],
   methods: {
     editProfileHandler() {},
-    logoutHandler() {},
+    logoutHandler() {
+      if (localStorage.getItem("customerName")) {
+        localStorage.removeItem("customerName");
+        localStorage.removeItem("customerPhone");
+        localStorage.removeItem("customerId");
+        axios.get("http://localhost:8000/logoutCustomer").then((response) => {
+          console.log(response);
+          window.location.reload();
+        });
+
+        this.$router.push("/login");
+      }
+    },
   },
   data() {
     return { menu: false };

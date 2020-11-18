@@ -9,6 +9,7 @@
     <template v-slot:activator="{ on, attrs }">
       <v-btn text class="menu-btn-cta mr-2" v-bind="attrs" v-on="on">
         <v-icon color="#ffffff">mdi-email</v-icon>
+        <span>{{ numberUnseen }}</span>
       </v-btn>
     </template>
 
@@ -17,9 +18,14 @@
       <v-divider></v-divider>
 
       <v-list>
-        <v-list-item v-for="i in 3" :key="i" class="pa-2">
+        <v-list-item
+          v-for="noti in listNoti"
+          :key="noti.notification_id"
+          class="pa-2"
+        >
           <div class="container--fluid">
-            You have successfully scheduled a session!
+            <a href="#"> {{ noti.content }} </a>
+            <!-- You have successfully scheduled a session! -->
           </div>
         </v-list-item>
       </v-list>
@@ -34,12 +40,35 @@
 </template>
 
 <script>
+import axios from "axios";
 export default {
   name: "noti-menu",
   data() {
     return {
       menu: false,
+      listNoti: [],
+      numberUnseen: 0,
     };
+  },
+
+  methods: {
+    loadNotificationOfCustomer() {
+      axios
+        .get(
+          "http://localhost:8000/findNotificationForCustomer/" +
+            localStorage.getItem("customerId")
+        )
+        .then((response) => {
+          console.log(response);
+          this.listNoti = response.data;
+          this.numberUnseen = response.data.length;
+          // window.location.reload();
+        });
+    },
+  },
+
+  mounted() {
+    this.loadNotificationOfCustomer();
   },
 };
 </script>
@@ -58,5 +87,9 @@ export default {
   text-transform: uppercase;
   cursor: pointer;
   border-radius: 0;
+}
+
+a :hover {
+  color: green;
 }
 </style>
