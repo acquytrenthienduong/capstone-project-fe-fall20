@@ -4,10 +4,16 @@
       <p class="title">KHÁM PHÁ</p>
       <ul>
         <li :class="{ active: selectedIndex == 0 }" @click="selectedIndex = 0">
-          DỊCH VỤ
+          GALLERY
         </li>
         <li :class="{ active: selectedIndex == 1 }" @click="selectedIndex = 1">
           SẢN PHẨM
+        </li>
+        <li :class="{ active: selectedIndex == 2 }" @click="selectedIndex = 2">
+          PACKAGES
+        </li>
+        <li :class="{ active: selectedIndex == 3 }" @click="selectedIndex = 3">
+          BLOG
         </li>
       </ul>
     </div>

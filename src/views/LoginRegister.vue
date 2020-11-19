@@ -36,7 +36,8 @@
                       label="Số điện thoại của bạn"
                       outlined
                       required
-                    ></v-text-field>
+                      :rules="[rules.required,rules.started]"
+                    >+84</v-text-field>
 
                     <v-text-field
                       v-model="password"
@@ -80,6 +81,13 @@ export default {
       dialog: false,
       username: "",
       password: "",
+      rules: {
+        required: (value) => !!value || "Bắt buộc",
+        started: (v) =>  v.startsWith("+84") || "Bắt đầu bằng +84",
+        min: (v) => v.length >= 8 || "Ít nhất 8 kí tự",
+        passWordMatch: (val) =>
+          val === this.newPassWord || `Mật khẩu đã nhập không đúng`,
+      },
     };
   },
 
