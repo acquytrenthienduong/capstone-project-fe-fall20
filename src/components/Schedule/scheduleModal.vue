@@ -149,25 +149,22 @@
               <p class="customerTitle font-weight-bold">KHÁCH HÀNG</p>
               <p class="name">{{ customerName }}</p>
               <p class="phone">{{ customerPhone }}</p>
-              <p class="email">son@gmail.com</p>
+              <p class="email">{{ email }}</p>
             </div>
             <div class="services">
               <p class="servicesTitle font-weight-bold">DỊCH VỤ</p>
 
               <v-list class="transparent">
-                <v-list-item class="pa-0" v-for="i in 2" :key="i">
+                <v-list-item class="pa-0">
                   <div class="d-flex flex-row" style="width: 100%">
-                    <div class="flex-grow-1">TANNING 20 MINUTES</div>
-                    <div class="align-right">
-                      {{ 500000 | priceVndFormat }}
-                    </div>
+                    <div class="flex-grow-1">{{ service }}</div>
                   </div>
                 </v-list-item>
               </v-list>
             </div>
             <div class="numberOfPackages">
               <p class="title">SỐ LƯỢNG KHÁCH</p>
-              <p>1</p>
+              <p>{{ numOfPeople }}</p>
             </div>
 
             <v-spacer></v-spacer>
@@ -177,7 +174,7 @@
               <div
                 class="align-right red--text font-weight-bold text--darken-4"
               >
-                {{ selectedDuration.money | priceVndFormat }}
+                {{ money | priceVndFormat }}
               </div>
             </div>
             <div class="confirm d-flex">
@@ -192,6 +189,14 @@
         </v-row>
       </v-container>
     </v-dialog>
+    <v-overlay :z-index="99999" :value="overlay">
+      <v-progress-circular
+        :size="70"
+        :width="7"
+        color="primary"
+        indeterminate
+      ></v-progress-circular>
+    </v-overlay>
   </v-row>
 </template>
 
@@ -235,6 +240,7 @@ export default {
     },
 
     createNewReservation() {
+      this.overlay = true;
 
       axios
         .post("http://localhost:8000/createNewReservation", {
@@ -245,16 +251,17 @@ export default {
           sub_service_sub_service_id: this.selectedDuration,
           is_access: 0,
         })
-        .then(() => {
+        .then((response) => {
+          console.log("response", response);
           setTimeout(() => {
             this.dialog = false;
+            this.overlay = false;
           }, 1000);
           axios
             .post("http://localhost:8000/createNotification", {
               content: "You got a reservation from " + this.customerName,
             })
-            .then(() => {
-            });
+            .then(() => {});
         })
         .catch((e) => {
           this.errors.push(e);
@@ -270,6 +277,22 @@ export default {
 
     selectType: function(val) {
       this.loadSubService(val);
+    },
+
+    selectedDuration: function(val) {
+      axios
+        .get("http://localhost:8000/subServiceFindOne/" + val)
+        .then((res) => {
+          this.money = res.data.money;
+          if (res.data.type === 1) {
+            this.service = res.data.name + " " + res.data.time;
+          } else {
+            this.service = res.data.name + " " + res.data.session;
+          }
+        })
+        .catch((e) => {
+          this.errors.push(e);
+        });
     },
   },
   data() {
@@ -288,6 +311,10 @@ export default {
       menu2: false,
       customerName: localStorage.getItem("customerName"),
       customerPhone: localStorage.getItem("customerPhone"),
+      email: localStorage.getItem("customerEmail"),
+      money: 0,
+      service: "",
+      overlay: false,
     };
   },
 
@@ -300,5 +327,9 @@ export default {
 .left-col {
 }
 .right-col {
+}
+
+.row {
+  align-items: center !important;
 }
 </style>
