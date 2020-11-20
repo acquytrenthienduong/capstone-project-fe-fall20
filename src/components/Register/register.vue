@@ -17,6 +17,7 @@
                     v-model="phone"
                     prepend-inner-icon="mdi-phone"
                     label="Số điện thoại của bạn"
+                    :rules="[rules.required, rules.started]"
                     outlined
                     required
                   ></v-text-field>
@@ -26,6 +27,7 @@
                     v-model="password"
                     prepend-inner-icon="mdi-lock"
                     label="Mật khẩu*"
+                    :rules="[rules.required]"
                     type="password"
                     outlined
                     required
@@ -36,6 +38,7 @@
                     prepend-inner-icon="mdi-lock"
                     label="Nhập lại mật khẩu*"
                     type="password"
+                    :rules="[rules.passWordMatch, rules.required]"
                     outlined
                     required
                   ></v-text-field>
@@ -227,6 +230,13 @@ export default {
       repassword: "",
       name: "",
       email: "",
+      rules: {
+        required: (value) => !!value || "Bắt buộc",
+        started: (v) => v.startsWith("+84") || "Bắt đầu bằng +84",
+        min: (v) => v.length >= 8 || "Ít nhất 8 kí tự",
+        passWordMatch: (val) =>
+          val === this.repassword || `Mật khẩu đã nhập không khớp`,
+      },
     };
   },
   mounted() {
