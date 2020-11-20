@@ -44,6 +44,7 @@
                       prepend-inner-icon="mdi-lock"
                       label="Mật khẩu"
                       type="password"
+                      :rules="[rules.required]"
                       outlined
                       required
                     ></v-text-field>
@@ -87,6 +88,7 @@ export default {
         min: (v) => v.length >= 8 || "Ít nhất 8 kí tự",
         passWordMatch: (val) =>
           val === this.newPassWord || `Mật khẩu đã nhập không đúng`,
+
       },
     };
   },
