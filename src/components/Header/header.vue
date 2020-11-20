@@ -10,10 +10,10 @@
       <div class="left">
         <button class="menu-btn" @click="toggleMenuHandler">Khám phá</button>
         <router-link tag="button" class="menu-btn" to="/schedule">
-          Lịch hẹn
+          Dịch Vụ
         </router-link>
         <router-link tag="button" class="menu-btn" to="/test">
-          About us
+          Liên Hệ
         </router-link>
       </div>
       <div class="middle">
@@ -27,7 +27,7 @@
           <NotiMenu />
           <AccountMenu />
           <button class="menu-btn-cta">
-            Đặt lịch hẹn
+            Xem lịch đặt
           </button>
         </div>
       </div>

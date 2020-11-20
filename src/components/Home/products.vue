@@ -8,7 +8,7 @@
           <v-col v-for="n in 3" :key="n" cols="12" md="4">
             <div class="service-card">
               <img
-                src="@/assets/lotions/1.png"
+                src="@/assets/lotions/tan.png"
                 class="lotion-img"
                 alt="lotion"
               />
