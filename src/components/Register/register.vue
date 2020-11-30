@@ -135,7 +135,13 @@ import axios from "axios";
 import config from '../../confighost/config';
 export default {
   name: "register-steps",
-  props: ["dialog"],
+  // props: ["dialog"],
+  props: {
+    close: {
+      type: Function,
+    },
+  },
+
   watch: {
     dialog(value) {
       if (!value) {
@@ -163,7 +169,8 @@ export default {
         })
         .then(() => {
           this.reset();
-          this.dialog = false;
+          this.close();
+          // this.dialog = false;
         })
         .catch((e) => {
           this.errors.push(e);
