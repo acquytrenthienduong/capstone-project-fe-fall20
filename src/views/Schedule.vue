@@ -48,6 +48,8 @@
 import Products from "../components/Schedule/products";
 import ScheduleModal from "@/components/Schedule/scheduleModal";
 import axios from "axios";
+import config from "../confighost/config";
+
 export default {
   name: "product-detail",
   components: { Products, ScheduleModal },
@@ -58,6 +60,7 @@ export default {
   },
   data() {
     return {
+      host: config.config.host,
       swiperOptions: {
         direction: "vertical",
         loop: true,
@@ -76,7 +79,7 @@ export default {
   methods: {
     loadSubService(type) {
       axios
-        .get("http://localhost:8000/getAllSubService/" + type)
+        .get(this.host + "/getAllSubService/" + type)
         .then((res) => {
           this.durationOptions = [];
           res.data.forEach((element) => {
@@ -110,7 +113,7 @@ export default {
 
     selectedDuration: function(val) {
       axios
-        .get("http://localhost:8000/subServiceFindOne/" + val)
+        .get(this.host + "/subServiceFindOne/" + val)
         .then((res) => {
           this.money = res.data.money;
         })

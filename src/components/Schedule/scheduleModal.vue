@@ -197,6 +197,7 @@
 
 <script>
 import axios from "axios";
+import config from "../../confighost/config";
 
 export default {
   name: "schedule-modal",
@@ -212,7 +213,7 @@ export default {
 
     loadSubService(type) {
       axios
-        .get("http://localhost:8000/getAllSubService/" + type)
+        .get(this.host + "/getAllSubService/" + type)
         .then((res) => {
           this.durationOptions = [];
           res.data.forEach((element) => {
@@ -237,7 +238,7 @@ export default {
     createNewReservation() {
 
       axios
-        .post("http://localhost:8000/createNewReservation", {
+        .post(this.host + "/createNewReservation", {
           customer_id: parseInt(localStorage.getItem("customerId"), 10),
           checkin_time: this.time,
           reservation_date: this.date,
@@ -250,7 +251,7 @@ export default {
             this.dialog = false;
           }, 1000);
           axios
-            .post("http://localhost:8000/createNotification", {
+            .post(this.host + "/createNotification", {
               content: "You got a reservation from " + this.customerName,
             })
             .then(() => {
@@ -274,6 +275,7 @@ export default {
   },
   data() {
     return {
+      host: config.config.host,
       dialog: false,
       date: new Date().toISOString().substr(0, 10),
       menu: false,

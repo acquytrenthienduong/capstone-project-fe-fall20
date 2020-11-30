@@ -23,11 +23,13 @@
 import firebase from "@firebase/app";
 import { fb } from "@/firebase";
 import axios from "axios";
-// import 'firebase/firebase-auth';
+import config from "../confighost/config";
+
 
 export default {
   name: "Preview",
   data: () => ({
+    host: config.config.host,
     phone: "",
     code: "",
     password: "",
@@ -68,7 +70,7 @@ export default {
         .then((credential) => {
           console.log("asdasdas", credential);
           axios
-            .post(`http://localhost:8000/register`, {
+            .post(this.host + `/register`, {
               account: this.phone,
               password: this.password,
               email: this.email,
@@ -86,7 +88,7 @@ export default {
 
     register() {
       axios
-        .post(`http://localhost:8000/register`, {
+        .post(this.host + `/register`, {
           account: this.phone,
           password: this.password,
           email: "test@gmail.com",

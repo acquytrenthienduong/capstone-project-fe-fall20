@@ -71,6 +71,7 @@
 <script>
 import RegisterSteps from "@/components/Register/register";
 import axios from "axios";
+import config from "../confighost/config";
 
 export default {
   name: "login-register",
@@ -79,6 +80,7 @@ export default {
   },
   data() {
     return {
+      host: config.config.host,
       dialog: false,
       username: "",
       password: "",
@@ -96,7 +98,7 @@ export default {
   methods: {
     loginCustomer() {
       axios
-        .post(`http://localhost:8000/loginCustomer`, {
+        .post(this.host + `/loginCustomer`, {
           username: this.username,
           password: this.password,
         })
