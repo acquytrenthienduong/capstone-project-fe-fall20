@@ -67,6 +67,8 @@
 <script>
 import axios from "axios";
 import EditInfoModal from "../Account/editInfoModal";
+import config from "../../confighost/config";
+
 export default {
   name: "account-menu",
   props: ["logout"],
@@ -79,7 +81,7 @@ export default {
         localStorage.removeItem("customerName");
         localStorage.removeItem("customerPhone");
         localStorage.removeItem("customerId");
-        axios.get("http://localhost:8000/logoutCustomer").then(() => {
+        axios.get(this.host + "/logoutCustomer").then(() => {
           window.location.reload();
         });
 
@@ -95,6 +97,7 @@ export default {
   },
   data() {
     return {
+      host: config.config.host,
       menu: false,
       email: localStorage.getItem("customerEmail"),
       name: localStorage.getItem("customerName"),

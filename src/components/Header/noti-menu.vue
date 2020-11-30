@@ -43,10 +43,13 @@
 
 <script>
 import axios from "axios";
+import config from '../../confighost/config';
+
 export default {
   name: "noti-menu",
   data() {
     return {
+      host: config.config.host,
       menu: false,
       listNoti: [],
       numberUnseen: 0,
@@ -57,7 +60,7 @@ export default {
     loadNotificationOfCustomer() {
       axios
         .get(
-          "http://localhost:8000/findNotificationForCustomer/" +
+          this.host + "/findNotificationForCustomer/" +
             localStorage.getItem("customerId")
         )
         .then((response) => {
@@ -70,7 +73,7 @@ export default {
     seenNoti(noti) {
       noti.seen = 1;
       axios
-        .post(`http://localhost:8000/UserSeenNoti/` + noti.notification_id, {
+        .post(this.host + `/UserSeenNoti/` + noti.notification_id, {
           noti,
         })
         .then((response) => {
@@ -87,7 +90,6 @@ export default {
 
   mounted() {
     this.loadNotificationOfCustomer();
-
     setInterval(() => {
       this.loadNotificationOfCustomer();
     }, 10000);
