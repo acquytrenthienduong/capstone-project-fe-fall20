@@ -67,10 +67,13 @@
 
 <script>
 import axios from "axios";
+import config from "../confighost/config";
+
 export default {
   name: "category",
   data() {
     return {
+      host: config.config.host,
       page: 1,
       customerId: parseInt(localStorage.getItem("customerId"), 10),
       history: [],
@@ -81,7 +84,7 @@ export default {
     loadReservationHistory() {
       axios
         .get(
-          "http://localhost:8000/findAllReservationOfCustomer/" +
+          this.host + "/findAllReservationOfCustomer/" +
             this.customerId
         )
         .then((res) => {

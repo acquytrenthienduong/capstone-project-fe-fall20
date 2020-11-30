@@ -160,12 +160,14 @@
 </template>
 <script>
 import axios from "axios";
+import config from "../../confighost/config";
 
 export default {
   name: "edit-info-modal",
   props: ["closeAccountMenu"],
   data() {
     return {
+      host: config.config.host,
       dialog: false,
       email: localStorage.getItem("customerEmail"),
       name: localStorage.getItem("customerName"),
@@ -192,7 +194,7 @@ export default {
 
     updateCustomer() {
       axios
-        .get("http://localhost:8000/loadCustomer/" + this.customerId)
+        .get(this.host + "/loadCustomer/" + this.customerId)
         .then((response) => {
           console.log("response", response);
           var customer = response.data;
@@ -202,7 +204,7 @@ export default {
           localStorage.setItem("customerEmail", customer.email);
           // localStorage.setItem("customerPhone", response.data.account);
           axios
-            .post(`http://localhost:8000/updateProfile/` + this.customerId, {
+            .post(this.host + "/updateProfile/" + this.customerId, {
               customer,
             })
             .then((response) => {
@@ -245,19 +247,16 @@ export default {
       ) {
         if (this.newPassWord === this.confimPassword) {
           axios
-            .get("http://localhost:8000/loadCustomer/" + this.customerId)
+            .get(this.host + "/loadCustomer/" + this.customerId)
             .then((response) => {
               console.log("response", response);
               if (response.data.password === this.oldPassword) {
                 var customer = response.data;
                 customer.password = this.newPassWord;
                 axios
-                  .post(
-                    `http://localhost:8000/updateProfile/` + this.customerId,
-                    {
-                      customer,
-                    }
-                  )
+                  .post(this.host + `/updateProfile/` + this.customerId, {
+                    customer,
+                  })
                   .then((response) => {
                     console.log("res", response);
                     this.reset();
