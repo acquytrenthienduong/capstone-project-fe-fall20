@@ -1,5 +1,5 @@
 module.exports = {
     config: {
-        host: "https://localhost:8000",
+        host: "https://18.136.123.210"
     }
 };
