@@ -132,7 +132,7 @@ import { mdiPhone, mdiLock, mdiCloseBox } from "@mdi/js";
 import firebase from "@firebase/app";
 import { fb } from "@/firebase";
 import axios from "axios";
-
+import config from '../../confighost/config';
 export default {
   name: "register-steps",
   // props: ["dialog"],
@@ -160,7 +160,7 @@ export default {
 
     register() {
       axios
-        .post(`http://localhost:8000/register`, {
+        .post(this.host + `/register`, {
           account: this.phone,
           password: this.password,
           email: this.email,
@@ -219,6 +219,7 @@ export default {
   },
   data() {
     return {
+      host: config.config.host,
       step: 1,
       svgPath: mdiPhone,
       mdiLock: mdiLock,
