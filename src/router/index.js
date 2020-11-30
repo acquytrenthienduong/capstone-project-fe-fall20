@@ -6,6 +6,13 @@ Vue.use(VueRouter);
 const routes = [
   {
     path: "/",
+    redirect: '/navatan',
+    name: "Home",
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/Home.vue"),
+  },
+  {
+    path: "/navatan",
     name: "Home",
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/Home.vue"),
@@ -41,7 +48,7 @@ const routes = [
       import(/* webpackChunkName: "about" */ "../views/Orders.vue"),
   },
   {
-    path: "/test",
+    path: "/loi",
     name: "Test",
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/Test.vue"),

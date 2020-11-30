@@ -110,6 +110,7 @@ export default {
           localStorage.setItem("customerEmail", response.data.email);
           this.dialog = false;
           window.location.reload();
+          this.$router.push("/navatan");
         })
         .catch((e) => {
           this.errors.push(e);

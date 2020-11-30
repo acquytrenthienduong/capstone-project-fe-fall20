@@ -85,7 +85,7 @@ export default {
           window.location.reload();
         });
 
-        this.$router.push("/login");
+        this.$router.push("/navatan");
       }
     },
     ordersHistoryHandler() {
