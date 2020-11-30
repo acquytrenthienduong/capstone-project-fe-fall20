@@ -13,7 +13,7 @@
           <v-tab class="tab-title"> Đăng Nhập</v-tab>
 
           <v-tab-item>
-            <RegisterSteps :dialog="dialog" />
+            <RegisterSteps :dialog="dialog" :close="closeDialog"/>
           </v-tab-item>
           <v-tab-item>
             <div class="container">
@@ -114,6 +114,10 @@ export default {
         .catch((e) => {
           this.errors.push(e);
         });
+    },
+
+    closeDialog() {
+      this.dialog = false;
     },
   },
 };
