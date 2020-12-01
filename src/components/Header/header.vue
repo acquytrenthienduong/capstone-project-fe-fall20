@@ -8,7 +8,7 @@
 
     <div class="content">
       <div class="left">
-        <button class="menu-btn" @click="toggleMenuHandler">Khám phá</button>
+        <button  class="menu-btn" @click="toggleMenuHandler">Khám phá</button>
         <router-link tag="button" class="menu-btn" to="/schedule">
           Dịch Vụ
         </router-link>
