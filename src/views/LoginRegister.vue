@@ -13,7 +13,7 @@
           <v-tab class="tab-title"> Đăng Nhập</v-tab>
 
           <v-tab-item>
-            <RegisterSteps :dialog="dialog" :close="closeDialog"/>
+            <RegisterSteps :dialog="dialog" :close="closeDialog" />
           </v-tab-item>
           <v-tab-item>
             <div class="container">
@@ -36,8 +36,9 @@
                       label="Số điện thoại của bạn"
                       outlined
                       required
-                      :rules="[rules.required,rules.started]"
-                    >+84</v-text-field>
+                      :rules="[rules.required, rules.started]"
+                      >+84</v-text-field
+                    >
 
                     <v-text-field
                       v-model="password"
@@ -48,6 +49,7 @@
                       outlined
                       required
                     ></v-text-field>
+                    <h3 v-if="check">Sai tên tài khoản hoặc mật khẩu!</h3>
                   </v-container>
                 </v-card-text>
                 <v-card-actions>
@@ -65,6 +67,7 @@
         </v-tabs>
       </div>
     </v-dialog>
+    <FlashMessage z-index="999"></FlashMessage>
   </v-row>
 </template>
 
@@ -86,12 +89,12 @@ export default {
       password: "",
       rules: {
         required: (value) => !!value || "Bắt buộc",
-        started: (v) =>  v.startsWith("+84") || "Bắt đầu bằng +84",
+        started: (v) => v.startsWith("+84") || "Bắt đầu bằng +84",
         min: (v) => v.length >= 8 || "Ít nhất 8 kí tự",
         passWordMatch: (val) =>
           val === this.newPassWord || `Mật khẩu đã nhập không đúng`,
-
       },
+      check: false,
     };
   },
 
@@ -103,6 +106,7 @@ export default {
           password: this.password,
         })
         .then((response) => {
+          this.check = false;
           // this.reset();
           localStorage.setItem("customerName", response.data.name);
           localStorage.setItem("customerPhone", response.data.account);
@@ -112,8 +116,9 @@ export default {
           window.location.reload();
           this.$router.push("/navatan");
         })
-        .catch((e) => {
-          this.errors.push(e);
+        .catch((error) => {
+          console.log(error);
+          this.check = true;
         });
     },
 
@@ -163,5 +168,10 @@ export default {
       width: 100%;
     }
   }
+}
+
+h3 {
+  color: red;
+  background-color: none !important;
 }
 </style>

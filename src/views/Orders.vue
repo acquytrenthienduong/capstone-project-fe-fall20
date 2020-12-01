@@ -53,6 +53,7 @@
                 </v-col>
               </v-row>
               <v-btn
+                v-if="item.is_access === 1 && item.status === 0"
                 color="black"
                 class="white--text mt-10"
                 style="width: 200px"
