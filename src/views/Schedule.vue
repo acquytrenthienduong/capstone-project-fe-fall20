@@ -9,7 +9,6 @@
               alt="demo"
             />
           </swiper-slide>
-
           <div class="swiper-pagination" slot="pagination"></div>
         </swiper>
       </div>
@@ -36,7 +35,8 @@
           <div class="option-price">
             {{ money | priceVndFormat }}
           </div>
-          <ScheduleModal />
+          <ScheduleModal v-if="customerName" />
+          <h3 v-if="!customerName">Hãy tạo tài khoản hoặc đăng nhập trước nhé!</h3>
         </div>
       </div>
     </div>
@@ -73,6 +73,7 @@ export default {
       durationOptions: [],
       money: 0,
       selectType: 1,
+      customerName: localStorage.getItem("customerName"),
     };
   },
 
