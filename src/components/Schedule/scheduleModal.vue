@@ -14,10 +14,15 @@
 
             <v-row>
               <v-col cols="4">
-                <v-radio-group v-model="selectType" row>
-                  <v-radio label="Tanning" :value="1"></v-radio>
-                  <v-radio label="Massage" :value="2"></v-radio>
-                </v-radio-group>
+                <v-select
+                  :items="chooseServices"
+                  item-text="name"
+                  item-value="value"
+                  label="Service"
+                  class="duration-selector"
+                  outlined
+                  v-model="selectType"
+                ></v-select>
               </v-col>
               <v-col cols="8"
                 ><v-select
@@ -227,6 +232,10 @@ export default {
               selectItem.name = element.time;
               selectItem.value = element.sub_service_id;
               selectItem.money = element.money;
+            } else if (element.type === 2) {
+              selectItem.name = element.time;
+              selectItem.value = element.sub_service_id;
+              selectItem.money = element.money;
             } else {
               selectItem.name = element.session;
               selectItem.value = element.sub_service_id;
@@ -242,7 +251,6 @@ export default {
 
     createNewReservation() {
       this.overlay = true;
-
       axios
         .post(this.host + "/createNewReservation", {
           customer_id: parseInt(localStorage.getItem("customerId"), 10),
@@ -317,6 +325,11 @@ export default {
       money: 0,
       service: "",
       overlay: false,
+      chooseServices: [
+        { value: 1, name: "Stand Up" },
+        { value: 2, name: "Lay Down" },
+        { value: 3, name: "Spray" },
+      ],
     };
   },
 
