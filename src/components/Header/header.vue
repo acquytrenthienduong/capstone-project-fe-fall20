@@ -5,7 +5,6 @@
       :class="{ visible: showMenu }"
       @click="showMenu = false"
     ></div>
-
     <div class="content">
       <div class="left">
         <button  class="menu-btn" @click="toggleMenuHandler">Khám phá</button>

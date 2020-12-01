@@ -5,7 +5,11 @@
         <div class="category-title">Lịch hẹn của bạn</div>
       </div>
     </div>
+
     <v-container class="orders pt-10">
+      <v-alert v-model="alert" outlined type="success" text>
+        Đợi 1 chút nhé, chúng tôi sẽ liên hệ cho bạn ngay!
+      </v-alert>
       <v-row v-for="item in history" :key="item.reservation_id" class="order">
         <div class="container my-4">
           <v-row>
@@ -52,6 +56,7 @@
                 color="black"
                 class="white--text mt-10"
                 style="width: 200px"
+                @click="requestChangeReservation"
                 >Yêu cầu đổi lịch
               </v-btn>
             </v-col>
@@ -76,20 +81,44 @@ export default {
       host: config.config.host,
       page: 1,
       customerId: parseInt(localStorage.getItem("customerId"), 10),
+      phoneNumber: localStorage.getItem("customerPhone"),
       history: [],
+      alert: false,
     };
   },
 
   methods: {
     loadReservationHistory() {
       axios
-        .get(
-          this.host + "/findAllReservationOfCustomer/" +
-            this.customerId
-        )
+        .get(this.host + "/findAllReservationOfCustomer/" + this.customerId)
         .then((res) => {
           this.history = res.data;
         });
+    },
+
+    requestChangeReservation() {
+      this.$confirm("Bạn chắc chắn muốn đổi lịch chứ?").then((res) => {
+        if (res) {
+          axios
+            .post(this.host + "/createNotification", {
+              content:
+                "Khách hàng có SĐT " +
+                this.phoneNumber +
+                " muốn thay đổi lịch hẹn",
+            })
+            .then(() => {
+              window.scrollTo({
+                top: 0,
+                left: 0,
+                behavior: "smooth",
+              });
+              this.alert = true;
+              setTimeout(() => {
+                this.alert = false;
+              }, 5000);
+            });
+        }
+      });
     },
   },
 
