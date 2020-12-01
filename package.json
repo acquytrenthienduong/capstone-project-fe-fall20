@@ -10,6 +10,7 @@
   "dependencies": {
     "@firebase/app": "^0.6.13",
     "@mdi/js": "^5.8.55",
+    "@smartweb/vue-flash-message": "^0.6.10",
     "axios": "^0.21.0",
     "core-js": "^3.6.5",
     "firebase": "^8.0.2",

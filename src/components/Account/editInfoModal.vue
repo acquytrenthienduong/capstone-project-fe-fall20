@@ -72,19 +72,19 @@
           <v-container class="px-10 pt-10">
             <v-text-field
               v-model="oldPassword"
-              label="Old password"
+              label="Mật khẩu cũ"
               outlined
             ></v-text-field>
             <v-text-field
               v-model="newPassWord"
               outlined
-              label="New password"
+              label="Mật khẩu mới"
               :rules="[rules.required, rules.min]"
             ></v-text-field>
             <v-text-field
               v-model="confimPassword"
               outlined
-              label="Confirm new password"
+              label="Nhập lại mật khẩu mới"
               :rules="[rules.required, rules.min, rules.passWordMatch]"
             ></v-text-field>
           </v-container>

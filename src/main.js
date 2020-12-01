@@ -5,9 +5,10 @@ import VueAwesomeSwiper from "vue-awesome-swiper";
 import App from "./App.vue";
 import router from "./router";
 import VuetifyConfirm from 'vuetify-confirm'
-
+import FlashMessage from "@smartweb/vue-flash-message";
 Vue.config.productionTip = false;
 
+Vue.use(FlashMessage);
 Vue.use(VueAwesomeSwiper /* { default options with global component } */);
 Vue.use(VuetifyConfirm, {
   vuetify,
