@@ -25,8 +25,8 @@
         <div v-if="customerName" class="flex">
           <NotiMenu />
           <AccountMenu />
-          <button class="menu-btn-cta">
-            Xem lịch đặt
+          <button class="menu-btn-cta" id="booknow">
+            BOOK NOW
           </button>
         </div>
       </div>
@@ -63,6 +63,20 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+#booknow {
+  font-family: "Montserrat", sans-serif;
+  display: inline-block;
+  text-transform: uppercase;
+  color: #d6c630;
+  text-decoration: none;
+  border: 2px solid;
+  background: transparent;
+  padding: 10px 30px;
+  font-size: 14px;
+  font-weight: 700;
+  -webkit-transition: 0.2s all;
+  transition: 0.2s all;
+}
 .root {
   position: relative;
   background: #000000;
