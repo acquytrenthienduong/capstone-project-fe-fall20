@@ -7,7 +7,7 @@ const routes = [
   {
     path: "/",
     redirect: '/navatan',
-    name: "Home",
+    name: "Default",
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/Home.vue"),
   },
@@ -53,6 +53,16 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/Test.vue"),
   },
+  {
+    path: "/404",
+    name: "errorpage",
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../components/Error/404.vue"),
+  },
+  {
+    path: "*",
+    redirect: '/404'
+  }
 ];
 
 const router = new VueRouter({
