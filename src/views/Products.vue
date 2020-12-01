@@ -2,8 +2,8 @@
   <div class="root">
     <div class="header">
       <div class="inner-content">
-        <div class="category-title">SẢN PHẨM LOTION</div>
-        <div class="category-subtitle">Sản phẩm chăm sóc da chuyên dụng</div>
+        <!-- <div class="category-title">SẢN PHẨM LOTION</div>
+        <div class="category-subtitle">Sản phẩm chăm sóc da chuyên dụng</div> -->
       </div>
     </div>
     <v-container class="products py-10">
@@ -12,7 +12,7 @@
           <v-img
             class="white--text align-end"
             height="200px"
-            src="@/assets/lotions/FIESTASUNO_1.png"
+            src="@/assets/lotions/sanpham_02.png"
           >
             <v-card-title>Top 10 Australian beaches</v-card-title>
           </v-img>
@@ -38,7 +38,7 @@
           <v-img
             class="white--text align-end"
             height="200px"
-            src="@/assets/lotions/FIESTASUNO_2.png"
+            src="@/assets/lotions/sanpham_01.png"
           >
             <v-card-title>Top 10 Australian beaches</v-card-title>
           </v-img>
@@ -64,7 +64,7 @@
           <v-img
             class="white--text align-end"
             height="200px"
-            src="@/assets/lotions/FIESTASUNO_3.png"
+            src="@/assets/lotions/sanpham_03.png"
           >
             <v-card-title>Top 10 Australian beaches</v-card-title>
           </v-img>
@@ -90,7 +90,7 @@
           <v-img
             class="white--text align-end"
             height="200px"
-            src="@/assets/lotions/FIESTASUNO_4.png"
+            src="@/assets/lotions/sanpham_04.png"
           >
             <v-card-title>Top 10 Australian beaches</v-card-title>
           </v-img>
@@ -116,7 +116,7 @@
           <v-img
             class="white--text align-end"
             height="200px"
-            src="@/assets/lotions/FiestaSun_3.png"
+            src="@/assets/lotions/sanpham_05.png"
           >
             <v-card-title>Top 10 Australian beaches</v-card-title>
           </v-img>
@@ -142,7 +142,7 @@
           <v-img
             class="white--text align-end"
             height="200px"
-            src="@/assets/lotions/FIESTASUNO_5.png"
+            src="@/assets/lotions/sanpham_06.png"
           >
             <v-card-title>Top 10 Australian beaches</v-card-title>
           </v-img>
@@ -178,7 +178,7 @@ export default { name: "category" };
 .root {
   .header {
     position: relative;
-    background: url("https://source.unsplash.com/1280x720/?girl");
+    background: url("../assets/lotions/cover_product.png");
     background-size: cover;
     .inner-content {
       color: #ffffff;

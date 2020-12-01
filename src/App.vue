@@ -37,7 +37,7 @@ export default {
     Footer,
   },
   mounted() {
-    document.title = "Capstone Frontend";
+    document.title = "Navatan Tanning Studio";
   },
 };
 </script>
