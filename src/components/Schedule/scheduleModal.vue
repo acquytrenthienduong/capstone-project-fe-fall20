@@ -54,7 +54,7 @@
 
             <v-row>
               <v-col>
-                <p class="font-weight-bold">Ngay check in</p>
+                <p class="font-weight-bold">Ngày Hẹn</p>
                 <v-menu
                   ref="menu"
                   v-model="menu"
@@ -119,8 +119,7 @@
             </v-row>
             <v-row>
               <v-col>
-                <p class="font-weight-bold">So luong nguoi</p>
-
+                <p class="font-weight-bold">Số lượng người</p>
                 <v-text-field
                   v-model="numOfPeople"
                   label="Number"
@@ -260,17 +259,19 @@ export default {
           sub_service_sub_service_id: this.selectedDuration,
           is_access: 0,
         })
-        .then((response) => {
-          console.log("response", response);
+        .then(() => {
           setTimeout(() => {
             this.dialog = false;
             this.overlay = false;
           }, 1000);
           axios
             .post(this.host + "/createNotification", {
-              content: "You got a reservation from " + this.customerName,
+              content:
+                "Khách Hàng " + this.customerName + " muốn đặt 1 cuộc hẹn",
             })
-            .then(() => {});
+            .then(() => {
+              
+            });
         })
         .catch((e) => {
           this.errors.push(e);
@@ -290,10 +291,12 @@ export default {
 
     selectedDuration: function(val) {
       axios
-        .get("http://localhost:8000/subServiceFindOne/" + val)
+        .get(this.host + "/subServiceFindOne/" + val)
         .then((res) => {
           this.money = res.data.money;
           if (res.data.type === 1) {
+            this.service = res.data.name + " " + res.data.time;
+          } else if (res.data.type === 2) {
             this.service = res.data.name + " " + res.data.time;
           } else {
             this.service = res.data.name + " " + res.data.session;
