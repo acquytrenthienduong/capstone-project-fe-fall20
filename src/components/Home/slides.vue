@@ -1,7 +1,7 @@
 <template>
   <div class="root">
     <swiper ref="mySwiper" :options="swiperOptions" class="slider">
-      <swiper-slide v-for="item in slides" :key="item" class="slide">
+      <swiper-slide class="slide">
         <v-skeleton-loader type="image">
           <v-img
             src="@/assets/home/cover_1.png"
@@ -14,6 +14,60 @@
 
         <div class="slide-content">
           <div class="slide-title">TANNING STUDIO ĐẦU TIÊN TẠI VIỆT NAM</div>
+          <button class="slide-cta-btn">Đặt lịch ngay</button>
+        </div>
+      </swiper-slide>
+      <div class="swiper-pagination" slot="pagination"></div>
+
+      <swiper-slide class="slide">
+        <v-skeleton-loader type="image">
+          <v-img
+            src="@/assets/home/cover_2.png"
+            class="slide-img"
+            :aspect-ratio="16 / 9"
+            alt="banner"
+          >
+          </v-img>
+        </v-skeleton-loader>
+
+        <div class="slide-content">
+          <div class="slide-title"></div>
+          <button class="slide-cta-btn">Đặt lịch ngay</button>
+        </div>
+      </swiper-slide>
+      <div class="swiper-pagination" slot="pagination"></div>
+
+      <swiper-slide class="slide">
+        <v-skeleton-loader type="image">
+          <v-img
+            src="@/assets/home/cover_7.jpg"
+            class="slide-img"
+            :aspect-ratio="16 / 9"
+            alt="banner"
+          >
+          </v-img>
+        </v-skeleton-loader>
+
+        <div class="slide-content">
+          <div class="slide-title"></div>
+          <button class="slide-cta-btn">Đặt lịch ngay</button>
+        </div>
+      </swiper-slide>
+      <div class="swiper-pagination" slot="pagination"></div>
+
+      <swiper-slide class="slide">
+        <v-skeleton-loader type="image">
+          <v-img
+            src="@/assets/home/cover_6.jpg"
+            class="slide-img"
+            :aspect-ratio="16 / 9"
+            alt="banner"
+          >
+          </v-img>
+        </v-skeleton-loader>
+
+        <div class="slide-content">
+          <div class="slide-title"></div>
           <button class="slide-cta-btn">Đặt lịch ngay</button>
         </div>
       </swiper-slide>
@@ -65,7 +119,7 @@ export default {
       }
       .slide-content {
         position: absolute;
-        top: 0;
+        top: 200px;
         bottom: 0;
         left: 0;
         right: 0;
