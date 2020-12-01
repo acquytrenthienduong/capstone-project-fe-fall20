@@ -17,7 +17,7 @@
         </router-link>
       </div>
       <div class="middle">
-        <router-link tag="div" class="logo" to="/">
+        <router-link tag="div" class="logo" to="/navatan">
           <img src="../../assets/header-logo.png" alt="logo" />
         </router-link>
       </div>
