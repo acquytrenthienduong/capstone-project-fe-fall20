@@ -4,8 +4,7 @@
       <swiper-slide v-for="item in slides" :key="item" class="slide">
         <v-skeleton-loader type="image">
           <v-img
-            :lazy-src="`https://source.unsplash.com/random/1280x720?${item}`"
-            :src="`https://source.unsplash.com/random/1280x720?${item}`"
+            src="@/assets/home/cover_1.png"
             class="slide-img"
             :aspect-ratio="16 / 9"
             alt="banner"
