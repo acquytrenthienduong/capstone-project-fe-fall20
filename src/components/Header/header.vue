@@ -7,7 +7,7 @@
     ></div>
     <div class="content">
       <div class="left">
-        <button  class="menu-btn" @click="toggleMenuHandler">Khám phá</button>
+        <button class="menu-btn" @click="toggleMenuHandler">Khám phá</button>
         <router-link tag="button" class="menu-btn" to="/schedule">
           Dịch Vụ
         </router-link>
@@ -25,9 +25,7 @@
         <div v-if="customerName" class="flex">
           <NotiMenu />
           <AccountMenu />
-          <button class="menu-btn-cta" id="booknow">
-            BOOK NOW
-          </button>
+          <ScheduleModal />
         </div>
       </div>
     </div>
@@ -40,6 +38,7 @@ import MenuExplore from "./menu-explore";
 import LoginRegister from "../../views/LoginRegister";
 import NotiMenu from "./noti-menu";
 import AccountMenu from "./account-menu";
+import ScheduleModal from "@/components/Schedule/scheduleModal";
 
 export default {
   name: "header-custom",
@@ -48,6 +47,7 @@ export default {
     LoginRegister,
     NotiMenu,
     AccountMenu,
+    ScheduleModal,
   },
   methods: {
     toggleMenuHandler() {
@@ -159,4 +159,5 @@ export default {
 .justify-center {
   justify-content: inherit !important;
 }
+
 </style>
