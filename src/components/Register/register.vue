@@ -146,6 +146,9 @@ export default {
     close: {
       type: Function,
     },
+    selectedTab: {
+      type: Number,
+    },
   },
 
   watch: {
@@ -176,8 +179,9 @@ export default {
           })
           .then(() => {
             this.checkStep3 = false;
+            this.registerSuccess();
             this.reset();
-            this.close();
+            // this.close();
             // this.dialog = false;
           })
           .catch((e) => {
@@ -238,6 +242,10 @@ export default {
 
     backToStep1() {
       this.step = 1;
+    },
+
+    registerSuccess() {
+      this.$emit("clicked", 1);
     },
   },
   data() {

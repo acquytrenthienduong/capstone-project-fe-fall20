@@ -8,12 +8,17 @@
       </template>
       <div class="content">
         <v-icon class="close-button" @click="dialog = false"> mdi-plus </v-icon>
-        <v-tabs class="dialog-tabs">
+        <v-tabs v-model="selectedTab" class="dialog-tabs">
           <v-tab class="tab-title">Đăng Ký</v-tab>
           <v-tab class="tab-title"> Đăng Nhập</v-tab>
 
           <v-tab-item>
-            <RegisterSteps :dialog="dialog" :close="closeDialog" />
+            <RegisterSteps
+              :dialog="dialog"
+              :close="closeDialog"
+              :selectedTab="selectedTab"
+              @clicked="onClickChild"
+            />
           </v-tab-item>
           <v-tab-item>
             <div class="container">
@@ -95,6 +100,7 @@ export default {
           val === this.newPassWord || `Mật khẩu đã nhập không đúng`,
       },
       check: false,
+      selectedTab: 0,
     };
   },
 
@@ -124,6 +130,10 @@ export default {
 
     closeDialog() {
       this.dialog = false;
+    },
+
+    onClickChild(value) {
+      this.selectedTab = value;
     },
   },
 };
