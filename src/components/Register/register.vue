@@ -43,6 +43,7 @@
                     required
                   ></v-text-field>
                 </v-form>
+                <h3 v-if="checkStep1">Hãy điền hết thông tin nhé!</h3>
               </v-container>
             </v-card-text>
             <v-card-actions>
@@ -75,9 +76,12 @@
 
               <v-row class="mb-8 text-center">
                 <v-col>
-                  <v-btn class="red--text" text> Gửi lại mã </v-btn>
+                  <v-btn @click="backToStep1" class="red--text" text>
+                    Không nhận được mã, quay lại bước 1
+                  </v-btn>
                 </v-col>
               </v-row>
+              <h3 v-if="checkStep2">Mã xác nhận không đúng</h3>
               <div class="container--fluid align-content-stretch">
                 <v-btn
                   class="blue white--text otp-confirm-btn"
@@ -111,7 +115,9 @@
                 outlined
                 required
               ></v-text-field>
-
+              <h3 v-if="checkStep3">
+                Hãy điền nhập email và tên của bạn đã nhé!
+              </h3>
               <div class="container--fluid align-content-stretch">
                 <v-btn
                   class="blue white--text complete-profile-btn"
@@ -132,7 +138,7 @@ import { mdiPhone, mdiLock, mdiCloseBox } from "@mdi/js";
 import firebase from "@firebase/app";
 import { fb } from "@/firebase";
 import axios from "axios";
-import config from '../../confighost/config';
+import config from "../../confighost/config";
 export default {
   name: "register-steps",
   // props: ["dialog"],
@@ -159,26 +165,30 @@ export default {
     },
 
     register() {
-      axios
-        .post(this.host + `/register`, {
-          account: this.phone,
-          password: this.password,
-          email: this.email,
-          gender: 1,
-          name: this.name,
-        })
-        .then(() => {
-          this.reset();
-          this.close();
-          // this.dialog = false;
-        })
-        .catch((e) => {
-          this.errors.push(e);
-        });
+      if (this.email != "" && this.name != "") {
+        axios
+          .post(this.host + `/register`, {
+            account: this.phone,
+            password: this.password,
+            email: this.email,
+            gender: 1,
+            name: this.name,
+          })
+          .then(() => {
+            this.checkStep3 = false;
+            this.reset();
+            this.close();
+            // this.dialog = false;
+          })
+          .catch((e) => {
+            this.errors.push(e);
+          });
+      } else {
+        this.checkStep3 = true;
+      }
     },
 
     enterCode: function() {
-      this.step = 3;
       let code = this.code;
       var credential = firebase.auth.PhoneAuthProvider.credential(
         window.confirmationResult.verificationId,
@@ -188,11 +198,18 @@ export default {
       firebase
         .auth()
         .signInWithCredential(credential)
-        .then(() => {});
+        .then(() => {
+          this.checkStep2 = false;
+          this.step = 3;
+        })
+        .catch(() => {
+          this.checkStep2 = true;
+        });
     },
 
     sendCode: function() {
       if (this.phone != "" && this.password != "" && this.repassword != "") {
+        this.checkStep1 = false;
         let phone = this.phone;
         this.step = 2;
         var appVerifier = window.recaptchaVerifier;
@@ -205,6 +222,8 @@ export default {
           .catch((error) => {
             this.errors.push(error);
           });
+      } else {
+        this.checkStep1 = true;
       }
     },
 
@@ -215,6 +234,10 @@ export default {
       this.repassword = "";
       this.name = "";
       this.email = "";
+    },
+
+    backToStep1() {
+      this.step = 1;
     },
   },
   data() {
@@ -238,6 +261,9 @@ export default {
         passWordMatch: (val) =>
           val === this.repassword || `Mật khẩu đã nhập không khớp`,
       },
+      checkStep1: false,
+      checkStep2: false,
+      checkStep3: false,
     };
   },
   mounted() {
@@ -260,5 +286,9 @@ export default {
 .step-2-card {
   padding-top: 40px;
   padding-bottom: 40px;
+}
+
+h3 {
+  color: red;
 }
 </style>
