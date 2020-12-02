@@ -25,7 +25,9 @@
         <div v-if="customerName" class="flex">
           <NotiMenu />
           <AccountMenu />
-          <ScheduleModal />
+          <button class="white--text menu-btn-cta" @click="showScheduleModal">
+            ĐẶT LỊCH NGAY
+          </button>
         </div>
       </div>
     </div>
@@ -38,7 +40,6 @@ import MenuExplore from "./menu-explore";
 import LoginRegister from "../../views/LoginRegister";
 import NotiMenu from "./noti-menu";
 import AccountMenu from "./account-menu";
-import ScheduleModal from "@/components/Schedule/scheduleModal";
 
 export default {
   name: "header-custom",
@@ -47,11 +48,13 @@ export default {
     LoginRegister,
     NotiMenu,
     AccountMenu,
-    ScheduleModal,
   },
   methods: {
     toggleMenuHandler() {
       this.showMenu = !this.showMenu;
+    },
+    showScheduleModal() {
+      this.$store.commit("toggleScheduleModal", true);
     },
   },
   data() {
@@ -159,5 +162,4 @@ export default {
 .justify-center {
   justify-content: inherit !important;
 }
-
 </style>

@@ -14,7 +14,9 @@
 
         <div class="slide-content">
           <div class="slide-title">TANNING STUDIO ĐẦU TIÊN TẠI VIỆT NAM</div>
-          <button class="slide-cta-btn">Đặt lịch ngay</button>
+          <button class="slide-cta-btn" @click="showScheduleModal">
+            Đặt lịch ngay
+          </button>
         </div>
       </swiper-slide>
       <div class="swiper-pagination" slot="pagination"></div>
@@ -32,7 +34,9 @@
 
         <div class="slide-content">
           <div class="slide-title"></div>
-          <button class="slide-cta-btn">Đặt lịch ngay</button>
+          <button class="slide-cta-btn" @click="showScheduleModal">
+            Đặt lịch ngay
+          </button>
         </div>
       </swiper-slide>
       <div class="swiper-pagination" slot="pagination"></div>
@@ -50,7 +54,9 @@
 
         <div class="slide-content">
           <div class="slide-title"></div>
-          <button class="slide-cta-btn">Đặt lịch ngay</button>
+          <button class="slide-cta-btn" @click="showScheduleModal">
+            Đặt lịch ngay
+          </button>
         </div>
       </swiper-slide>
       <div class="swiper-pagination" slot="pagination"></div>
@@ -68,7 +74,9 @@
 
         <div class="slide-content">
           <div class="slide-title"></div>
-          <button class="slide-cta-btn">Đặt lịch ngay</button>
+          <button class="slide-cta-btn" @click="showScheduleModal">
+            Đặt lịch ngay
+          </button>
         </div>
       </swiper-slide>
       <div class="swiper-pagination" slot="pagination"></div>
@@ -80,6 +88,11 @@
 export default {
   name: "slides",
   components: {},
+  methods: {
+    showScheduleModal() {
+      this.$store.commit("toggleScheduleModal", true);
+    },
+  },
   data() {
     return {
       swiperOptions: {

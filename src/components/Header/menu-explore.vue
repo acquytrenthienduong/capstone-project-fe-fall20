@@ -18,7 +18,7 @@
       </ul>
     </div>
     <div class="right-items">
-      <v-container class="grey lighten-5">
+      <v-container fluid class="item-container">
         <v-row>
           <v-col v-for="n in 3" :key="n" cols="12" md="4">
             <v-card class="mx-auto service-card" max-width="240">
@@ -55,18 +55,16 @@ export default {
   position: absolute;
   background: white;
   top: 80px;
-  left: calc(max(50%, 375px) + 25px);
-  transform: translateX(min(-50%, -750px));
-  padding: 72px 128px;
+  left: 16px;
+  right: 16px;
+  padding: 72px 64px;
   z-index: 10;
-  min-width: 1170px;
-  max-width: max(75vw, 1170px);
   &.visible {
     display: flex;
   }
   .left-menu {
     padding: 16px 24px;
-    min-width: 200px;
+    min-width: 250px;
     padding-right: 48px;
     border-right: 1px solid #e5e5e5;
     p.title {
@@ -93,7 +91,10 @@ export default {
     }
   }
   .right-items {
+    flex: 1;
     padding: 0 24px;
+    .item-container {
+    }
   }
 }
 </style>

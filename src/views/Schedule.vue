@@ -35,24 +35,31 @@
           <div class="option-price">
             {{ money | priceVndFormat }}
           </div>
-          <ScheduleModal v-if="customerName" />
-          <h3 v-if="!customerName">Hãy tạo tài khoản hoặc đăng nhập trước nhé!</h3>
+          <button class="cta-btn" @click="showScheduleModal">
+            Đặt lịch ngay
+          </button>
+          <h3 v-if="!customerName">
+            Hãy tạo tài khoản hoặc đăng nhập trước nhé!
+          </h3>
         </div>
       </div>
     </div>
     <Products />
+    <Introduction />
+    <Socials />
   </div>
 </template>
 
 <script>
-import Products from "../components/Schedule/products";
-import ScheduleModal from "@/components/Schedule/scheduleModal";
+import Products from "@/components/Schedule/products";
+import Socials from "@/components/Home/socials";
+import Introduction from "@/components/Schedule/introduction";
 import axios from "axios";
 import config from "../confighost/config";
 
 export default {
   name: "product-detail",
-  components: { Products, ScheduleModal },
+  components: { Products, Socials, Introduction },
   computed: {
     optionPrice() {
       return this.selectedDuration * 20000;
@@ -100,6 +107,9 @@ export default {
         .catch((e) => {
           this.errors.push(e);
         });
+    },
+    showScheduleModal() {
+      this.$store.commit("toggleScheduleModal", true);
     },
   },
 
