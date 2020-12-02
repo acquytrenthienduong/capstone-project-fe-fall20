@@ -6,6 +6,7 @@ import App from "./App.vue";
 import router from "./router";
 import VuetifyConfirm from 'vuetify-confirm'
 import FlashMessage from "@smartweb/vue-flash-message";
+import store from './store'
 Vue.config.productionTip = false;
 
 Vue.use(FlashMessage);
@@ -31,5 +32,6 @@ Vue.filter("priceVndFormat", function (value) {
 new Vue({
   vuetify,
   router,
-  render: (h) => h(App),
+  store,
+  render: (h) => h(App)
 }).$mount("#app");

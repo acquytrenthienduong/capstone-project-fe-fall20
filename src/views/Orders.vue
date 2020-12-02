@@ -23,27 +23,31 @@
               />
             </v-col>
             <v-col cols="8" class="d-flex flex-column pl-10">
-              <p>Ngày đặt {{ item.reservation_date }}</p>
-              <div>
-                <span>GÓI TANNING {{ item.sub_service.time }} phút</span>
-                <v-chip v-if="item.is_access === 0" label class="ml-4 pending">
-                  Chưa được duyệt
-                </v-chip>
-                <v-chip
-                  v-if="item.is_access === 1 && item.status === 0"
-                  label
-                  class="ml-4 not-used"
+              <v-row
+                ><v-col>Ngày đặt {{ item.reservation_date }}</v-col></v-row
+              >
+              <v-row style="max-width: 600px">
+                <v-col>GÓI TANNING {{ item.sub_service.time }} phút</v-col>
+                <v-col>
+                  <v-chip v-if="item.is_access === 0" label class="pending">
+                    Chưa được duyệt
+                  </v-chip>
+                  <v-chip
+                    v-if="item.is_access === 1 && item.status === 0"
+                    label
+                    class="not-used"
+                  >
+                    Chưa thực hiện
+                  </v-chip>
+                  <v-chip
+                    v-if="item.is_access === 1 && item.status === 1"
+                    label
+                    class="used"
+                  >
+                    Đã thực hiện
+                  </v-chip></v-col
                 >
-                  Chưa thực hiện
-                </v-chip>
-                <v-chip
-                  v-if="item.is_access === 1 && item.status === 1"
-                  label
-                  class="ml-4 used"
-                >
-                  Đã thực hiện
-                </v-chip>
-              </div>
+              </v-row>
               <v-row style="max-width: 600px">
                 <v-col>
                   <p>Ngày hẹn {{ item.reservation_date }}</p>
@@ -161,14 +165,17 @@ export default {
 }
 
 .pending {
+  color: #e5e5e5;
   background-color: gray !important;
 }
 
 .used {
+  color: #e5e5e5;
   background-color: green !important;
 }
 
 .not-used {
+  color: #e5e5e5;
   background-color: palevioletred !important;
 }
 </style>

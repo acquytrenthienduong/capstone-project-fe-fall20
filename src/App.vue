@@ -4,6 +4,7 @@
       <Header />
       <router-view />
       <Footer />
+      <schedule-modal />
     </v-app>
   </div>
 </template>
@@ -30,11 +31,13 @@ html {
 import "normalize.css";
 import Header from "@/components/Header/header";
 import Footer from "@/components/Footer/footer";
+import ScheduleModal from './components/Schedule/scheduleModal.vue';
 export default {
   name: "app",
   components: {
     Header,
     Footer,
+    ScheduleModal,
   },
   mounted() {
     document.title = "Navatan Tanning Studio";

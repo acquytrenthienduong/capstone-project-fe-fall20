@@ -1,11 +1,11 @@
 <template>
   <v-row class="ml-0">
     <v-dialog v-model="dialog" max-width="1170">
-      <template v-slot:activator="{ on, attrs }">
+      <!-- <template v-slot:activator="{ on, attrs }">
         <v-btn class="black white--text px-10 py-6" v-bind="attrs" v-on="on">
           ĐẶT LỊCH NGAY
         </v-btn>
-      </template>
+      </template> -->
 
       <v-container fluid class="grey lighten-5">
         <v-row>
@@ -261,7 +261,7 @@ export default {
         })
         .then(() => {
           setTimeout(() => {
-            this.dialog = false;
+            this.closeModal();
             this.overlay = false;
           }, 1000);
           axios
@@ -269,13 +269,14 @@ export default {
               content:
                 "Khách Hàng " + this.customerName + " muốn đặt 1 cuộc hẹn",
             })
-            .then(() => {
-              
-            });
+            .then(() => {});
         })
         .catch((e) => {
           this.errors.push(e);
         });
+    },
+    closeModal() {
+      this.$store.commit("toggleScheduleModal", false);
     },
   },
   watch: {
@@ -307,10 +308,20 @@ export default {
         });
     },
   },
+  computed: {
+    dialog: {
+      get() {
+        return this.$store.state.scheduleModalOpen;
+      },
+      set(value) {
+        this.closeModal(value);
+      },
+    },
+  },
   data() {
     return {
       host: config.config.host,
-      dialog: false,
+      // dialog: false, // turn this into vuex state
       date: new Date().toISOString().substr(0, 10),
       menu: false,
       timeSlots: ["5am", "6am", "7am"],

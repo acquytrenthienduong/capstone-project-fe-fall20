@@ -118,7 +118,7 @@ export default {
   font-size: 18px;
   line-height: 23px;
   padding: 6px 12px;
-  border: 1px solid #ffffff;
+  // border: 1px solid #ffffff;
   text-transform: uppercase;
   cursor: pointer;
   border-radius: 0;
