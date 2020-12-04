@@ -13,7 +13,7 @@
       <v-row v-for="item in history" :key="item.reservation_id" class="order">
         <div class="container my-4">
           <v-row>
-            <v-col cols="4" class="text-right">
+            <v-col cols="12" md="4" class="text-center">
               <img
                 class="service-image"
                 :src="
@@ -22,22 +22,22 @@
                 alt="demo"
               />
             </v-col>
-            <v-col cols="8" class="d-flex flex-column pl-10">
+            <v-col cols="12" md="8" class="d-flex flex-column">
               <v-container>
                 <v-row
-                  ><v-col
+                  ><v-col cols="12" md="6"
                     ><span class="created-date"
                       >Ngày đặt {{ item.reservation_date }}</span
                     ></v-col
                   ></v-row
                 >
                 <v-row>
-                  <v-col>
+                  <v-col cols="12" md="6">
                     <span class="order-product">
                       GÓI TANNING {{ item.sub_service.time }} phút</span
                     ></v-col
                   >
-                  <v-col>
+                  <v-col cols="12" md="6">
                     <v-chip v-if="item.is_access === 0" label class="pending">
                       Chưa được duyệt
                     </v-chip>
@@ -58,10 +58,10 @@
                   >
                 </v-row>
                 <v-row>
-                  <v-col>
+                  <v-col cols="12" md="6">
                     <p>Ngày hẹn {{ item.reservation_date }}</p>
                   </v-col>
-                  <v-col>
+                  <v-col cols="12" md="6">
                     <p>Khung giờ hẹn {{ item.checkin_time }}</p>
                   </v-col>
                 </v-row>
@@ -154,6 +154,9 @@ export default {
       padding: 128px 0;
       margin: 0 auto;
       .category-title {
+        padding-left: 16px;
+        padding-right: 16px;
+        text-align: center;
         text-transform: uppercase;
         font-weight: bold;
         font-size: 2rem;

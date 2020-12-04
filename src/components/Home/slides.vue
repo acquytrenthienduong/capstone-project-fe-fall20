@@ -5,8 +5,15 @@
         <v-skeleton-loader type="image">
           <v-img
             src="@/assets/home/cover_1.png"
-            class="slide-img"
+            class="slide-img d-none d-md-block"
             :aspect-ratio="16 / 9"
+            alt="banner"
+          >
+          </v-img>
+          <v-img
+            src="@/assets/home/cover_1.png"
+            class="slide-img d-md-none"
+            :aspect-ratio="9 / 16"
             alt="banner"
           >
           </v-img>
@@ -25,8 +32,15 @@
         <v-skeleton-loader type="image">
           <v-img
             src="@/assets/home/cover_2.png"
-            class="slide-img"
+            class="slide-img d-none d-md-block"
             :aspect-ratio="16 / 9"
+            alt="banner"
+          >
+          </v-img>
+          <v-img
+            src="@/assets/home/cover_2.png"
+            class="slide-img d-md-none"
+            :aspect-ratio="9 / 16"
             alt="banner"
           >
           </v-img>
@@ -45,8 +59,15 @@
         <v-skeleton-loader type="image">
           <v-img
             src="@/assets/home/cover_7.jpg"
-            class="slide-img"
+            class="slide-img d-none d-md-block"
             :aspect-ratio="16 / 9"
+            alt="banner"
+          >
+          </v-img>
+          <v-img
+            src="@/assets/home/cover_7.jpg"
+            class="slide-img d-md-none"
+            :aspect-ratio="9 / 16"
             alt="banner"
           >
           </v-img>
@@ -65,8 +86,15 @@
         <v-skeleton-loader type="image">
           <v-img
             src="@/assets/home/cover_6.jpg"
-            class="slide-img"
+            class="slide-img d-none d-md-block"
             :aspect-ratio="16 / 9"
+            alt="banner"
+          >
+          </v-img>
+          <v-img
+            src="@/assets/home/cover_6.jpg"
+            class="slide-img d-md-none"
+            :aspect-ratio="9 / 16"
             alt="banner"
           >
           </v-img>
@@ -153,6 +181,19 @@ export default {
           padding: 12px 24px;
           text-transform: uppercase;
           font-weight: bold;
+        }
+      }
+    }
+  }
+}
+@media (max-width: 768px) {
+  .root {
+    .slider {
+      .slide {
+        .slide-content {
+          .slide-title {
+            font-size: 16px;
+          }
         }
       }
     }

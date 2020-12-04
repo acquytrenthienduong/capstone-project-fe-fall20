@@ -1,5 +1,5 @@
 <template>
-  <div class="rootMenu" :class="{ visible: isVisible }">
+  <div class="rootMenu elevation-3" :class="{ visible: isVisible }">
     <div class="left-menu">
       <p class="title">KHÁM PHÁ</p>
       <ul>
