@@ -1,7 +1,7 @@
 <template>
   <div class="root">
-    <div class="details">
-      <div class="leftarea">
+    <v-row no-gutters class="details">
+      <v-col cols="12" md="6" class="leftarea">
         <swiper ref="mySwiper" :options="swiperOptions" class="product-images">
           <swiper-slide v-for="n in 4" :key="n" class="product-image-slide">
             <img
@@ -11,9 +11,9 @@
           </swiper-slide>
           <div class="swiper-pagination" slot="pagination"></div>
         </swiper>
-      </div>
+      </v-col>
 
-      <div class="rightarea">
+      <v-col cols="12" md="6" class="rightarea">
         <div class="container">
           <v-radio-group v-model="selectType" row>
             <v-radio label="Tanning" :value="1"></v-radio>
@@ -42,8 +42,8 @@
             Hãy tạo tài khoản hoặc đăng nhập trước nhé!
           </h3>
         </div>
-      </div>
-    </div>
+      </v-col>
+    </v-row>
     <Products />
     <Introduction />
     <Socials />
@@ -69,11 +69,16 @@ export default {
     return {
       host: config.config.host,
       swiperOptions: {
-        direction: "vertical",
+        // direction: "vertical",
         loop: true,
         pagination: {
           el: ".swiper-pagination",
           clickable: true,
+        },
+        breakpoints: {
+          "768": {
+            direction: "vertical",
+          },
         },
       },
       selectedDuration: {},
@@ -139,12 +144,8 @@ export default {
 .root {
   .details {
     // background: #e5e5e5;
-    display: flex;
-    padding: 32px;
+
     .leftarea {
-      padding: 32px;
-      flex: 1;
-      width: 50%;
       .product-images {
         height: 700px;
         .product-image-slide {
@@ -153,8 +154,6 @@ export default {
       }
     }
     .rightarea {
-      flex: 1;
-      width: 50%;
       display: flex;
       align-items: center;
       .container {

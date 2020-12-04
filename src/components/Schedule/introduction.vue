@@ -14,7 +14,7 @@
           </div>
           <div class="right-area">
             <div class="inner">
-              <div class="title">
+              <div class="slide-title">
                 WE ARE NAVATAN!
               </div>
               <div class="description">
@@ -44,7 +44,7 @@
           </div>
           <div class="right-area">
             <div class="inner">
-              <div class="title">
+              <div class="slide-title">
                 WE ARE NAVATAN!
               </div>
               <div class="description">
@@ -122,6 +122,34 @@ export default {
         .title {
           font-size: 42px;
           margin-bottom: 60px;
+        }
+      }
+    }
+  }
+}
+@media (max-width: 768px) {
+  .root {
+    .slide {
+      flex-direction: column;
+      .left-area {
+        flex: 1;
+        .inner {
+          padding: 0;
+          img {
+            width: 100%;
+          }
+        }
+      }
+      .right-area {
+        .inner {
+          padding: 16px;
+          .slide-title {
+            font-size: 20px;
+            text-align: center;
+          }
+          .description {
+            font-size: 13px;
+          }
         }
       }
     }
