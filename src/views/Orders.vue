@@ -17,53 +17,63 @@
               <img
                 class="service-image"
                 :src="
-                  `https://source.unsplash.com/random/128x128?${item.reservation_id}`
+                  `https://source.unsplash.com/random/278x278?${item.reservation_id}`
                 "
                 alt="demo"
               />
             </v-col>
             <v-col cols="8" class="d-flex flex-column pl-10">
-              <v-row
-                ><v-col>Ngày đặt {{ item.reservation_date }}</v-col></v-row
-              >
-              <v-row style="max-width: 600px">
-                <v-col>GÓI TANNING {{ item.sub_service.time }} phút</v-col>
-                <v-col>
-                  <v-chip v-if="item.is_access === 0" label class="pending">
-                    Chưa được duyệt
-                  </v-chip>
-                  <v-chip
-                    v-if="item.is_access === 1 && item.status === 0"
-                    label
-                    class="not-used"
-                  >
-                    Chưa thực hiện
-                  </v-chip>
-                  <v-chip
-                    v-if="item.is_access === 1 && item.status === 1"
-                    label
-                    class="used"
-                  >
-                    Đã thực hiện
-                  </v-chip></v-col
+              <v-container>
+                <v-row
+                  ><v-col
+                    ><span class="created-date"
+                      >Ngày đặt {{ item.reservation_date }}</span
+                    ></v-col
+                  ></v-row
                 >
-              </v-row>
-              <v-row style="max-width: 600px">
-                <v-col>
-                  <p>Ngày hẹn {{ item.reservation_date }}</p>
-                </v-col>
-                <v-col>
-                  <p>Khung giờ hẹn {{ item.checkin_time }}</p>
-                </v-col>
-              </v-row>
-              <v-btn
-                v-if="item.is_access === 1 && item.status === 0"
-                color="black"
-                class="white--text mt-10"
-                style="width: 200px"
-                @click="requestChangeReservation"
-                >Yêu cầu đổi lịch
-              </v-btn>
+                <v-row>
+                  <v-col>
+                    <span class="order-product">
+                      GÓI TANNING {{ item.sub_service.time }} phút</span
+                    ></v-col
+                  >
+                  <v-col>
+                    <v-chip v-if="item.is_access === 0" label class="pending">
+                      Chưa được duyệt
+                    </v-chip>
+                    <v-chip
+                      v-if="item.is_access === 1 && item.status === 0"
+                      label
+                      class="not-used"
+                    >
+                      Chưa thực hiện
+                    </v-chip>
+                    <v-chip
+                      v-if="item.is_access === 1 && item.status === 1"
+                      label
+                      class="used"
+                    >
+                      Đã thực hiện
+                    </v-chip></v-col
+                  >
+                </v-row>
+                <v-row>
+                  <v-col>
+                    <p>Ngày hẹn {{ item.reservation_date }}</p>
+                  </v-col>
+                  <v-col>
+                    <p>Khung giờ hẹn {{ item.checkin_time }}</p>
+                  </v-col>
+                </v-row>
+                <v-btn
+                  v-if="item.is_access === 1 && item.status === 0"
+                  color="black"
+                  class="white--text mt-10 change-schedule-btn"
+                  style="width: 200px"
+                  @click="requestChangeReservation"
+                  >Yêu cầu đổi lịch
+                </v-btn>
+              </v-container>
             </v-col>
           </v-row>
         </div>
@@ -154,11 +164,30 @@ export default {
     margin-top: 40px;
     .order {
       border-bottom: 1px solid #c5c5c5;
+      .created-date {
+        color: #828282;
+        font-size: 18px;
+        line-height: 23px;
+        display: flex;
+        align-items: center;
+        text-align: center;
+      }
+      .order-product {
+        font-style: normal;
+        font-weight: normal;
+        font-size: 1.2rem;
+        text-transform: uppercase;
+
+        color: #000000;
+      }
       &:last-child {
         border: none;
       }
       .service-image {
         border-radius: 50%;
+      }
+      .change-schedule-btn {
+        border-radius: 0;
       }
     }
   }
