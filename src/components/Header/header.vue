@@ -101,6 +101,7 @@ export default {
       drawer: false,
       showMenu: false,
       customerName: localStorage.getItem("customerName"),
+      group: []
     };
   },
 };

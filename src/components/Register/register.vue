@@ -27,7 +27,7 @@
                     v-model="password"
                     prepend-inner-icon="mdi-lock"
                     label="Mật khẩu*"
-                    :rules="[rules.required]"
+                    :rules="[rules.required, rules.min]"
                     type="password"
                     outlined
                     required
@@ -38,12 +38,13 @@
                     prepend-inner-icon="mdi-lock"
                     label="Nhập lại mật khẩu*"
                     type="password"
-                    :rules="[rules.passWordMatch, rules.required]"
+                    :rules="[rules.passWordMatch, rules.required, rules.min]"
                     outlined
                     required
                   ></v-text-field>
                 </v-form>
                 <h3 v-if="checkStep1">Hãy điền hết thông tin nhé!</h3>
+                <h3 v-if="checkMatchPW">Xác nhận mật khẩu mới không đúng!</h3>
               </v-container>
             </v-card-text>
             <v-card-actions>
@@ -221,19 +222,34 @@ export default {
 
     sendCode: function() {
       if (this.phone != "" && this.password != "" && this.repassword != "") {
-        this.checkStep1 = false;
-        let phone = this.phone;
-        this.step = 2;
-        var appVerifier = window.recaptchaVerifier;
-        firebase
-          .auth()
-          .signInWithPhoneNumber(phone, appVerifier)
-          .then(function(confirmationResult) {
-            window.confirmationResult = confirmationResult;
-          })
-          .catch((error) => {
-            this.errors.push(error);
+        if (this.password === this.repassword) {
+          this.checkMatchPW = false;
+          axios.get(this.host + "/findOne/" + this.phone).then((response) => {
+            if (response.status === 201) {
+              let phone = this.phone;
+              this.step = 2;
+              var appVerifier = window.recaptchaVerifier;
+              firebase
+                .auth()
+                .signInWithPhoneNumber(phone, appVerifier)
+                .then(function(confirmationResult) {
+                  window.confirmationResult = confirmationResult;
+                })
+                .catch((error) => {
+                  this.errors.push(error);
+                });
+            } else if (response.status === 200) {
+              swal(
+                "Số của bạn đã được đăng kí rồi!",
+                "Hãy dùng số khác nhé!",
+                "warning"
+              );
+            }
           });
+          this.checkStep1 = false;
+        } else {
+          this.checkMatchPW = true;
+        }
       } else {
         this.checkStep1 = true;
       }
@@ -280,6 +296,7 @@ export default {
       checkStep1: false,
       checkStep2: false,
       checkStep3: false,
+      checkMatchPW: false,
     };
   },
   mounted() {
