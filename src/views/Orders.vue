@@ -88,6 +88,7 @@
 <script>
 import axios from "axios";
 import config from "../confighost/config";
+import swal from "sweetalert";
 
 export default {
   name: "category",
@@ -112,8 +113,13 @@ export default {
     },
 
     requestChangeReservation() {
-      this.$confirm("Bạn chắc chắn muốn đổi lịch chứ?").then((res) => {
-        if (res) {
+      swal({
+        title: "Thay đổi lịch hẹn?",
+        text: "Bạn chắc chắn muốn thay đổi lịch hẹn chứ!",
+        icon: "warning",
+        buttons: ["Không!", "Đúng vậy!"],
+      }).then((willDelete) => {
+        if (willDelete) {
           axios
             .post(this.host + "/createNotification", {
               content:
@@ -122,15 +128,11 @@ export default {
                 " muốn thay đổi lịch hẹn",
             })
             .then(() => {
-              window.scrollTo({
-                top: 0,
-                left: 0,
-                behavior: "smooth",
+              swal("Yêu càu đổi lịch đã được gửi!", {
+                icon: "success",
+                text:
+                  "yêu cầu của bạn đã được gửi, chúng tôi sẽ liên hệ lại ngay!",
               });
-              this.alert = true;
-              setTimeout(() => {
-                this.alert = false;
-              }, 5000);
             });
         }
       });

@@ -87,6 +87,11 @@
               label="Nhập lại mật khẩu mới"
               :rules="[rules.required, rules.min, rules.passWordMatch]"
             ></v-text-field>
+            <h3 v-if="checkEmpty">Hãy nhập đủ thông tin nhé!</h3>
+            <h3 v-if="checkMatchPW">Xác nhận mật khẩu mới không đúng!</h3>
+            <h3 v-if="checkCurrentPassword">
+              Mật khẩu hiện tại của bạn không đúng!
+            </h3>
           </v-container>
           <v-card-actions class="px-10 pb-10">
             <v-spacer></v-spacer>
@@ -161,6 +166,7 @@
 <script>
 import axios from "axios";
 import config from "../../confighost/config";
+import swal from "sweetalert";
 
 export default {
   name: "edit-info-modal",
@@ -184,6 +190,10 @@ export default {
         passWordMatch: (val) =>
           val === this.newPassWord || `Confirm password don't match`,
       },
+
+      checkEmpty: false,
+      checkMatchPW: false,
+      checkCurrentPassword: false,
     };
   },
   methods: {
@@ -209,6 +219,7 @@ export default {
             })
             .then((response) => {
               console.log("res", response);
+                    swal("Thành công", "Cập nhật thông tin thành công!", "success");
               this.dialog = false;
             })
             .catch((e) => {
@@ -237,15 +248,20 @@ export default {
       this.newPassWord = "";
       this.confimPassword = "";
       this.changePasswordDialog = false;
+      this.checkEmpty = false;
+      this.checkMatchPW = false;
+      this.checkCurrentPassword = false;
     },
 
     changePassdRule() {
       if (
-        this.oldPassword != "" ||
-        this.newPassWord != "" ||
+        this.oldPassword != "" &&
+        this.newPassWord != "" &&
         this.confimPassword != ""
       ) {
+        this.checkEmpty = false;
         if (this.newPassWord === this.confimPassword) {
+          this.checkMatchPW = false;
           axios
             .get(this.host + "/loadCustomer/" + this.customerId)
             .then((response) => {
@@ -259,19 +275,24 @@ export default {
                   })
                   .then((response) => {
                     console.log("res", response);
+                    swal("Thành công", "Đổi mật khẩu thành công!", "success");
+
                     this.reset();
                     this.changePasswordDialog = false;
                   })
                   .catch((e) => {
                     this.errors.push(e);
                   });
+              } else {
+                this.checkCurrentPassword = true;
               }
-              // else {
-              // }
             });
         } else {
+          this.checkMatchPW = true;
           this.changePasswordDialog = true;
         }
+      } else {
+        this.checkEmpty = true;
       }
     },
   },
@@ -284,4 +305,8 @@ export default {
   },
 };
 </script>
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+h3 {
+  color: red;
+}
+</style>

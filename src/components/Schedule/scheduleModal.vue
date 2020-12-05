@@ -13,7 +13,7 @@
             <p class="title">Thông tin dịch vụ</p>
 
             <v-row>
-              <v-col cols="12" md="4">
+              <v-col cols="12" md="6">
                 <v-select
                   :items="chooseServices"
                   item-text="name"
@@ -24,7 +24,7 @@
                   v-model="selectType"
                 ></v-select>
               </v-col>
-              <v-col cols="12" md="8"
+              <v-col cols="12" md="6"
                 ><v-select
                   :items="durationOptions"
                   item-text="name"
@@ -37,29 +37,13 @@
               ></v-col>
             </v-row>
 
-            <!-- <v-row>
-              <v-col>
-                <p class="font-weight-bold">MASSAGE</p>
-
-                <v-radio-group v-model="radioGroup">
-                  <v-radio
-                    v-for="n in 3"
-                    :key="n"
-                    :label="`Radio ${n}`"
-                    :value="n"
-                  ></v-radio>
-                </v-radio-group>
-              </v-col>
-            </v-row> -->
-
             <v-row>
               <v-col cols="12" md="6">
                 <p class="font-weight-bold">Ngày Hẹn</p>
                 <v-menu
-                  ref="menu"
                   v-model="menu"
                   :close-on-content-click="false"
-                  :return-value.sync="date"
+                  :nudge-right="40"
                   transition="scale-transition"
                   offset-y
                   min-width="290px"
@@ -67,26 +51,18 @@
                   <template v-slot:activator="{ on, attrs }">
                     <v-text-field
                       v-model="date"
-                      label="Picker in menu"
+                      label="Chọn ngày"
                       prepend-icon="mdi-calendar"
                       readonly
                       v-bind="attrs"
                       v-on="on"
-                      outlined
                     ></v-text-field>
                   </template>
-                  <v-date-picker v-model="date" no-title scrollable>
-                    <v-spacer></v-spacer>
-                    <v-btn text color="primary" @click="menu = false">
-                      Cancel
-                    </v-btn>
-                    <v-btn text color="primary" @click="saveDate(date)">
-                      OK
-                    </v-btn>
-                  </v-date-picker>
+                  <v-date-picker v-model="date"></v-date-picker>
                 </v-menu>
               </v-col>
               <v-col cols="12" md="6">
+                <p class="font-weight-bold">Giờ hẹn</p>
                 <v-menu
                   ref="menu"
                   v-model="menu2"
@@ -135,12 +111,6 @@
                 md="6"
                 class="justify-center align-center d-flex"
               >
-                <v-btn
-                  class="black white--text flex-grow-1 py-6"
-                  @click="showBill"
-                >
-                  Tiếp tục
-                </v-btn>
               </v-col>
             </v-row>
           </v-col>
@@ -185,16 +155,16 @@
                 {{ money | priceVndFormat }}
               </div>
             </div>
-            <div class="confirm d-flex">
-              <v-btn
-                class="black white--text flex-grow-1 py-6"
-                @click="createNewReservation"
-              >
-                ĐẶT HẸN
-              </v-btn>
-            </div>
           </v-col>
         </v-row>
+        <div>
+          <v-btn
+            class="center-position black white--text"
+            @click="createNewReservation"
+          >
+            ĐẶT HẸN
+          </v-btn>
+        </div>
       </v-container>
     </v-dialog>
     <v-overlay :z-index="99999" :value="overlay">
@@ -211,6 +181,7 @@
 <script>
 import axios from "axios";
 import config from "../../confighost/config";
+import swal from "sweetalert";
 
 export default {
   name: "schedule-modal",
@@ -232,11 +203,11 @@ export default {
           res.data.forEach((element) => {
             let selectItem = {};
             if (element.type === 1) {
-              selectItem.name = element.time;
+              selectItem.name = this.transform(element.time);
               selectItem.value = element.sub_service_id;
               selectItem.money = element.money;
             } else if (element.type === 2) {
-              selectItem.name = element.time;
+              selectItem.name = this.transform(element.time);
               selectItem.value = element.sub_service_id;
               selectItem.money = element.money;
             } else {
@@ -267,6 +238,7 @@ export default {
           setTimeout(() => {
             this.closeModal();
             this.overlay = false;
+            swal("Đặt lịch thành công!", "Lịch của bạn đa được đặt thành công chúng tôi sẽ thông báo lại ngay nếu có vấn đề gì !", "success");
           }, 1000);
           axios
             .post(this.host + "/createNotification", {
@@ -281,6 +253,15 @@ export default {
     },
     closeModal() {
       this.$store.commit("toggleScheduleModal", false);
+    },
+
+    transform(time) {
+      // var hms = "02:04:33";
+      var a = time.split(":");
+
+      // Hours are worth 60 minutes.
+      var minutes = +a[0] * 60 + +a[1] + " phút";
+      return minutes;
     },
   },
   watch: {
@@ -300,9 +281,9 @@ export default {
         .then((res) => {
           this.money = res.data.money;
           if (res.data.type === 1) {
-            this.service = res.data.name + " " + res.data.time;
+            this.service = res.data.name + " " + this.transform(res.data.time);
           } else if (res.data.type === 2) {
-            this.service = res.data.name + " " + res.data.time;
+            this.service = res.data.name + " " + this.transform(res.data.time);
           } else {
             this.service = res.data.name + " " + res.data.session;
           }
@@ -353,6 +334,7 @@ export default {
 
   mounted() {
     this.loadSubService(1);
+    this.showBill();
   },
 };
 </script>
@@ -364,5 +346,11 @@ export default {
 
 .row {
   align-items: center !important;
+}
+
+.center-position {
+  display: block;
+  margin: 0 auto;
+  width: 150px;
 }
 </style>

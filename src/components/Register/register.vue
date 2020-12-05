@@ -181,7 +181,7 @@ export default {
           })
           .then(() => {
             this.checkStep3 = false;
-            swal("Đăng kí thành công!", "ãy đăng nhập thử nhé!", "success");
+            swal("Đăng kí thành công!", "Hãy đăng nhập thử nhé!", "success");
             this.registerSuccess();
             this.reset();
             // this.close();
