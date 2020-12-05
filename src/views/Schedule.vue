@@ -210,4 +210,11 @@ export default {
     }
   }
 }
+@media (min-width: 768px) {
+  .root {
+    .details {
+      margin-top: 60px;
+    }
+  }
+}
 </style>
