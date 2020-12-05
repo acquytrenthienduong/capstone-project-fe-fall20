@@ -98,6 +98,8 @@ export default {
 <style lang="scss" scoped>
 .root {
   background-image: url("~@/assets/Background.jpg");
+  background-size: cover;
+  background-position: center center;
   padding-top: 32px;
   padding-bottom: 32px;
   .slide {
@@ -111,6 +113,7 @@ export default {
         padding: 25%;
         .demo-image {
           border-radius: 50%;
+          max-width: 100%;
         }
       }
     }
