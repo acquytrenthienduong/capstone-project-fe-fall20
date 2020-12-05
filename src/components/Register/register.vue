@@ -139,6 +139,8 @@ import firebase from "@firebase/app";
 import { fb } from "@/firebase";
 import axios from "axios";
 import config from "../../confighost/config";
+import swal from "sweetalert";
+
 export default {
   name: "register-steps",
   // props: ["dialog"],
@@ -179,6 +181,7 @@ export default {
           })
           .then(() => {
             this.checkStep3 = false;
+            swal("Đăng kí thành công!", "ãy đăng nhập thử nhé!", "success");
             this.registerSuccess();
             this.reset();
             // this.close();
@@ -203,6 +206,11 @@ export default {
         .auth()
         .signInWithCredential(credential)
         .then(() => {
+          swal(
+            "Xác nhận thành công!",
+            "hãy điền nốt thông tin nhé!",
+            "success"
+          );
           this.checkStep2 = false;
           this.step = 3;
         })

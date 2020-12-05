@@ -55,6 +55,7 @@
                       required
                     ></v-text-field>
                     <h3 v-if="check">Sai tên tài khoản hoặc mật khẩu!</h3>
+                    <ForgotPassword />
                   </v-container>
                 </v-card-text>
                 <v-card-actions>
@@ -78,6 +79,7 @@
 
 <script>
 import RegisterSteps from "@/components/Register/register";
+import ForgotPassword from "@/components/ForgotPassword/forgotpassword";
 import axios from "axios";
 import config from "../confighost/config";
 
@@ -85,6 +87,7 @@ export default {
   name: "login-register",
   components: {
     RegisterSteps,
+    ForgotPassword
   },
   data() {
     return {
