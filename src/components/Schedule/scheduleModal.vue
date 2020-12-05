@@ -13,7 +13,7 @@
             <p class="title">Thông tin dịch vụ</p>
 
             <v-row>
-              <v-col cols="4">
+              <v-col cols="12" md="4">
                 <v-select
                   :items="chooseServices"
                   item-text="name"
@@ -24,7 +24,7 @@
                   v-model="selectType"
                 ></v-select>
               </v-col>
-              <v-col cols="8"
+              <v-col cols="12" md="8"
                 ><v-select
                   :items="durationOptions"
                   item-text="name"
@@ -53,7 +53,7 @@
             </v-row> -->
 
             <v-row>
-              <v-col>
+              <v-col cols="12" md="6">
                 <p class="font-weight-bold">Ngày Hẹn</p>
                 <v-menu
                   ref="menu"
@@ -86,7 +86,7 @@
                   </v-date-picker>
                 </v-menu>
               </v-col>
-              <v-col>
+              <v-col cols="12" md="6">
                 <v-menu
                   ref="menu"
                   v-model="menu2"
@@ -118,7 +118,7 @@
               </v-col>
             </v-row>
             <v-row>
-              <v-col>
+              <v-col cols="12" md="6">
                 <p class="font-weight-bold">Số lượng người</p>
                 <v-text-field
                   v-model="numOfPeople"
@@ -130,7 +130,11 @@
                   required
                 ></v-text-field>
               </v-col>
-              <v-col class="justify-center align-center d-flex">
+              <v-col
+                cols="12"
+                md="6"
+                class="justify-center align-center d-flex"
+              >
                 <v-btn
                   class="black white--text flex-grow-1 py-6"
                   @click="showBill"
