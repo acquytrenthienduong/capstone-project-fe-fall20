@@ -97,6 +97,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 .root {
+  background-image: url("~@/assets/Background.jpg");
   padding-top: 32px;
   padding-bottom: 32px;
   .slide {
