@@ -1,5 +1,5 @@
 <template>
-  <v-container fluid class="pa-0">
+  <v-container fluid class="pa-0" id="navbarfixed">
     <div
       class="backdrop"
       :class="{ visible: showMenu }"
@@ -101,25 +101,22 @@ export default {
       drawer: false,
       showMenu: false,
       customerName: localStorage.getItem("customerName"),
-      group: []
+      group: [],
     };
   },
 };
 </script>
 <style lang="scss" scoped>
-#booknow {
-  font-family: "Montserrat", sans-serif;
-  display: inline-block;
-  text-transform: uppercase;
-  color: #d6c630;
-  text-decoration: none;
-  border: 2px solid;
-  background: transparent;
-  padding: 10px 30px;
-  font-size: 14px;
-  font-weight: 700;
-  -webkit-transition: 0.2s all;
-  transition: 0.2s all;
+#navbarfixed {
+  height: 64px;
+  margin-top: 0px;
+  transform: translateY(0px);
+  left: 0px;
+  /* right: 0px; */
+  top: 0px;
+  position: fixed;
+  z-index: 200;
+  width: 100vw;
 }
 .logo {
   display: flex;
