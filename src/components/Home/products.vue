@@ -1,7 +1,6 @@
 <template>
   <div class="root">
-    <div class="title">TANNING LOTION</div>
-    <div class="subtitle">Choose your options below</div>
+    <div class="title">Sản phẩm dưỡng da</div>
     <div class="products">
       <v-container class="grey lighten-5">
         <v-row>
@@ -37,8 +36,9 @@ export default {};
   .title {
     padding: 16px 0;
     text-align: center;
-    font-size: 22px;
+    font-size: 30px !important;
     font-weight: bold;
+    text-transform: uppercase;
   }
   .subtitle {
     text-align: center;
