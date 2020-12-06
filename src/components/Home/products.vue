@@ -3,17 +3,138 @@
     <div class="title">Sản phẩm dưỡng da</div>
     <div class="products">
       <v-container class="grey lighten-5">
-        <v-row>
-          <v-col v-for="n in 3" :key="n" cols="12" md="4">
-            <div class="service-card">
-              <img
-                src="@/assets/lotions/tan.png"
-                class="lotion-img"
-                alt="lotion"
-              />
-            </div>
-          </v-col>
-        </v-row>
+        <splide :options="options" class="sliderProduct">
+          <splide-slide>
+            <v-card class="product-card" max-width="400">
+              <v-img
+                class="white--text align-end"
+                height="300px"
+                src="@/assets/lotions/sp1.png"
+              >
+              </v-img>
+
+              <v-card-subtitle class="pb-0">
+                Pure™ Nature Tanning</v-card-subtitle
+              >
+
+              <v-card-text class="text--primary">
+                <div>Dưỡng nâu tự nhiên</div>
+              </v-card-text>
+
+              <v-card-actions>
+                <v-btn color="orange" text> xem thêm </v-btn>
+              </v-card-actions>
+            </v-card>
+          </splide-slide>
+          <splide-slide>
+            <v-card class="product-card" max-width="400">
+              <v-img
+                class="white--text align-end"
+                height="300px"
+                src="@/assets/lotions/sp2.png"
+              >
+              </v-img>
+
+              <v-card-subtitle class="pb-0">
+                Pure™ Men – Natural Tanning
+              </v-card-subtitle>
+
+              <v-card-text class="text--primary">
+                <div>Kem dưỡng da nâu</div>
+              </v-card-text>
+
+              <v-card-actions>
+                <v-btn color="orange" text> xem thêm </v-btn>
+              </v-card-actions>
+            </v-card>
+          </splide-slide>
+          <splide-slide>
+            <v-card class="product-card" max-width="400">
+              <v-img
+                class="white--text align-end"
+                height="300px"
+                src="@/assets/lotions/sp3.png"
+              >
+              </v-img>
+
+              <v-card-subtitle class="pb-0">
+                Peau D'Or SPF 50 100ml</v-card-subtitle
+              >
+
+              <v-card-text class="text--primary">
+                <div>Kem chống nắng cao cấp</div>
+              </v-card-text>
+
+              <v-card-actions>
+                <v-btn color="orange" text> xem thêm </v-btn>
+              </v-card-actions>
+            </v-card>
+          </splide-slide>
+          <splide-slide>
+            <v-card class="product-card" max-width="400">
+              <v-img
+                class="white--text align-end"
+                height="300px"
+                src="@/assets/lotions/sp4.png"
+              >
+              </v-img>
+
+              <v-card-subtitle class="pb-0"> 24 Carat™ V2</v-card-subtitle>
+
+              <v-card-text class="text--primary">
+                <div>Kem dưỡng nâu tự nhiên</div>
+              </v-card-text>
+
+              <v-card-actions>
+                <v-btn color="orange" text> xem thêm </v-btn>
+              </v-card-actions>
+            </v-card>
+          </splide-slide>
+          <splide-slide>
+            <v-card class="product-card" max-width="400">
+              <v-img
+                class="white--text align-end"
+                height="300px"
+                src="@/assets/lotions/sp5.png"
+              >
+              </v-img>
+
+              <v-card-subtitle class="pb-0">
+                Pure™ Men – Natural Tanning
+              </v-card-subtitle>
+
+              <v-card-text class="text--primary">
+                <div>Kem dưỡng da nâu</div>
+              </v-card-text>
+
+              <v-card-actions>
+                <v-btn color="orange" text> xem thêm </v-btn>
+              </v-card-actions>
+            </v-card>
+          </splide-slide>
+          <splide-slide>
+            <v-card class="product-card" max-width="400">
+              <v-img
+                class="white--text align-end"
+                height="300px"
+                src="@/assets/lotions/sp6.png"
+              >
+              </v-img>
+
+              <v-card-subtitle class="pb-0">
+                Pure™ Men – Natural Tanning
+              </v-card-subtitle>
+
+              <v-card-text class="text--primary">
+                <div>Kem dưỡng da nâu</div>
+              </v-card-text>
+
+              <v-card-actions>
+                <v-btn color="orange" text> xem thêm </v-btn>
+              </v-card-actions>
+            </v-card>
+          </splide-slide>
+        </splide>
       </v-container>
       <router-link class="products-page-link" to="/products">
         Khám phá thêm
@@ -26,10 +147,37 @@
 </template>
 
 <script>
-export default {};
+import { Splide, SplideSlide } from "@splidejs/vue-splide";
+import "@splidejs/splide/dist/css/themes/splide-sea-green.min.css";
+
+export default {
+  components: {
+    Splide,
+    SplideSlide,
+  },
+  data() {
+    return {
+      options: {
+        gap: "20px",
+        type: "loop",
+        perPage: 3,
+        perMove: 1,
+        forcus: "center",
+        autoplay: true,
+      },
+    };
+  },
+};
 </script>
 
 <style lang="scss" scoped>
+.product-card {
+  margin-bottom: 10px;
+}
+
+.sliderProduct {
+  max-width: 1158px !important;
+}
 .root {
   padding-top: 48px;
   padding-bottom: 48px;
