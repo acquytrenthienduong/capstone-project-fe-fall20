@@ -5,7 +5,7 @@
     </div>
     <v-stepper v-model="step" class="elevation-0">
       <v-stepper-items>
-        <v-stepper-content step="1">
+        <v-stepper-content step="1" style="padding:0">
           <v-card class="step-1-card">
             <v-card-title class="justify-center flex-column">
               <div class="text-center">Đăng ký tài khoản mới</div>
@@ -165,7 +165,7 @@ export default {
     initRecaptcha() {
       fb.auth().languageCode = "vi";
       window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier(
-        "recaptcha-container"
+        "recaptcha-container",
       );
       window.recaptchaVerifier.render();
     },
@@ -200,7 +200,7 @@ export default {
       let code = this.code;
       var credential = firebase.auth.PhoneAuthProvider.credential(
         window.confirmationResult.verificationId,
-        code
+        code,
       );
 
       firebase
@@ -210,7 +210,7 @@ export default {
           swal(
             "Xác nhận thành công!",
             "hãy điền nốt thông tin nhé!",
-            "success"
+            "success",
           );
           this.checkStep2 = false;
           this.step = 3;
@@ -242,7 +242,7 @@ export default {
               swal(
                 "Số của bạn đã được đăng kí rồi!",
                 "Hãy dùng số khác nhé!",
-                "warning"
+                "warning",
               );
             }
           });

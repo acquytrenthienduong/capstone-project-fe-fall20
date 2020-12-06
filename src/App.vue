@@ -5,6 +5,7 @@
       <router-view />
       <Footer />
       <schedule-modal />
+      <login-register />
     </v-app>
   </div>
 </template>
@@ -31,13 +32,15 @@ html {
 import "normalize.css";
 import Header from "@/components/Header/header";
 import Footer from "@/components/Footer/footer";
-import ScheduleModal from './components/Schedule/scheduleModal.vue';
+import ScheduleModal from "./components/Schedule/scheduleModal.vue";
+import LoginRegister from "./views/LoginRegister.vue";
 export default {
   name: "app",
   components: {
     Header,
     Footer,
     ScheduleModal,
+    LoginRegister,
   },
   mounted() {
     document.title = "Navatan Tanning Studio";
