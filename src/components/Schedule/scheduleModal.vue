@@ -9,7 +9,7 @@
 
       <v-container fluid class="grey lighten-5">
         <v-row>
-          <v-col :cols="showReceipt ? 8 : 12" class="left-col pa-8">
+          <v-col cols="12" md="showReceipt ? 8 : 12" class="left-col pa-8">
             <p class="title">Thông tin dịch vụ</p>
 
             <v-row>
@@ -116,7 +116,7 @@
           </v-col>
 
           <!-- right -->
-          <v-col cols="4" class="right-col pa-8" v-if="showReceipt">
+          <v-col cols="12" md="4" class="right-col pa-8" v-if="showReceipt">
             <img
               class="logo-headline"
               src="@/assets/logo-black.svg"
@@ -238,7 +238,11 @@ export default {
           setTimeout(() => {
             this.closeModal();
             this.overlay = false;
-            swal("Đặt lịch thành công!", "Lịch của bạn đa được đặt thành công chúng tôi sẽ thông báo lại ngay nếu có vấn đề gì !", "success");
+            swal(
+              "Đặt lịch thành công!",
+              "Lịch của bạn đa được đặt thành công chúng tôi sẽ thông báo lại ngay nếu có vấn đề gì !",
+              "success",
+            );
           }, 1000);
           axios
             .post(this.host + "/createNotification", {
