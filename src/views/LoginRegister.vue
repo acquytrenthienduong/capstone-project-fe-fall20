@@ -1,11 +1,6 @@
 <template>
   <v-row justify="center">
     <v-dialog v-model="dialog" persistent content-class="login-register-dialog">
-      <template v-slot:activator="{ on, attrs }">
-        <v-btn class="right" menu-btn-cta v-bind="attrs" v-on="on">
-          Tài khoản
-        </v-btn>
-      </template>
       <div class="content">
         <v-icon class="close-button" @click="dialog = false"> mdi-plus </v-icon>
         <v-tabs v-model="selectedTab" class="dialog-tabs">
@@ -29,12 +24,12 @@
                   alt="logo"
                 />
               </div>
-              <v-card class="pa-6 elevation-0">
+              <v-card class=" elevation-0">
                 <v-card-title class="justify-center">
                   Đăng nhập bằng tài khoản của bạn
                 </v-card-title>
                 <v-card-text>
-                  <v-container>
+                  <div>
                     <v-text-field
                       v-model="username"
                       prepend-inner-icon="mdi-phone"
@@ -56,7 +51,7 @@
                     ></v-text-field>
                     <h3 v-if="check">Sai tên tài khoản hoặc mật khẩu!</h3>
                     <ForgotPassword />
-                  </v-container>
+                  </div>
                 </v-card-text>
                 <v-card-actions>
                   <v-btn
@@ -87,12 +82,21 @@ export default {
   name: "login-register",
   components: {
     RegisterSteps,
-    ForgotPassword
+    ForgotPassword,
+  },
+  computed: {
+    dialog: {
+      get() {
+        return this.$store.state.loginRegisterModalOpen;
+      },
+      set(value) {
+        this.closeDialog(value);
+      },
+    },
   },
   data() {
     return {
       host: config.config.host,
-      dialog: false,
       username: "",
       password: "",
       rules: {
@@ -132,7 +136,7 @@ export default {
     },
 
     closeDialog() {
-      this.dialog = false;
+      this.$store.commit("toggleLoginRegisterModal", false);
     },
 
     onClickChild(value) {
@@ -156,7 +160,7 @@ export default {
   border-radius: 0;
   .content {
     position: relative;
-    width: 600px;
+    max-width: 600px;
     padding: 16px;
     margin: 0 auto;
     .close-button {
