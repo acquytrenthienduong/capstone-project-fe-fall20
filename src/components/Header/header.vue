@@ -30,9 +30,14 @@
           </router-link>
         </div>
         <div class="right">
-          <div class="d-none d-md-block">
-            <LoginRegister v-if="!customerName" />
-          </div>
+          <v-btn
+            class="menu-btn-cta"
+            @click="showLoginRegisterModal"
+            v-if="!customerName"
+          >
+            Tài khoản
+          </v-btn>
+
           <div v-if="customerName" class="customFlex ">
             <div class="d-none d-md-block">
               <NotiMenu />
@@ -61,11 +66,17 @@
             <v-list-item-title>Home</v-list-item-title>
           </v-list-item>
 
-          <v-list-item link to="/schedule">
+          <v-list-item link to="/schedule" v-if="customerName">
+            <v-list-item-icon>
+              <v-icon>mdi-clipboard-list</v-icon>
+            </v-list-item-icon>
+            <v-list-item-title>Dịch vụ</v-list-item-title>
+          </v-list-item>
+          <v-list-item @click="showLoginRegisterModal" v-if="!customerName">
             <v-list-item-icon>
               <v-icon>mdi-account</v-icon>
             </v-list-item-icon>
-            <v-list-item-title>Dịch Vụ</v-list-item-title>
+            <v-list-item-title>Tài khoản</v-list-item-title>
           </v-list-item>
         </v-list-item-group>
       </v-list>
@@ -76,7 +87,6 @@
 
 <script>
 import MenuExplore from "./menu-explore";
-import LoginRegister from "../../views/LoginRegister";
 import NotiMenu from "./noti-menu";
 import AccountMenu from "./account-menu";
 
@@ -84,7 +94,6 @@ export default {
   name: "header-custom",
   components: {
     MenuExplore,
-    LoginRegister,
     NotiMenu,
     AccountMenu,
   },
@@ -95,13 +104,16 @@ export default {
     showScheduleModal() {
       this.$store.commit("toggleScheduleModal", true);
     },
+    showLoginRegisterModal() {
+      this.$store.commit("toggleLoginRegisterModal", true);
+    },
   },
   data() {
     return {
       drawer: false,
       showMenu: false,
       customerName: localStorage.getItem("customerName"),
-      group: []
+      group: [],
     };
   },
 };
@@ -180,13 +192,14 @@ export default {
     align-items: center;
     .menu-btn-cta {
       height: 41px;
-      background: transparent;
+      background: transparent !important;
       color: #ffffff;
       font-size: 14px;
       line-height: 22px;
       padding: 6px 12px;
       border: 1px solid #ffffff;
       text-transform: uppercase;
+      border-radius: 0;
       cursor: pointer;
     }
   }
