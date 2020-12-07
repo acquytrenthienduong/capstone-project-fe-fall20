@@ -5,140 +5,30 @@
     </sequential-entrance>
     <div class="products">
       <v-container class="grey lighten-5">
-        <sequential-entrance fromLeft>
-          <splide :options="options" class="sliderProduct">
-            <splide-slide>
-              <v-card class="product-card" max-width="400">
-                <v-img
-                  class="white--text align-end"
-                  height="300px"
-                  src="@/assets/lotions/sp1.png"
-                >
-                </v-img>
+        <splide :options="options" class="sliderProduct">
+          <splide-slide v-for="(product, i) in productMocks" :key="i">
+            <v-card class="product-card" max-width="400">
+              <v-img
+                class="white--text align-end"
+                height="300px"
+                :src="product.src"
+              >
+              </v-img>
 
-                <v-card-subtitle class="pb-0">
-                  Pure™ Nature Tanning</v-card-subtitle
-                >
+              <v-card-subtitle class="pb-0">
+                {{ product.title }}</v-card-subtitle
+              >
 
-                <v-card-text class="text--primary">
-                  <div>Dưỡng nâu tự nhiên</div>
-                </v-card-text>
+              <v-card-text class="text--primary">
+                <div>{{ product.description }}</div>
+              </v-card-text>
 
-                <v-card-actions>
-                  <v-btn color="orange" text> xem thêm </v-btn>
-                </v-card-actions>
-              </v-card>
-            </splide-slide>
-            <splide-slide>
-              <v-card class="product-card" max-width="400">
-                <v-img
-                  class="white--text align-end"
-                  height="300px"
-                  src="@/assets/lotions/sp2.png"
-                >
-                </v-img>
-
-                <v-card-subtitle class="pb-0">
-                  Pure™ Men – Natural Tanning
-                </v-card-subtitle>
-
-                <v-card-text class="text--primary">
-                  <div>Kem dưỡng da nâu</div>
-                </v-card-text>
-
-                <v-card-actions>
-                  <v-btn color="orange" text> xem thêm </v-btn>
-                </v-card-actions>
-              </v-card>
-            </splide-slide>
-            <splide-slide>
-              <v-card class="product-card" max-width="400">
-                <v-img
-                  class="white--text align-end"
-                  height="300px"
-                  src="@/assets/lotions/sp3.png"
-                >
-                </v-img>
-
-                <v-card-subtitle class="pb-0">
-                  Peau D'Or SPF 50 100ml</v-card-subtitle
-                >
-
-                <v-card-text class="text--primary">
-                  <div>Kem chống nắng cao cấp</div>
-                </v-card-text>
-
-                <v-card-actions>
-                  <v-btn color="orange" text> xem thêm </v-btn>
-                </v-card-actions>
-              </v-card>
-            </splide-slide>
-            <splide-slide>
-              <v-card class="product-card" max-width="400">
-                <v-img
-                  class="white--text align-end"
-                  height="300px"
-                  src="@/assets/lotions/sp4.png"
-                >
-                </v-img>
-
-                <v-card-subtitle class="pb-0"> 24 Carat™ V2</v-card-subtitle>
-
-                <v-card-text class="text--primary">
-                  <div>Kem dưỡng nâu tự nhiên</div>
-                </v-card-text>
-
-                <v-card-actions>
-                  <v-btn color="orange" text> xem thêm </v-btn>
-                </v-card-actions>
-              </v-card>
-            </splide-slide>
-            <splide-slide>
-              <v-card class="product-card" max-width="400">
-                <v-img
-                  class="white--text align-end"
-                  height="300px"
-                  src="@/assets/lotions/sp5.png"
-                >
-                </v-img>
-
-                <v-card-subtitle class="pb-0">
-                  Pure™ Men – Natural Tanning
-                </v-card-subtitle>
-
-                <v-card-text class="text--primary">
-                  <div>Kem dưỡng da nâu</div>
-                </v-card-text>
-
-                <v-card-actions>
-                  <v-btn color="orange" text> xem thêm </v-btn>
-                </v-card-actions>
-              </v-card>
-            </splide-slide>
-            <splide-slide>
-              <v-card class="product-card" max-width="400">
-                <v-img
-                  class="white--text align-end"
-                  height="300px"
-                  src="@/assets/lotions/sp6.png"
-                >
-                </v-img>
-
-                <v-card-subtitle class="pb-0">
-                  Pure™ Men – Natural Tanning
-                </v-card-subtitle>
-
-                <v-card-text class="text--primary">
-                  <div>Kem dưỡng da nâu</div>
-                </v-card-text>
-
-                <v-card-actions>
-                  <v-btn color="orange" text> xem thêm </v-btn>
-                </v-card-actions>
-              </v-card>
-            </splide-slide>
-          </splide>
-        </sequential-entrance>
+              <v-card-actions>
+                <v-btn color="orange" text> xem thêm </v-btn>
+              </v-card-actions>
+            </v-card>
+          </splide-slide>  
+        </splide>
       </v-container>
       <router-link class="products-page-link" to="/products">
         Khám phá thêm
@@ -161,13 +51,46 @@ export default {
   },
   data() {
     return {
+      productMocks: [
+        {
+          title: "Pure™ Nature Tanning",
+          description: "Dưỡng nâu tự nhiên",
+          src: require("@/assets/lotions/sp1.png"),
+        },
+        {
+          title: "Pure™ Men – Natural Tanning",
+          description: "Kem dưỡng da nâu",
+          src: require("@/assets/lotions/sp2.png"),
+        },
+        {
+          title: "Peau D'Or SPF 50 100ml",
+          description: "Kem chống nắng cao cấp",
+          src: require("@/assets/lotions/sp3.png"),
+        },
+        {
+          title: "24 Carat™ V2",
+          description: "Kem dưỡng nâu tự nhiên",
+          src: require("@/assets/lotions/sp4.png"),
+        },
+        {
+          title: "Pure™ Men – Natural Tanning",
+          description: "Kem dưỡng da nâu",
+          src: require("@/assets/lotions/sp5.png"),
+        },
+        {
+          title: "Pure™ Men – Natural Tanning",
+          description: "Kem dưỡng da nâu",
+          src: require("@/assets/lotions/sp6.png"),
+        },
+      ],
       options: {
-        gap: "20px",
+        gap: "0.8rem",
         type: "loop",
         perPage: 4,
-        perMove: 1,
+        // perMove: 1,
         forcus: "center",
         autoplay: true,
+        rewind : true,
       },
     };
   },
