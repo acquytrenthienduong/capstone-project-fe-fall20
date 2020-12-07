@@ -224,36 +224,44 @@ export default {
     },
 
     createNewReservation() {
-      this.overlay = true;
-      axios
-        .post(this.host + "/createNewReservation", {
-          customer_id: parseInt(localStorage.getItem("customerId"), 10),
-          checkin_time: this.time,
-          reservation_date: this.date,
-          status: 0,
-          sub_service_sub_service_id: this.selectedDuration,
-          is_access: 0,
-        })
-        .then(() => {
-          setTimeout(() => {
-            this.closeModal();
-            this.overlay = false;
-            swal(
-              "Đặt lịch thành công!",
-              "Lịch của bạn đa được đặt thành công chúng tôi sẽ thông báo lại ngay nếu có vấn đề gì !",
-              "success",
-            );
-          }, 1000);
-          axios
-            .post(this.host + "/createNotification", {
-              content:
-                "Khách Hàng " + this.customerName + " muốn đặt 1 cuộc hẹn",
-            })
-            .then(() => {});
-        })
-        .catch((e) => {
-          this.errors.push(e);
-        });
+      if (this.selectedDuration > 0 && this.time != null) {
+        this.overlay = true;
+        axios
+          .post(this.host + "/createNewReservation", {
+            customer_id: parseInt(localStorage.getItem("customerId"), 10),
+            checkin_time: this.time,
+            reservation_date: this.date,
+            status: 0,
+            sub_service_sub_service_id: this.selectedDuration,
+            is_access: 0,
+          })
+          .then(() => {
+            setTimeout(() => {
+              this.closeModal();
+              this.overlay = false;
+              swal(
+                "Đặt lịch thành công!",
+                "Lịch của bạn đa được đặt thành công chúng tôi sẽ thông báo lại ngay nếu có vấn đề gì !",
+                "success"
+              );
+            }, 1000);
+            axios
+              .post(this.host + "/createNotification", {
+                content:
+                  "Khách Hàng " + this.customerName + " muốn đặt 1 cuộc hẹn",
+              })
+              .then(() => {});
+          })
+          .catch((e) => {
+            this.errors.push(e);
+          });
+      } else {
+        swal(
+          "Tạo lịch không thành công!",
+          " Hãy điền đầy đủ thông tin nhé!!",
+          "warning"
+        );
+      }
     },
     closeModal() {
       this.$store.commit("toggleScheduleModal", false);
@@ -317,7 +325,7 @@ export default {
       showReceipt: false,
       numOfPeople: 0,
       radioGroup: 1,
-      selectedDuration: {},
+      selectedDuration: 0,
       durationOptions: [],
       selectType: 1,
       time: null,
