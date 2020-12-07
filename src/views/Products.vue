@@ -172,7 +172,12 @@
 </template>
 
 <script>
-export default { name: "category" };
+export default {
+  name: "category",
+  data() {
+    return {page:1};
+  },
+};
 </script>
 <style lang="scss" scoped>
 .root {
