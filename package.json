@@ -25,6 +25,7 @@
     "vue-awesome-swiper": "^4.1.1",
     "vue-gallery-slideshow": "^1.5.2",
     "vue-router": "^3.2.0",
+    "vue-sequential-entrance": "^1.1.3",
     "vue-silentbox": "^2.2.2",
     "vuetify": "^2.2.11",
     "vuetify-confirm": "^2.0.6",
