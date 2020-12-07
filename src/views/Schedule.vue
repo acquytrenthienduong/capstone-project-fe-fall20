@@ -51,7 +51,7 @@
 </template>
 
 <script>
-import Products from "@/components/Schedule/products";
+import Products from "@/components/Home/products";
 import Socials from "@/components/Home/socials";
 import Introduction from "@/components/Schedule/introduction";
 import axios from "axios";
