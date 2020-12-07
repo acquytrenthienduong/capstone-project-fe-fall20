@@ -8,6 +8,10 @@ import VuetifyConfirm from 'vuetify-confirm'
 import FlashMessage from "@smartweb/vue-flash-message";
 import store from './store'
 Vue.config.productionTip = false;
+import SequentialEntrance from 'vue-sequential-entrance'
+import 'vue-sequential-entrance/vue-sequential-entrance.css'
+Vue.use(SequentialEntrance);
+
 
 Vue.use(FlashMessage);
 Vue.use(VueAwesomeSwiper /* { default options with global component } */);
