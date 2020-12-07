@@ -1,24 +1,114 @@
 <template>
   <div class="root">
-   <h1>contact page</h1>
-   <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3723.9577217999517!2d105.85254301533224!3d21.034377592961476!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135abdc969e7417%3A0xd4dd4062b0a99e01!2sNavatan!5e0!3m2!1sen!2s!4v1607367727434!5m2!1sen!2s" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+    <div class="container">
+      <div class="row justify-space-between">
+        <div class="col-md-6 col-12">
+         <Map />
+        </div>
+        <div class="col-md-5 col-12">
+          <v-card max-width="400" class="mx-auto">
+            <v-img src="@/assets/header-logo.png" height="85" width="100%" dark>
+              <v-row class="fill-height">
+                <v-spacer></v-spacer>
+
+                <v-card-title class="white--text pl-12 pt-12">
+                  <div class="display-1 pl-12 pt-12">
+                    Ali Conners
+                  </div>
+                </v-card-title>
+              </v-row>
+            </v-img>
+
+            <v-list two-line>
+              <v-list-item>
+                <v-list-item-icon>
+                  <v-icon color="black">
+                    mdi-phone
+                  </v-icon>
+                </v-list-item-icon>
+
+                <v-list-item-content>
+                  <v-list-item-title>(650) 555-1234</v-list-item-title>
+                  <v-list-item-subtitle>Mobile</v-list-item-subtitle>
+                </v-list-item-content>
+              </v-list-item>
+
+              <v-list-item>
+                <v-list-item-action></v-list-item-action>
+
+                <v-list-item-content>
+                  <v-list-item-title>(323) 555-6789</v-list-item-title>
+                  <v-list-item-subtitle>Work</v-list-item-subtitle>
+                </v-list-item-content>
+              </v-list-item>
+
+              <v-divider inset></v-divider>
+
+              <v-list-item>
+                <v-list-item-icon>
+                  <v-icon color="black">
+                    mdi-email
+                  </v-icon>
+                </v-list-item-icon>
+
+                <v-list-item-content>
+                  <v-list-item-title>aliconnors@example.com</v-list-item-title>
+                  <v-list-item-subtitle>Personal</v-list-item-subtitle>
+                </v-list-item-content>
+              </v-list-item>
+
+              <v-list-item>
+                <v-list-item-action></v-list-item-action>
+
+                <v-list-item-content>
+                  <v-list-item-title>ali_connors@example.com</v-list-item-title>
+                  <v-list-item-subtitle>Work</v-list-item-subtitle>
+                </v-list-item-content>
+              </v-list-item>
+
+              <v-divider inset></v-divider>
+
+              <v-list-item>
+                <v-list-item-icon>
+                  <v-icon color="black">
+                    mdi-map-marker
+                  </v-icon>
+                </v-list-item-icon>
+
+                <v-list-item-content>
+                  <v-list-item-title>1400 Main Street</v-list-item-title>
+                  <v-list-item-subtitle>Orlando, FL 79938</v-list-item-subtitle>
+                </v-list-item-content>
+              </v-list-item>
+            </v-list>
+          </v-card>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
+
+import Map from "@/components/Home/maps";
 export default {
   name: "contact",
   data() {
-    return {
-    
-     
-    };
+    return {};
   },
+  components:{Map}
 };
 </script>
 <style lang="scss" scoped>
-h1{
-    color: black;
-    margin: 20%;
+.root {
+  padding: 70px 10px;
+}
+h1 {
+  color: black;
+  margin: 20%;
+}
+
+.mx-auto{
+    margin-top: 15% !important;
 }
 </style>
