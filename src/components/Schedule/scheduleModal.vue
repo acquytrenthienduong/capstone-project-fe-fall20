@@ -9,7 +9,7 @@
 
       <v-container fluid class="grey lighten-5">
         <v-row>
-          <v-col cols="12" md="showReceipt ? 8 : 12" class="left-col pa-8">
+          <v-col cols="12" md="8" class="left-col pa-8">
             <p class="title">Thông tin dịch vụ</p>
 
             <v-row>
