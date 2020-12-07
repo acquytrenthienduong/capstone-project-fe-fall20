@@ -31,12 +31,12 @@ export default {
   data() {
     return {
       images: [
-        "@/assets/lotions/sp1.png",
-        "@/assets/lotions/sp2.png",
-        "@/assets/lotions/sp3.png",
-        "@/assets/lotions/sp4.png",
-        "@/assets/lotions/sp5.png",
-        "@/assets/lotions/sp6.png",
+        require("@/assets/lotions/sp1.png"),
+        require("@/assets/lotions/sp2.png"),
+        require("@/assets/lotions/sp3.png"),
+        require("@/assets/lotions/sp4.png"),
+        require("@/assets/lotions/sp5.png"),
+        require("@/assets/lotions/sp6.png"),
       ],
       index: 0,
     };

@@ -10,6 +10,10 @@ import store from './store'
 import LoadScript from 'vue-plugin-load-script';
 
 Vue.config.productionTip = false;
+import SequentialEntrance from 'vue-sequential-entrance'
+import 'vue-sequential-entrance/vue-sequential-entrance.css'
+Vue.use(SequentialEntrance);
+
 
 Vue.use(LoadScript);
 Vue.use(FlashMessage);
