@@ -6,7 +6,7 @@ Vue.use(VueRouter);
 const routes = [
   {
     path: "/",
-    redirect: '/navatan',
+    redirect: "/navatan",
     name: "Default",
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/Home.vue"),
@@ -19,6 +19,18 @@ const routes = [
   },
   {
     path: "/about",
+    name: "About",
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/About.vue"),
+  },
+  {
+    path: "/gallery",
+    name: "Gallery",
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/Gallery.vue"),
+  },
+  {
+    path: "/aboutus",
     name: "About",
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/About.vue"),
@@ -61,8 +73,8 @@ const routes = [
   },
   {
     path: "*",
-    redirect: '/404'
-  }
+    redirect: "/404",
+  },
 ];
 
 const router = new VueRouter({

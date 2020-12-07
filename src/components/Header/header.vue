@@ -16,12 +16,12 @@
           <router-link tag="button" class="menu-btn" to="/schedule">
             Dịch Vụ
           </router-link>
-          <router-link tag="button" class="menu-btn" to="/test">
+          <router-link tag="button" class="menu-btn" to="/about">
             Liên Hệ
           </router-link>
         </div>
         <div class="middle">
-          <router-link tag="div" class="logo" to="/">
+          <router-link tag="div" class="logo" to="/Navatan">
             <img
               src="../../assets/header-logo.png"
               alt="logo"

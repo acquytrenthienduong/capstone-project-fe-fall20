@@ -177,6 +177,7 @@ export default {
 
 .sliderProduct {
   max-width: 1158px !important;
+  margin: auto;
 }
 .root {
   padding-top: 48px;

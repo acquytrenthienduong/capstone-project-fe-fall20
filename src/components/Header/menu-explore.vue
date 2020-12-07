@@ -4,7 +4,7 @@
       <p class="title">KHÁM PHÁ</p>
       <ul>
         <li :class="{ active: selectedIndex == 0 }" @click="selectedIndex = 0">
-          GALLERY
+          <a href="http://localhost:8080/#/gallery">GALLERY</a>
         </li>
         <li :class="{ active: selectedIndex == 1 }" @click="selectedIndex = 1">
           SẢN PHẨM
