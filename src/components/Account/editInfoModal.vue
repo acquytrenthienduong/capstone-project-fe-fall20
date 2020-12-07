@@ -219,28 +219,13 @@ export default {
             })
             .then((response) => {
               console.log("res", response);
-                    swal("Thành công", "Cập nhật thông tin thành công!", "success");
+              swal("Thành công", "Cập nhật thông tin thành công!", "success");
               this.dialog = false;
             })
             .catch((e) => {
               this.errors.push(e);
             });
         });
-
-      // axios
-      //   .post(`http://localhost:8000/updateProfile/` + this.customerId, {
-      //     customer: {
-      //       email: this.email,
-      //       name: this.name,
-      //     },
-      //   })
-      //   .then((response) => {
-      //     console.log("res", response);
-      //     this.dialog = false;
-      //   })
-      //   .catch((e) => {
-      //     this.errors.push(e);
-      //   });
     },
 
     reset() {
