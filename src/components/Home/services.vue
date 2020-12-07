@@ -1,6 +1,9 @@
 <template>
   <div class="root">
-    <div class="title">Dịch vụ tại Navatan</div>
+    <sequential-entrance fromRight>
+      <div class="title">Dịch vụ tại Navatan</div>
+    </sequential-entrance>
+
     <div class="services">
       <v-container class="grey lighten-5">
         <sequential-entrance fromLeft>

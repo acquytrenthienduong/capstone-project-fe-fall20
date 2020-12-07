@@ -1,6 +1,8 @@
 <template>
   <div class="root">
-    <div class="title">Sản phẩm dưỡng da</div>
+    <sequential-entrance fromRight>
+      <div class="title">Sản phẩm dưỡng da</div>
+    </sequential-entrance>
     <div class="products">
       <v-container class="grey lighten-5">
         <sequential-entrance fromLeft>
