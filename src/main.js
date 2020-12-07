@@ -7,8 +7,11 @@ import router from "./router";
 import VuetifyConfirm from 'vuetify-confirm'
 import FlashMessage from "@smartweb/vue-flash-message";
 import store from './store'
+import LoadScript from 'vue-plugin-load-script';
+
 Vue.config.productionTip = false;
 
+Vue.use(LoadScript);
 Vue.use(FlashMessage);
 Vue.use(VueAwesomeSwiper /* { default options with global component } */);
 Vue.use(VuetifyConfirm, {
