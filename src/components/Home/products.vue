@@ -82,7 +82,7 @@ export default {
         },
       ],
       options: {
-        gap: "1rem",
+        gap: "0.8rem",
         type: "loop",
         perPage: 4,
         // perMove: 1,
