@@ -1,5 +1,23 @@
 <template>
-  <div class="about">
-    <h1>This is an about page</h1>
+  <div class="root">
+    <Contact />
+    <Socials />
   </div>
 </template>
+
+<script>
+
+import Socials from "@/components/Home/socials";
+import Contact from "@/components/Home/contact";
+export default {
+  name: "homepage",
+  components: {
+    Socials,
+    Contact,
+  },
+};
+</script>
+
+<style lang="scss" scoped>
+
+</style>
