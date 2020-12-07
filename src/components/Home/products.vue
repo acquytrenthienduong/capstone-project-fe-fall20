@@ -160,7 +160,7 @@ export default {
       options: {
         gap: "20px",
         type: "loop",
-        perPage: 3,
+        perPage: 4,
         perMove: 1,
         forcus: "center",
         autoplay: true,
@@ -176,7 +176,7 @@ export default {
 }
 
 .sliderProduct {
-  max-width: 1158px !important;
+  max-width: 100% !important;
   margin: auto;
 }
 .root {
