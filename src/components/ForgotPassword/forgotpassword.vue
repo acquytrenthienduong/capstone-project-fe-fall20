@@ -1,10 +1,15 @@
 <template>
   <v-row justify="center">
-    <v-dialog v-model="dialog" content-class="login-register-dialog">
+    <v-dialog
+      v-model="dialog"
+      content-class="login-register-dialog"
+      max-width="600px"
+    >
       <template v-slot:activator="{ on, attrs }">
         <a href="#" menu-btn-cta v-bind="attrs" v-on="on">Quên mật khẩu</a>
       </template>
-      <div class="container">
+      <div class="content">
+        <v-icon class="close-button" @click="dialog = false"> mdi-plus </v-icon>
         <div class="text-center py-4">
           <img class="logo-headline" src="@/assets/logo-black.svg" alt="logo" />
         </div>
@@ -30,9 +35,9 @@
                     <h3 v-if="checkStep1">Hãy điền email của bạn đã!</h3>
                   </v-container>
                 </v-card-text>
-                <v-card-actions>
+                <v-card-actions class="justify-content">
                   <v-btn
-                    class="first-step-btn"
+                    class="first-step-btn blue white--text otp-confirm-btn"
                     color="blue darken-1"
                     @click="sendEmail"
                   >
@@ -57,14 +62,23 @@
                     outlined
                     required
                   ></v-text-field>
+                  <v-row class="mb-8 text-center">
+                    <v-col>
+                      <v-btn @click="backToStep1" class="red--text" text>
+                        Không nhận được mã, quay lại bước 1
+                      </v-btn>
+                    </v-col>
+                  </v-row>
                   <h3 v-if="checkStep2">Mã xác nhận không đúng</h3>
-                  <div class="container--fluid align-content-stretch">
-                    <v-btn
-                      class="blue white--text otp-confirm-btn"
-                      @click="enterCode"
-                      >Xác nhận
-                    </v-btn>
-                  </div>
+                  <v-card-actions class="justify-content">
+                    <div class="container--fluid align-content-stretch">
+                      <v-btn
+                        class="blue white--text otp-confirm-btn justify-content"
+                        @click="enterCode"
+                        >Xác nhận
+                      </v-btn>
+                    </div>
+                  </v-card-actions>
                 </v-form>
               </div>
             </v-stepper-content>
@@ -92,13 +106,15 @@
                     :rules="[rules.required, rules.min, rules.passWordMatch]"
                   ></v-text-field>
                   <h3 v-if="checkStep3">Hãy nhập mật khẩu mới!</h3>
-                  <div class="container--fluid align-content-stretch">
-                    <v-btn
-                      class="blue white--text otp-confirm-btn"
-                      @click="updateCustomer"
-                      >Xác nhận
-                    </v-btn>
-                  </div>
+                  <v-card-actions class="justify-content">
+                    <div class="container--fluid align-content-stretch">
+                      <v-btn
+                        class="blue white--text otp-confirm-btn justify-content"
+                        @click="updateCustomer"
+                        >Xác nhận
+                      </v-btn>
+                    </div>
+                  </v-card-actions>
                 </v-form>
               </div>
             </v-stepper-content>
@@ -163,6 +179,7 @@ export default {
       this.repassword = "";
       this.name = "";
       this.email = "";
+      this.step = 1;
     },
 
     backToStep1() {
@@ -221,7 +238,7 @@ export default {
         axios
           .get(this.host + "/loadCustomerByEmail/" + this.email)
           .then((response) => {
-            console.log("response", response);
+            console.log("response123333", response);
             var customer = response.data;
             customer.password = this.password;
             axios
@@ -231,6 +248,7 @@ export default {
               .then((response) => {
                 console.log("res", response);
                 swal("Thành công", "Cập nhật mật khẩu thành công!", "success");
+                this.reset();
                 this.dialog = false;
               })
               .catch((e) => {
@@ -239,6 +257,14 @@ export default {
           });
       } else {
         this.checkStep3 = true;
+      }
+    },
+  },
+
+  watch: {
+    dialog(val) {
+      if (!val) {
+        this.reset();
       }
     },
   },
@@ -289,5 +315,13 @@ export default {
 h3 {
   color: red;
   background-color: none !important;
+}
+
+.justify-content {
+  justify-content: center;
+}
+
+.content {
+  background-color: white;
 }
 </style>
