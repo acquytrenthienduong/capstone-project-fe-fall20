@@ -36,7 +36,7 @@ const routes = [
       import(/* webpackChunkName: "about" */ "../views/Products.vue"),
   },
   {
-    path: "/schedule",
+    path: "/schedule/:type",
     name: "Schedule",
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/Schedule.vue"),
