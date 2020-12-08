@@ -280,8 +280,7 @@ export default {
     dialog(value) {
       if (!value) {
         this.showReceipt = false;
-      }
-      else{
+      } else {
         this.showBill();
       }
     },
