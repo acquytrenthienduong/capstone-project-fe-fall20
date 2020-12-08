@@ -3,7 +3,6 @@
     <v-dialog
       v-model="dialog"
       content-class="login-register-dialog"
-      max-width="600px"
     >
       <template v-slot:activator="{ on, attrs }">
         <a href="#" menu-btn-cta v-bind="attrs" v-on="on">Quên mật khẩu</a>
