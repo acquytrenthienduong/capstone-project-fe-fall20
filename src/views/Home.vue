@@ -5,6 +5,8 @@
     <Products />
     <Videos />
     <About />
+    <Map />
+    <Number />
     <Socials />
   </div>
 </template>
@@ -16,6 +18,9 @@ import Products from "@/components/Home/products";
 import Videos from "@/components/Home/videos";
 import Socials from "@/components/Home/socials";
 import About from "@/components/Home/about";
+import Number from "@/components/Home/number";
+import Map from "@/components/Home/maps";
+
 export default {
   name: "homepage",
   components: {
@@ -24,9 +29,13 @@ export default {
     Products,
     Videos,
     Socials,
+    Number,
+    Map,
     About,
   },
 };
+
+
 </script>
 
 <style lang="scss" scoped>

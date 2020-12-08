@@ -14,6 +14,7 @@
     "@smartweb/vue-flash-message": "^0.6.10",
     "@splidejs/splide": "^2.4.21",
     "@splidejs/vue-splide": "^0.3.5",
+    "animated-number-vue": "^1.0.0",
     "axios": "^0.21.0",
     "core-js": "^3.6.5",
     "firebase": "^8.0.2",
