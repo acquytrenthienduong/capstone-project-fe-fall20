@@ -17,7 +17,7 @@
             <v-stepper-content step="1">
               <v-card class="step-1-card">
                 <v-card-title class="justify-center flex-column">
-                  <div class="text-center">Đăng ký tài khoản mới</div>
+                  <div class="text-center">Điền email đã đăng kí khi tạo tài khoản</div>
                 </v-card-title>
                 <v-card-text>
                   <v-container>
