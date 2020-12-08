@@ -20,7 +20,12 @@
                   Tanning đứng với máy SunCapsule đến từ CHLB Đức.
                 </v-card-text>
                 <v-card-actions>
-                  <v-btn color="orange lighten-2" class="xemthem" text>
+                  <v-btn
+                    color="orange lighten-2"
+                    class="xemthem"
+                    text
+                    @click="detail1"
+                  >
                     xem thêm
                   </v-btn>
                   <v-spacer></v-spacer>
@@ -41,7 +46,12 @@
                   Tanning nằm với máy high-powered SunCapsule 2 cấp độ.
                 </v-card-text>
                 <v-card-actions>
-                  <v-btn color="orange lighten-2" class="xemthem" text>
+                  <v-btn
+                    color="orange lighten-2"
+                    class="xemthem"
+                    text
+                    @click="detail2"
+                  >
                     xem thêm
                   </v-btn>
 
@@ -60,7 +70,12 @@
                   Da tan hoàn toàn đồng đều chỉ trong 90 giây với Spray Tanning.
                 </v-card-text>
                 <v-card-actions>
-                  <v-btn color="orange lighten-2" class="xemthem" text>
+                  <v-btn
+                    color="orange lighten-2"
+                    class="xemthem"
+                    text
+                    @click="detail3"
+                  >
                     xem thêm
                   </v-btn>
                   <v-spacer></v-spacer>
@@ -76,7 +91,23 @@
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {};
+  },
+
+  methods: {
+    detail1() {
+      this.$router.push({ name: "Schedule", params: { type: "1" } });
+    },
+    detail2() {
+      this.$router.push({ name: "Schedule", params: { type: "2" } });
+    },
+    detail3() {
+      this.$router.push({ name: "Schedule", params: { type: "3" } });
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>

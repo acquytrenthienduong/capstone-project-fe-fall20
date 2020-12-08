@@ -15,10 +15,14 @@
 
       <v-col cols="12" md="6" class="rightarea">
         <div class="container">
+          <h2 v-if="detailType === '1'">Loai 1</h2>
+          <h2 v-if="detailType === '2'">Loai 2</h2>
+          <h2 v-if="detailType === '3'">Loai 3</h2>
           <v-radio-group v-model="selectType" row>
             <v-radio label="Tanning" :value="1"></v-radio>
             <v-radio label="Massage" :value="2"></v-radio>
           </v-radio-group>
+
           <div v-if="selectType === 1" class="myTitle">
             Chọn khoảng thời gian tanning
           </div>
@@ -35,7 +39,11 @@
           <div class="option-price">
             {{ money | priceVndFormat }}
           </div>
-          <button class="cta-btn" @click="showScheduleModal">
+          <button
+            v-if="customerName"
+            class="cta-btn"
+            @click="showScheduleModal"
+          >
             Đặt lịch ngay
           </button>
           <h3 v-if="!customerName">
@@ -86,6 +94,7 @@ export default {
       money: 0,
       selectType: 1,
       customerName: localStorage.getItem("customerName"),
+      detailType: 0,
     };
   },
 
@@ -116,10 +125,16 @@ export default {
     showScheduleModal() {
       this.$store.commit("toggleScheduleModal", true);
     },
+
+    init() {
+      console.log("xxxxxxxxxxxxxxxxxx", this.$route.params);
+      this.detailType = this.$route.params.type;
+    },
   },
 
   mounted() {
     this.loadSubService(1);
+    this.init();
   },
 
   watch: {

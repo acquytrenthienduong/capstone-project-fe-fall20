@@ -13,7 +13,11 @@
       <div class="content">
         <div class="left d-none d-md-block">
           <button class="menu-btn" @click="toggleMenuHandler">Khám phá</button>
-          <router-link tag="button" class="menu-btn" to="/schedule">
+          <router-link
+            tag="button"
+            class="menu-btn"
+            :to="{ name: 'Schedule', params: { type: '1' } }"
+          >
             Dịch Vụ
           </router-link>
           <router-link tag="button" class="menu-btn" to="/about">
