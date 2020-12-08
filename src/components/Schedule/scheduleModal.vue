@@ -281,6 +281,9 @@ export default {
       if (!value) {
         this.showReceipt = false;
       }
+      else{
+        this.showBill();
+      }
     },
 
     selectType: function(val) {
@@ -304,6 +307,10 @@ export default {
           this.errors.push(e);
         });
     },
+
+    // dialog(value){
+    //   if(value)
+    // }
   },
   computed: {
     dialog: {
