@@ -3,39 +3,80 @@
     <v-row no-gutters class="details">
       <v-col cols="12" md="6" class="leftarea">
         <swiper ref="mySwiper" :options="swiperOptions" class="product-images">
-          <swiper-slide v-for="n in 4" :key="n" class="product-image-slide">
+          <swiper-slide class="product-image-slide">
             <img
-              :src="`https://source.unsplash.com/random/480x720?${n}`"
-              alt="demo"
+              src="https://www12.lunapic.com/do-not-link-here-use-hosting-instead/160754798269050822?4521129159"
+              alt=""
             />
           </swiper-slide>
-          <div class="swiper-pagination" slot="pagination"></div>
+          <swiper-slide class="product-image-slide">
+            <img
+              src="https://www12.lunapic.com/do-not-link-here-use-hosting-instead/160754798269050822?7722348513"
+              alt=""
+            />
+          </swiper-slide>
+          <swiper-slide class="product-image-slide">
+            <img
+              src="https://www12.lunapic.com/do-not-link-here-use-hosting-instead/160754798269050822?866981649"
+              alt=""
+            />
+          </swiper-slide>
+          <swiper-slide class="product-image-slide">
+            <img
+              src="https://www12.lunapic.com/do-not-link-here-use-hosting-instead/160754798269050822?189503303"
+              alt=""
+            />
+          </swiper-slide>
         </swiper>
       </v-col>
 
       <v-col cols="12" md="6" class="rightarea">
         <div class="container">
-          <h2 v-if="detailType === '1'">Loai 1</h2>
-          <h2 v-if="detailType === '2'">Loai 2</h2>
-          <h2 v-if="detailType === '3'">Loai 3</h2>
-          <v-radio-group v-model="selectType" row>
-            <v-radio label="Tanning" :value="1"></v-radio>
-            <v-radio label="Massage" :value="2"></v-radio>
-          </v-radio-group>
-
-          <div v-if="selectType === 1" class="myTitle">
-            Chọn khoảng thời gian tanning
+          <div v-if="detailType === '1'" class="service">
+            <h1>{{ dataServices[0].title }}</h1>
+            <v-divider></v-divider>
+            <br />
+            <p>
+              {{ dataServices[0].intro }}
+            </p>
+            <h3>Tips làn da tanning hoàn hảo và an toàn</h3>
+            <ul>
+              <li v-for="(list, i) in dataServices[0].ul" :key="i">
+                {{ list }}
+              </li>
+            </ul>
           </div>
-          <div v-if="selectType === 2" class="myTitle">Chọn gói Massage</div>
-          <v-select
-            :items="durationOptions"
-            item-text="name"
-            item-value="value"
-            label="Duration"
-            class="duration-selector"
-            outlined
-            v-model="selectedDuration"
-          ></v-select>
+
+          <div v-if="detailType === '2'" class="service">
+            <h1>{{ dataServices[1].title }}</h1>
+            <v-divider></v-divider>
+            <br />
+            <p>
+              {{ dataServices[1].intro }}
+            </p>
+            <h3>Thông tin dịch vụ</h3>
+            <ul>
+              <li v-for="(list, i) in dataServices[1].ul" :key="i">
+                {{ list }}
+              </li>
+            </ul>
+          </div>
+
+          <div v-if="detailType === '3'" class="service">
+            <h1>{{ dataServices[2].title }}</h1>
+            <v-divider></v-divider>
+            <br />
+            <p>
+              {{ dataServices[2].intro }}
+            </p>
+            <h3>Thông tin dịch vụ</h3>
+            <ul>
+              <li v-for="(list, i) in dataServices[2].ul" :key="i">
+                {{ list }}
+              </li>
+            </ul>
+          </div>
+
           <div class="option-price">
             {{ money | priceVndFormat }}
           </div>
@@ -75,6 +116,42 @@ export default {
   },
   data() {
     return {
+      dataServices: [
+        {
+          title: "STAND UP TANNING",
+          intro:
+            "Stand up Tanning là phương pháp làm tanning chiều thẳng đứng từ sâu bên trong có sự hỗ trợ của máy nhuộm hiện đại được sản xuất tại Đức giúp đưa các dưỡng chất thẩm thấu sâu vào da nhờ tác động nhiệt của ánh sáng đỏ đem đến tác dụng hiệu quả tuyệt vời.",
+          ul: [
+            "Chọn nguồn năng lượng UV an toàn",
+            "Dưỡng ẩm đầy đủ",
+            "Luôn luôn bôi kem chống nắng",
+            "Mặc đúng đồ khi tắm nắng để đều màu Lật mình, di chuyển để đều màu",
+            "Lật mình, di chuyển để đều màu",
+          ],
+        },
+        {
+          title: "LAY DOWN TANNING",
+          intro:
+            "Hiện tại ở Navatan có ba cấp độ nằm khác nhau để lựa chọn - cả ba đều là giường Ergoline kết hợp hiệu suất tanning & sự thoải mái để tạo ra trải nghiệm tuyệt vời cho bạn",
+          ul: [
+            "15 phút phơi sáng tối đa / 9 phút phiên trung bình",
+            "Đèn cao áp toàn thân 10 x 620 watt",
+            "Đèn cao áp mặt có thể điều chỉnh 2 x 620 watt",
+            "Các phiên tắm nắng riêng lẻ",
+            "Tanning vai với đèn spaghetti",
+          ],
+        },
+        {
+          title: "SPRAY TANNING",
+          intro:
+            "Tanning dạng xịt là một hình thức tanning khi một lớp sương mịn được phun lên cơ thể của bạn. Dạng tanning này cho phép bạn tự do lựa chọn một trong các giải pháp nhuộm màu trong, tối hoặc màu venetian tại Navatan.",
+          ul: [
+            "Sẽ tạo ra một làn da sáng tự nhiên và phát triển trong khoảng thời gian 24 giờ. Được đề xuất cho tông màu da trung bình sáng.",
+            "Một làn da rám nắng từ trung bình đến sẫm giống như cách bạn xuất hiện sau nhiều tuần rám nắng hoặc “màu ngoài bãi biển” xuất hiện ngay lập tức. Khuyên dùng cho tông da trung bình tối.",
+            "Sử dụng SunCapsule 220 trong 4 phút sau khi xịt sẽ đẩy nhanh quá trình hấp thụ dung dịch cũng như giúp tăng màu sắc của bạn với tia UV tự nhiên",
+          ],
+        },
+      ],
       host: config.config.host,
       swiperOptions: {
         // direction: "vertical",
@@ -162,7 +239,8 @@ export default {
 
     .leftarea {
       .product-images {
-        height: 700px;
+        height: 630px;
+        margin-top: 8%;
         .product-image-slide {
           text-align: center;
         }
@@ -224,6 +302,9 @@ export default {
       }
     }
   }
+}
+.service {
+  margin-top: -19%;
 }
 @media (min-width: 768px) {
   .root {
