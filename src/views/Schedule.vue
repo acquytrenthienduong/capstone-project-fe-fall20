@@ -5,26 +5,26 @@
         <swiper ref="mySwiper" :options="swiperOptions" class="product-images">
           <swiper-slide class="product-image-slide">
             <img
-              src="https://www12.lunapic.com/do-not-link-here-use-hosting-instead/160754798269050822?4521129159"
-              alt=""
+              src="@/assets/services/service1.jpg"
+              alt="navatan1"
             />
           </swiper-slide>
           <swiper-slide class="product-image-slide">
             <img
-              src="https://www12.lunapic.com/do-not-link-here-use-hosting-instead/160754798269050822?7722348513"
-              alt=""
+              src="@/assets/services/slide.jpg"
+              alt="navatan2"
             />
           </swiper-slide>
           <swiper-slide class="product-image-slide">
             <img
-              src="https://www12.lunapic.com/do-not-link-here-use-hosting-instead/160754798269050822?866981649"
-              alt=""
+              src="@/assets/services/slide2.jpg"
+              alt="navatan3"
             />
           </swiper-slide>
           <swiper-slide class="product-image-slide">
             <img
-              src="https://www12.lunapic.com/do-not-link-here-use-hosting-instead/160754798269050822?189503303"
-              alt=""
+              src="@/assets/services/slide3.jpg"
+              alt="navatan4"
             />
           </swiper-slide>
         </swiper>
@@ -248,6 +248,7 @@ export default {
     }
     .rightarea {
       display: flex;
+      margin-top: 3%;
       align-items: center;
       .container {
         max-width: 500px;
