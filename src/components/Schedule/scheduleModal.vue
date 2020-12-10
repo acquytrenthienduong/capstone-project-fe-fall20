@@ -229,7 +229,6 @@ export default {
       let month = dateRaw.getMonth() + 1;
       let dt = dateRaw.getDate();
       if (this.selectedDuration > 0 && this.time != null) {
-        this.overlay = true;
         axios
           .post(this.host + "/createNewReservation", {
             customer_id: parseInt(localStorage.getItem("customerId"), 10),
@@ -242,22 +241,32 @@ export default {
             month: month,
             day: dt,
           })
-          .then(() => {
-            setTimeout(() => {
-              this.closeModal();
-              this.overlay = false;
+          .then((response) => {
+            console.log(response);
+            if (response.status === 200) {
+              this.overlay = true;
+              setTimeout(() => {
+                this.closeModal();
+                this.overlay = false;
+                swal(
+                  "Đặt lịch thành công!",
+                  "Lịch của bạn đa được đặt thành công chúng tôi sẽ thông báo lại ngay nếu có vấn đề gì !",
+                  "success"
+                );
+              }, 1000);
+              axios
+                .post(this.host + "/createNotification", {
+                  content:
+                    "Khách Hàng " + this.customerName + " muốn đặt 1 cuộc hẹn",
+                })
+                .then(() => {});
+            } else {
               swal(
-                "Đặt lịch thành công!",
-                "Lịch của bạn đa được đặt thành công chúng tôi sẽ thông báo lại ngay nếu có vấn đề gì !",
-                "success"
-              );
-            }, 1000);
-            axios
-              .post(this.host + "/createNotification", {
-                content:
-                  "Khách Hàng " + this.customerName + " muốn đặt 1 cuộc hẹn",
-              })
-              .then(() => {});
+                  "Rất tiếc!",
+                  "Khung giờ này chúng tôi đã kín lịch rồi hãy rời lên 1 hoặc 2 h nhé !",
+                  "warning"
+                );
+            }
           })
           .catch((e) => {
             this.errors.push(e);
