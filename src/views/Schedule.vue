@@ -4,28 +4,16 @@
       <v-col cols="12" md="6" class="leftarea">
         <swiper ref="mySwiper" :options="swiperOptions" class="product-images">
           <swiper-slide class="product-image-slide">
-            <img
-              src="@/assets/services/service1.jpg"
-              alt="navatan1"
-            />
+            <img src="@/assets/services/service1.jpg" alt="navatan1" />
           </swiper-slide>
           <swiper-slide class="product-image-slide">
-            <img
-              src="@/assets/services/slide.jpg"
-              alt="navatan2"
-            />
+            <img src="@/assets/services/slide.jpg" alt="navatan2" />
           </swiper-slide>
           <swiper-slide class="product-image-slide">
-            <img
-              src="@/assets/services/slide2.jpg"
-              alt="navatan3"
-            />
+            <img src="@/assets/services/slide2.jpg" alt="navatan3" />
           </swiper-slide>
           <swiper-slide class="product-image-slide">
-            <img
-              src="@/assets/services/slide3.jpg"
-              alt="navatan4"
-            />
+            <img src="@/assets/services/slide3.jpg" alt="navatan4" />
           </swiper-slide>
         </swiper>
       </v-col>
@@ -102,13 +90,13 @@
 <script>
 import Products from "@/components/Home/products";
 import Socials from "@/components/Home/socials";
-import Introduction from "@/components/Schedule/introduction";
+
 import axios from "axios";
 import config from "../confighost/config";
 
 export default {
   name: "product-detail",
-  components: { Products, Socials, Introduction },
+  components: { Products, Socials },
   computed: {
     optionPrice() {
       return this.selectedDuration * 20000;
@@ -235,8 +223,10 @@ export default {
 <style lang="scss" scoped>
 .root {
   .details {
-    // background: #e5e5e5;
-
+    background-image: url("~@/assets/Background.jpg");
+    background-size: cover;
+    background-position: center center;
+    margin-bottom: 0%;
     .leftarea {
       .product-images {
         height: 630px;
