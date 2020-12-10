@@ -4,7 +4,7 @@
     <Services />
     <Products />
     <Videos />
-    <About />
+    <Introduction />
     <Map />
     <Number />
     <Socials />
@@ -17,9 +17,9 @@ import Services from "@/components/Home/services";
 import Products from "@/components/Home/products";
 import Videos from "@/components/Home/videos";
 import Socials from "@/components/Home/socials";
-import About from "@/components/Home/about";
 import Number from "@/components/Home/number";
 import Map from "@/components/Home/maps";
+import Introduction from "@/components/Schedule/introduction";
 
 export default {
   name: "homepage",
@@ -31,11 +31,9 @@ export default {
     Socials,
     Number,
     Map,
-    About,
+    Introduction,
   },
 };
-
-
 </script>
 
 <style lang="scss" scoped>
