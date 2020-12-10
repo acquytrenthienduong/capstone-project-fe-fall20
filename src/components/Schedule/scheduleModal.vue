@@ -224,6 +224,10 @@ export default {
     },
 
     createNewReservation() {
+      let dateRaw = new Date(this.date);
+      let year = dateRaw.getFullYear();
+      let month = dateRaw.getMonth() + 1;
+      let dt = dateRaw.getDate();
       if (this.selectedDuration > 0 && this.time != null) {
         this.overlay = true;
         axios
@@ -234,6 +238,9 @@ export default {
             status: 0,
             sub_service_sub_service_id: this.selectedDuration,
             is_access: 0,
+            year: year,
+            month: month,
+            day: dt,
           })
           .then(() => {
             setTimeout(() => {
