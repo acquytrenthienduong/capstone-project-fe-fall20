@@ -41,7 +41,7 @@
                 >THAY ĐỔI MẬT KHẨU</v-btn
               >
             </v-col>
-            <v-col>
+            <!-- <v-col>
               <v-btn
                 color="black"
                 class="white--text px-10 py-6"
@@ -49,7 +49,7 @@
                 @click="changePhoneDialog = true"
                 >THAY ĐỔI SỐ ĐIỆN THOẠI</v-btn
               >
-            </v-col>
+            </v-col> -->
           </v-row>
         </v-container>
         <v-card-actions class="py-4 px-8">
