@@ -5,7 +5,7 @@
     </sequential-entrance>
 
     <div class="services">
-      <v-container class="grey lighten-5">
+      <v-container class="serviceContainer">
         <sequential-entrance fromLeft>
           <v-row>
             <v-col cols="12" md="4">
@@ -111,6 +111,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.serviceContainer{
+  max-width: 100%;
+  background-color: white;
+  margin-bottom: -2%;
+}
+
 .root {
   padding-top: 48px;
   padding-bottom: 48px;

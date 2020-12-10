@@ -4,7 +4,7 @@
       <div class="title">Sản phẩm dưỡng da</div>
     </sequential-entrance>
     <div class="products">
-      <v-container class="grey lighten-5">
+      <v-container class="productContainer">
         <splide :options="options" class="sliderProduct">
           <splide-slide v-for="(product, i) in productMocks" :key="i">
             <v-card class="product-card" max-width="400">
@@ -22,12 +22,8 @@
               <v-card-text class="text--primary">
                 <div>{{ product.description }}</div>
               </v-card-text>
-
-              <v-card-actions>
-                <v-btn color="orange" text> xem thêm </v-btn>
-              </v-card-actions>
             </v-card>
-          </splide-slide>  
+          </splide-slide>
         </splide>
       </v-container>
       <router-link class="products-page-link" to="/products">
@@ -90,7 +86,7 @@ export default {
         // perMove: 1,
         forcus: "center",
         autoplay: true,
-        rewind : true,
+        rewind: true,
       },
     };
   },
@@ -98,6 +94,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.productContainer {
+  background-color: #ffffff !important;
+  max-width: 100%;
+}
+
 .product-card {
   margin-bottom: 10px;
 }
@@ -109,8 +110,10 @@ export default {
 .root {
   padding-top: 48px;
   padding-bottom: 48px;
+
   .title {
-    padding: 16px 0;
+    margin-bottom: -1%;
+    padding: 0 0;
     text-align: center;
     font-size: 30px !important;
     font-weight: bold;
