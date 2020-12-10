@@ -181,6 +181,8 @@ export default {
           padding: 12px 24px;
           text-transform: uppercase;
           font-weight: bold;
+          background-color: #000;
+          font-size: larger;
         }
       }
     }
