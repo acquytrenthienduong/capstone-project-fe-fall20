@@ -81,8 +81,9 @@
         </div>
       </v-col>
     </v-row>
+    <Step />
     <Products />
-    <Introduction />
+    
     <Socials />
   </div>
 </template>
@@ -90,13 +91,14 @@
 <script>
 import Products from "@/components/Home/products";
 import Socials from "@/components/Home/socials";
+import Step from "@/components/Home/step";
 
 import axios from "axios";
 import config from "../confighost/config";
 
 export default {
   name: "product-detail",
-  components: { Products, Socials },
+  components: { Products, Socials, Step },
   computed: {
     optionPrice() {
       return this.selectedDuration * 20000;
