@@ -2,10 +2,10 @@
   <div class="root">
     <div class="container">
       <div class="row justify-space-between">
-        <div class="col-md-6 col-12">
+        <div class="col-md-8 col-12">
          <Map />
         </div>
-        <div class="col-md-5 col-12">
+        <div class="col-md-4 col-12">
           <v-card max-width="400" class="mx-auto">
             <v-img src="@/assets/header-logo.png" height="85" width="100%" dark>
               <v-row class="fill-height">
@@ -101,7 +101,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 .root {
-  padding: 70px 10px;
+  padding: 56px 10px;
 }
 h1 {
   color: black;

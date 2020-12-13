@@ -148,7 +148,7 @@ export default {
 .root {
   .header {
     position: relative;
-    background: url("https://source.unsplash.com/1280x720/?girl");
+    background: url("../assets/home/cover_1.png");
     background-size: cover;
     .inner-content {
       color: #ffffff;
