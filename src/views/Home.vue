@@ -4,7 +4,7 @@
     <Services />
     <Products />
     <Videos />
-    <Introduction />
+    <Step />
     <Map />
     <Number />
     <Socials />
@@ -19,7 +19,7 @@ import Videos from "@/components/Home/videos";
 import Socials from "@/components/Home/socials";
 import Number from "@/components/Home/number";
 import Map from "@/components/Home/maps";
-import Introduction from "@/components/Schedule/introduction";
+import Step from "@/components/Home/step";
 
 export default {
   name: "homepage",
@@ -28,10 +28,10 @@ export default {
     Services,
     Products,
     Videos,
+    Step,
     Socials,
     Number,
     Map,
-    Introduction,
   },
 };
 </script>

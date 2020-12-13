@@ -239,6 +239,7 @@ export default {
       }
     }
     .rightarea {
+      
       display: flex;
       margin-top: 3%;
       align-items: center;
@@ -296,8 +297,13 @@ export default {
     }
   }
 }
+
+.container{
+  margin-left: 15% !important;
+}
 .service {
   margin-top: -19%;
+  
 }
 @media (min-width: 768px) {
   .root {

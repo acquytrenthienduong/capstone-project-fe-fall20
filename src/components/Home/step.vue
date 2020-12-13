@@ -125,12 +125,15 @@ export default {
 </script>
 
 <style scoped>
-
+.v-expansion-panel-header {
+  font-family: "Dancing Script", cursive !important;
+  font-size: 30px;
+}
 .title {
-   margin-left: 5%;
-   font-size: 30px !important;
-   text-align: center;
-   margin-bottom: 5%;
+  margin-left: 5%;
+  font-size: 30px !important;
+  text-align: center;
+  margin-bottom: 5%;
 }
 
 img {
@@ -139,9 +142,11 @@ img {
 
 .image {
   text-align: -webkit-center;
+  margin-left: 10%;
 }
 
 .root {
+  
   margin-top: 8%;
   margin-bottom: 3%;
 }
@@ -152,6 +157,6 @@ img {
 }
 
 .v-expansion-panel {
-  margin-top: 3% !important;
+  margin-top: 1% !important;
 }
 </style>
