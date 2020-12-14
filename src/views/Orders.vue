@@ -62,7 +62,7 @@
                     <p>Ngày hẹn {{ item.reservation_date }}</p>
                   </v-col>
                   <v-col cols="12" md="6">
-                    <p>Khung giờ hẹn {{ item.reservation_time }}</p>
+                    <p>Khung giờ hẹn {{ item.checkin_time }}</p>
                   </v-col>
                 </v-row>
                 <v-btn

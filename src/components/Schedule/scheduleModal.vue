@@ -232,7 +232,7 @@ export default {
         axios
           .post(this.host + "/createNewReservation", {
             customer_id: parseInt(localStorage.getItem("customerId"), 10),
-            reservation_time: this.time,
+            checkin_time: this.time,
             reservation_date: this.date,
             status: 0,
             sub_service_sub_service_id: this.selectedDuration,
