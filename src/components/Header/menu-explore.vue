@@ -1,18 +1,18 @@
 <template>
-  <div class="rootMenu elevation-3" :class="{ visible: isVisible }">
+  <div class="rootMenu elevation-3" :class="{ visible: isVisible }" @mouseleave="isHoverOut">
     <div class="left-menu">
       <p class="title">KHÁM PHÁ</p>
       <ul>
-        <li :class="{ active: selectedIndex == 0 }" @click="selectedIndex = 0">
-          <a href="http://localhost:8080/#/gallery">HÌNH ẢNH</a>
+        <li :class="{ active: selectedIndex == 0 }" @mouseover="selectedIndex = 0">
+          <a href="http://localhost:8080/#/gallery">GALLERY</a>
         </li>
-        <li :class="{ active: selectedIndex == 1 }" @click="selectedIndex = 1">
+        <li :class="{ active: selectedIndex == 1 }" @mouseover="selectedIndex = 1">
           SẢN PHẨM
         </li>
-        <li :class="{ active: selectedIndex == 2 }" @click="selectedIndex = 2">
-          THƯƠNG HIỆU
+        <li :class="{ active: selectedIndex == 2 }" @mouseover="selectedIndex = 2">
+          PACKAGES
         </li>
-        <li :class="{ active: selectedIndex == 3 }" @click="selectedIndex = 3">
+        <li :class="{ active: selectedIndex == 3 }" @mouseover="selectedIndex = 3">
           BLOG
         </li>
       </ul>
@@ -43,10 +43,14 @@
 <script>
 export default {
   name: "menu-explore",
-  props: ["isVisible"],
+  props: ["isVisible", "isHoverOut"],
   data() {
     return { selectedIndex: 0 };
   },
+  mounted() {
+    // Instead of calling the method we emit an event
+    this.$emit('isHoverOut');
+  }
 };
 </script>
 <style lang="scss" scoped>
