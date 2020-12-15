@@ -4,13 +4,13 @@
       <p class="title">KHÁM PHÁ</p>
       <ul>
         <li :class="{ active: selectedIndex == 0 }" @click="selectedIndex = 0">
-          <a href="http://localhost:8080/#/gallery">GALLERY</a>
+          <a href="http://localhost:8080/#/gallery">HÌNH ẢNH</a>
         </li>
         <li :class="{ active: selectedIndex == 1 }" @click="selectedIndex = 1">
           SẢN PHẨM
         </li>
         <li :class="{ active: selectedIndex == 2 }" @click="selectedIndex = 2">
-          PACKAGES
+          THƯƠNG HIỆU
         </li>
         <li :class="{ active: selectedIndex == 3 }" @click="selectedIndex = 3">
           BLOG
