@@ -349,7 +349,7 @@ export default {
       radioGroup: 1,
       selectedDuration: 0,
       durationOptions: [],
-      selectType: 1,
+      selectType: null,
       time: null,
       menu2: false,
       customerName: localStorage.getItem("customerName"),
@@ -367,7 +367,7 @@ export default {
   },
 
   mounted() {
-    this.loadSubService(1);
+    this.loadSubService(this.selectType);
     this.showBill();
   },
 };

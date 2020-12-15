@@ -84,38 +84,38 @@ export default {
     visible: 10,
     items: [
       {
-        step: "Bước 1",
+        step: "Bước 1: Bôi kem dưỡng",
         icon: "mdi-bottle-tonic",
         content:
           "Bôi kem dưỡng, kem dưỡng là vật dụng không thể thiếu khi tanning, giúp lớp da đều màu, bóng loáng",
       },
       {
-        step: "Bước 2",
+        step: "Bước 2: Kết nối nhạc",
         icon: "mdi-bluetooth-audio",
         content: "Kết nối playlist nhạc yêu thích của mình với giường tanning",
       },
       {
-        step: "Bước 3",
+        step: "Bước 3: Đeo kính râm",
         icon: "mdi-sunglasses",
         content: "Đeo kính râm Navatan cung cấp để bảo vệ mắt",
       },
       {
-        step: "Bước 4",
+        step: "Bước 4: Thư giãn",
         icon: "mdi-bed",
         content: "Nằm thư giãn trong vòng từ 15 đến 20 phút",
       },
       {
-        step: "Bước 5",
+        step: "Bước 5: Chụp ảnh feedback",
         icon: "mdi-camera",
         content: "Mọi người nhớ chụp những tấm ảnh feedback và ..",
       },
       {
-        step: "Bước 6",
+        step: "Bước 6: Ngắm thành quả",
         icon: "mdi-mirror",
         content: "Soi gương chụp ảnh và ngắm thành quả",
       },
       {
-        step: "Bước 7",
+        step: "Bước 7: Gửi ảnh cho Navatan",
         icon: "mdi-instagram",
         content: "Hãy gửi ảnh về cho Navatan để nhận nhiều ưu đãi nha",
       },
