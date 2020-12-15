@@ -12,12 +12,8 @@
       ></v-app-bar-nav-icon>
       <div class="content">
         <div class="left d-none d-md-block">
-          <button class="menu-btn" @click="toggleMenuHandler">Khám phá</button>
-          <router-link
-            tag="button"
-            class="menu-btn"
-            :to="{ name: 'Schedule', params: { type: '1' } }"
-          >
+          <button class="menu-btn" @mouseover="toggleMenuHandler">Khám phá</button>
+          <router-link tag="button" class="menu-btn" to="/schedule" >
             Dịch Vụ
           </router-link>
           <router-link tag="button" class="menu-btn" to="/about">
@@ -85,7 +81,7 @@
         </v-list-item-group>
       </v-list>
     </v-navigation-drawer>
-    <MenuExplore :isVisible="showMenu" />
+    <MenuExplore :isVisible="showMenu" :isHoverOut="hideMenuHandler"/>
   </v-container>
 </template>
 
@@ -102,6 +98,9 @@ export default {
     AccountMenu,
   },
   methods: {
+    hideMenuHandler() {
+      this.showMenu = false;
+    },
     toggleMenuHandler() {
       this.showMenu = !this.showMenu;
     },
