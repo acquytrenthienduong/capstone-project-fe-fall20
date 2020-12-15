@@ -21,7 +21,18 @@
 
         <div class="slide-content">
           <div class="slide-title">TANNING STUDIO ĐẦU TIÊN TẠI VIỆT NAM</div>
-          <button class="slide-cta-btn" @click="showScheduleModal">
+          <button
+            v-if="customerName"
+            class="slide-cta-btn"
+            @click="showScheduleModal"
+          >
+            Đặt lịch ngay
+          </button>
+          <button
+            v-if="!customerName"
+            class="slide-cta-btn"
+            @click="showWhenNotLogin"
+          >
             Đặt lịch ngay
           </button>
         </div>
@@ -48,7 +59,18 @@
 
         <div class="slide-content">
           <div class="slide-title"></div>
-          <button class="slide-cta-btn" @click="showScheduleModal">
+          <button
+            v-if="customerName"
+            class="slide-cta-btn"
+            @click="showScheduleModal"
+          >
+            Đặt lịch ngay
+          </button>
+          <button
+            v-if="!customerName"
+            class="slide-cta-btn"
+            @click="showWhenNotLogin"
+          >
             Đặt lịch ngay
           </button>
         </div>
@@ -75,7 +97,18 @@
 
         <div class="slide-content">
           <div class="slide-title"></div>
-          <button class="slide-cta-btn" @click="showScheduleModal">
+          <button
+            v-if="customerName"
+            class="slide-cta-btn"
+            @click="showScheduleModal"
+          >
+            Đặt lịch ngay
+          </button>
+          <button
+            v-if="!customerName"
+            class="slide-cta-btn"
+            @click="showWhenNotLogin"
+          >
             Đặt lịch ngay
           </button>
         </div>
@@ -102,7 +135,18 @@
 
         <div class="slide-content">
           <div class="slide-title"></div>
-          <button class="slide-cta-btn" @click="showScheduleModal">
+          <button
+            v-if="customerName"
+            class="slide-cta-btn"
+            @click="showScheduleModal"
+          >
+            Đặt lịch ngay
+          </button>
+          <button
+            v-if="!customerName"
+            class="slide-cta-btn"
+            @click="showWhenNotLogin"
+          >
             Đặt lịch ngay
           </button>
         </div>
@@ -113,12 +157,18 @@
 </template>
 
 <script>
+import swal from "sweetalert";
+
 export default {
   name: "slides",
   components: {},
   methods: {
     showScheduleModal() {
       this.$store.commit("toggleScheduleModal", true);
+    },
+
+    showWhenNotLogin() {
+      swal("Rất tiếc!", "Bạn phải đăng nhập đã nhé !", "warning");
     },
   },
   data() {
@@ -136,6 +186,7 @@ export default {
         loop: true,
       },
       slides: [1, 2, 3, 4, 5],
+      customerName: localStorage.getItem("customerName"),
     };
   },
 };

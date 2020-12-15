@@ -54,8 +54,11 @@
                       class="used"
                     >
                       Đã thực hiện
-                    </v-chip></v-col
-                  >
+                    </v-chip>
+                    <v-chip v-if="item.is_access === 2" label class="change">
+                      Đang yêu cầu thay đổi
+                    </v-chip>
+                  </v-col>
                 </v-row>
                 <v-row>
                   <v-col cols="12" md="6">
@@ -70,7 +73,7 @@
                   color="black"
                   class="white--text mt-10 change-schedule-btn"
                   style="width: 200px"
-                  @click="requestChangeReservation"
+                  @click="requestChangeReservation(item.reservation_id)"
                   >Yêu cầu đổi lịch
                 </v-btn>
               </v-container>
@@ -112,7 +115,7 @@ export default {
         });
     },
 
-    requestChangeReservation() {
+    requestChangeReservation(reservation_id) {
       swal({
         title: "Thay đổi lịch hẹn?",
         text: "Bạn chắc chắn muốn thay đổi lịch hẹn chứ!",
@@ -120,6 +123,7 @@ export default {
         buttons: ["Không!", "Đúng vậy!"],
       }).then((willDelete) => {
         if (willDelete) {
+          this.updateReservation(reservation_id);
           axios
             .post(this.host + "/createNotification", {
               content:
@@ -136,6 +140,16 @@ export default {
             });
         }
       });
+    },
+
+    updateReservation(reservation_id) {
+      axios
+        .post(this.host + "/updateReservation/" + reservation_id, {
+          is_access: 2,
+        })
+        .then(() => {
+          this.loadReservationHistory();
+        });
     },
   },
 
@@ -211,5 +225,10 @@ export default {
 .not-used {
   color: #e5e5e5;
   background-color: palevioletred !important;
+}
+
+.change {
+  color: #e5e5e5;
+  background-color: blue !important;
 }
 </style>

@@ -262,10 +262,10 @@ export default {
                 .then(() => {});
             } else {
               swal(
-                  "Rất tiếc!",
-                  "Khung giờ này chúng tôi đã kín lịch rồi hãy rời lên 1 hoặc 2 h nhé !",
-                  "warning"
-                );
+                "Rất tiếc!",
+                "Khung giờ này chúng tôi đã kín lịch rồi hãy rời lên 1 hoặc 2 h nhé !",
+                "warning"
+              );
             }
           })
           .catch((e) => {

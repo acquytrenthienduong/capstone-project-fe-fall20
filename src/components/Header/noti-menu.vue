@@ -14,7 +14,7 @@
     </template>
 
     <v-card class="pa-4">
-      <div class="title mb-2"><v-icon>mdi-bell</v-icon> Notifications</div>
+      <div class="title mb-2"><v-icon>mdi-bell</v-icon> Thông báo</div>
       <v-divider></v-divider>
 
       <v-list>
@@ -35,7 +35,7 @@
       <v-card-actions>
         <v-spacer></v-spacer>
 
-        <v-btn color="primary" text> Clear all </v-btn>
+        <v-btn color="primary" text> Đã xem </v-btn>
       </v-card-actions>
     </v-card>
   </v-menu>
