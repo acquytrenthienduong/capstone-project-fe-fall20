@@ -13,8 +13,8 @@
       <div class="content">
         <div class="left d-none d-md-block">
           <button class="menu-btn" @mouseover="toggleMenuHandler">Khám phá</button>
-          <router-link tag="button" class="menu-btn" to="/schedule" >
-            Dịch Vụ
+          <router-link tag="button" class="menu-btn" to="/gallery" >
+            Gallery
           </router-link>
           <router-link tag="button" class="menu-btn" to="/about">
             Liên Hệ

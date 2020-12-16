@@ -1,34 +1,105 @@
 <template>
-  <div class="rootMenu elevation-3" :class="{ visible: isVisible }" @mouseleave="isHoverOut">
+  <div
+    class="rootMenu elevation-3"
+    :class="{ visible: isVisible }"
+    @mouseleave="isHoverOut"
+  >
     <div class="left-menu">
       <p class="title">KHÁM PHÁ</p>
       <ul>
-        <li :class="{ active: selectedIndex == 0 }" @mouseover="selectedIndex = 0">
-          <a href="http://localhost:8080/#/gallery">GALLERY</a>
+        <li
+          :class="{ active: selectedIndex == 0 }"
+          @mouseover="selectedIndex = 0"
+        >
+          <a href="http://localhost:8080/#/schedule/1">DỊCH VỤ</a>
         </li>
-        <li :class="{ active: selectedIndex == 1 }" @mouseover="selectedIndex = 1">
+        <li
+          :class="{ active: selectedIndex == 1 }"
+          @mouseover="selectedIndex = 1"
+        >
           SẢN PHẨM
         </li>
-        <li :class="{ active: selectedIndex == 2 }" @mouseover="selectedIndex = 2">
-          PACKAGES
+        <li
+          :class="{ active: selectedIndex == 2 }"
+          @mouseover="selectedIndex = 2"
+        >
+          HỢP TÁC
         </li>
-        <li :class="{ active: selectedIndex == 3 }" @mouseover="selectedIndex = 3">
-          BLOG
+        <li
+          :class="{ active: selectedIndex == 3 }"
+          @mouseover="selectedIndex = 3"
+        >
+          VỀ CHÚNG TÔI
         </li>
       </ul>
     </div>
     <div class="right-items">
       <v-container fluid class="item-container">
         <v-row>
-          <v-col v-for="n in 3" :key="n" cols="12" md="4">
-            <v-card class="mx-auto service-card" max-width="240">
-              <v-img
-                :src="`https://source.unsplash.com/random/1280x720?${n}`"
-                height="150px"
-              ></v-img>
+          <v-col cols="12" md="4">
+            <v-card class="mx-auto service-card" max-width="344">
+              <v-img src="@/assets/services/standup.jpg" height="200px"></v-img>
 
+              <v-card-title> Stand Up Tanning </v-card-title>
+              <v-card-text>
+                Tanning đứng với máy SunCapsule đến từ CHLB Đức.
+              </v-card-text>
               <v-card-actions>
-                <v-btn color="orange lighten-2" text> Explore </v-btn>
+                <v-btn
+                  color="orange lighten-2"
+                  class="xemthem"
+                  text
+                  @click="detail1"
+                >
+                  xem thêm
+                </v-btn>
+                <v-spacer></v-spacer>
+                <v-icon color="blue darken-2"> mdi-arrow-right </v-icon>
+              </v-card-actions>
+            </v-card>
+          </v-col>
+
+          <v-col cols="12" md="4">
+            <v-card class="mx-auto service-card" max-width="344">
+              <v-img src="@/assets/services/laydown.jpg" height="200px"></v-img>
+
+              <v-card-title> Lay Down Tanning </v-card-title>
+              <v-card-text>
+                Tanning nằm với máy high-powered SunCapsule 2 cấp độ.
+              </v-card-text>
+              <v-card-actions>
+                <v-btn
+                  color="orange lighten-2"
+                  class="xemthem"
+                  text
+                  @click="detail2"
+                >
+                  xem thêm
+                </v-btn>
+
+                <v-spacer></v-spacer>
+                <v-icon color="blue darken-2"> mdi-arrow-right </v-icon>
+              </v-card-actions>
+            </v-card>
+          </v-col>
+
+          <v-col cols="12" md="4">
+            <v-card class="mx-auto service-card" max-width="344">
+              <v-img src="@/assets/services/spray.jpg" height="200px"></v-img>
+
+              <v-card-title> Spray Tanning </v-card-title>
+              <v-card-text>
+                Da tan hoàn toàn đồng đều chỉ trong 90 giây với Spray Tanning.
+              </v-card-text>
+              <v-card-actions>
+                <v-btn
+                  color="orange lighten-2"
+                  class="xemthem"
+                  text
+                  @click="detail3"
+                >
+                  xem thêm
+                </v-btn>
                 <v-spacer></v-spacer>
                 <v-icon color="blue darken-2"> mdi-arrow-right </v-icon>
               </v-card-actions>
@@ -37,20 +108,35 @@
         </v-row>
       </v-container>
     </div>
+    <!-- <Services /> -->
   </div>
 </template>
 
 <script>
 export default {
+  components: {
+    // Services,
+  },
   name: "menu-explore",
   props: ["isVisible", "isHoverOut"],
   data() {
     return { selectedIndex: 0 };
   },
+  methods: {
+    detail1() {
+      this.$router.push({ name: "Schedule", params: { type: "1" } });
+    },
+    detail2() {
+      this.$router.push({ name: "Schedule", params: { type: "2" } });
+    },
+    detail3() {
+      this.$router.push({ name: "Schedule", params: { type: "3" } });
+    },
+  },
   mounted() {
     // Instead of calling the method we emit an event
-    this.$emit('isHoverOut');
-  }
+    this.$emit("isHoverOut");
+  },
 };
 </script>
 <style lang="scss" scoped>
@@ -58,10 +144,10 @@ export default {
   display: none;
   position: absolute;
   background: white;
-  top: 80px;
+  top: 100%;
   left: 16px;
   right: 16px;
-  padding: 72px 64px;
+  padding: 2% 1%;
   z-index: 10;
   &.visible {
     display: flex;
