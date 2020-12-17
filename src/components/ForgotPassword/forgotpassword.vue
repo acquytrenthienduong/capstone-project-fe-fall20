@@ -1,9 +1,6 @@
 <template>
   <v-row justify="center">
-    <v-dialog
-      v-model="dialog"
-      content-class="login-register-dialog"
-    >
+    <v-dialog v-model="dialog" content-class="login-register-dialog">
       <template v-slot:activator="{ on, attrs }">
         <a href="#" menu-btn-cta v-bind="attrs" v-on="on">Quên mật khẩu</a>
       </template>
@@ -84,9 +81,7 @@
 
             <v-stepper-content step="3">
               <div class="container step-2-card">
-                <div class="text-center pb-4">
-                  Đặt lại mật khẩu
-                </div>
+                <div class="text-center pb-4">Đặt lại mật khẩu</div>
                 <v-form>
                   <v-text-field
                     v-model="password"
@@ -141,8 +136,7 @@ export default {
         required: (value) => !!value || "Bắt buộc",
         started: (v) => v.startsWith("+84") || "Bắt đầu bằng +84",
         min: (v) => v.length >= 8 || "Ít nhất 8 kí tự",
-        passWordMatch: (val) =>
-          val === this.password || `Mật khẩu đã nhập không khớp`,
+        passWordMatch: (val) => val === this.password || `Mật khẩu đã nhập không khớp`,
       },
       checkStep1: false,
       checkStep2: false,
@@ -221,11 +215,7 @@ export default {
     enterCode() {
       if (this.currentOTP == this.code) {
         this.checkStep2 = false;
-        swal(
-          "Xác nhận thành công!",
-          "Hãy cập nhật mật khẩu mới nhé!",
-          "success"
-        );
+        swal("Xác nhận thành công!", "Hãy cập nhật mật khẩu mới nhé!", "success");
         this.step = 3;
       } else {
         this.checkStep2 = true;
@@ -234,26 +224,24 @@ export default {
 
     updateCustomer() {
       if (this.password != "" && this.repassword != "") {
-        axios
-          .get(this.host + "/loadCustomerByEmail/" + this.email)
-          .then((response) => {
-            console.log("response123333", response);
-            var customer = response.data;
-            customer.password = this.password;
-            axios
-              .post(this.host + "/updateProfile/" + customer.customer_id, {
-                customer,
-              })
-              .then((response) => {
-                console.log("res", response);
-                swal("Thành công", "Cập nhật mật khẩu thành công!", "success");
-                this.reset();
-                this.dialog = false;
-              })
-              .catch((e) => {
-                this.errors.push(e);
-              });
-          });
+        axios.get(this.host + "/loadCustomerByEmail/" + this.email).then((response) => {
+          console.log("response123333", response);
+          var customer = response.data;
+          customer.password = this.password;
+          axios
+            .post(this.host + "/updateProfile/" + customer.customer_id, {
+              customer,
+            })
+            .then((response) => {
+              console.log("res", response);
+              swal("Thành công", "Cập nhật mật khẩu thành công!", "success");
+              this.reset();
+              this.dialog = false;
+            })
+            .catch(() => {
+              swal("Không thành công", "Email chưa đăng kí trong hệ thống!", "warning");
+            });
+        });
       } else {
         this.checkStep3 = true;
       }
@@ -299,8 +287,8 @@ export default {
       z-index: 2;
     }
     .dialog-tabs {
-      box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2),
-        0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12);
+      box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14),
+        0 9px 46px 8px rgba(0, 0, 0, 0.12);
       .tab-title {
         width: 50%;
       }

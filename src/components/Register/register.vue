@@ -5,7 +5,7 @@
     </div>
     <v-stepper v-model="step" class="elevation-0">
       <v-stepper-items>
-        <v-stepper-content step="1" style="padding:0">
+        <v-stepper-content step="1" style="padding: 0">
           <v-card class="step-1-card">
             <v-card-title class="justify-center flex-column">
               <div class="text-center">Đăng ký tài khoản mới</div>
@@ -48,11 +48,7 @@
               </v-container>
             </v-card-text>
             <v-card-actions>
-              <v-btn
-                class="first-step-btn"
-                color="blue darken-1"
-                @click="sendCode"
-              >
+              <v-btn class="first-step-btn" color="blue darken-1" @click="sendCode">
                 Tiếp tục
               </v-btn>
             </v-card-actions>
@@ -84,9 +80,7 @@
               </v-row>
               <h3 v-if="checkStep2">Mã xác nhận không đúng</h3>
               <div class="container--fluid align-content-stretch">
-                <v-btn
-                  class="blue white--text otp-confirm-btn"
-                  @click="enterCode"
+                <v-btn class="blue white--text otp-confirm-btn" @click="enterCode"
                   >Xác nhận
                 </v-btn>
               </div>
@@ -116,13 +110,9 @@
                 outlined
                 required
               ></v-text-field>
-              <h3 v-if="checkStep3">
-                Hãy điền nhập email và tên của bạn đã nhé!
-              </h3>
+              <h3 v-if="checkStep3">Hãy điền nhập email và tên của bạn đã nhé!</h3>
               <div class="container--fluid align-content-stretch">
-                <v-btn
-                  class="blue white--text complete-profile-btn"
-                  @click="register"
+                <v-btn class="blue white--text complete-profile-btn" @click="register"
                   >Hoàn tất
                 </v-btn>
               </div>
@@ -165,12 +155,20 @@ export default {
     initRecaptcha() {
       fb.auth().languageCode = "vi";
       window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier(
-        "recaptcha-container",
+        "recaptcha-container"
       );
       window.recaptchaVerifier.render();
     },
 
     register() {
+      let dateRaw = new Date();
+      let year = dateRaw.getFullYear();
+      let month = dateRaw.getMonth() + 1;
+      let dt = dateRaw.getDate();
+      // let hour = dateRaw.getHours();
+      // let minute = dateRaw.getMinutes();
+      // let second = dateRaw.getSeconds();
+
       if (this.email != "" && this.name != "") {
         axios
           .post(this.host + `/register`, {
@@ -179,6 +177,9 @@ export default {
             email: this.email,
             gender: 1,
             name: this.name,
+            year: year,
+            month: month,
+            day: dt,
           })
           .then(() => {
             this.checkStep3 = false;
@@ -196,22 +197,18 @@ export default {
       }
     },
 
-    enterCode: function() {
+    enterCode: function () {
       let code = this.code;
       var credential = firebase.auth.PhoneAuthProvider.credential(
         window.confirmationResult.verificationId,
-        code,
+        code
       );
 
       firebase
         .auth()
         .signInWithCredential(credential)
         .then(() => {
-          swal(
-            "Xác nhận thành công!",
-            "hãy điền nốt thông tin nhé!",
-            "success",
-          );
+          swal("Xác nhận thành công!", "hãy điền nốt thông tin nhé!", "success");
           this.checkStep2 = false;
           this.step = 3;
         })
@@ -220,7 +217,7 @@ export default {
         });
     },
 
-    sendCode: function() {
+    sendCode: function () {
       if (this.phone != "" && this.password != "" && this.repassword != "") {
         if (this.password === this.repassword) {
           this.checkMatchPW = false;
@@ -232,18 +229,14 @@ export default {
               firebase
                 .auth()
                 .signInWithPhoneNumber(phone, appVerifier)
-                .then(function(confirmationResult) {
+                .then(function (confirmationResult) {
                   window.confirmationResult = confirmationResult;
                 })
                 .catch((error) => {
                   this.errors.push(error);
                 });
             } else if (response.status === 200) {
-              swal(
-                "Số của bạn đã được đăng kí rồi!",
-                "Hãy dùng số khác nhé!",
-                "warning",
-              );
+              swal("Số của bạn đã được đăng kí rồi!", "Hãy dùng số khác nhé!", "warning");
             }
           });
           this.checkStep1 = false;
@@ -290,8 +283,7 @@ export default {
         required: (value) => !!value || "Bắt buộc",
         started: (v) => v.startsWith("+84") || "Bắt đầu bằng +84",
         min: (v) => v.length >= 8 || "Ít nhất 8 kí tự",
-        passWordMatch: (val) =>
-          val === this.repassword || `Mật khẩu đã nhập không khớp`,
+        passWordMatch: (val) => val === this.repassword || `Mật khẩu đã nhập không khớp`,
       },
       checkStep1: false,
       checkStep2: false,
