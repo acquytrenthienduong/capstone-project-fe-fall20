@@ -11,7 +11,7 @@
           :class="{ active: selectedIndex == 0 }"
           @mouseover="selectedIndex = 0"
         >
-          DỊCH VỤ 
+          DỊCH VỤ
         </li>
         <li
           :class="{ active: selectedIndex == 1 }"
@@ -29,29 +29,51 @@
           :class="{ active: selectedIndex == 3 }"
           @mouseover="selectedIndex = 3"
         >
-          VỀ CHÚNG TÔI 
+          VỀ CHÚNG TÔI
         </li>
       </ul>
     </div>
     <div class="right-items">
-      <v-container fluid class="item-container">
+      <v-container fluid class="item-container" v-if="selectedIndex == 1">
+        <v-row>
+          <v-col class="product-card-container" cols="12" md="4">
+            <v-img
+              class="white--text align-end"
+              height="400px"
+              src="@/assets/lotions/sp1.png"
+            >
+            </v-img>
+          </v-col>
+
+          <v-col class="product-card-container" cols="12" md="4">
+            <v-img
+              class="white--text align-end"
+              height="400px"
+              src="@/assets/lotions/sp2.png"
+            >
+            </v-img>
+          </v-col>
+
+          <v-col class="product-card-container" cols="12" md="4">
+            <v-img
+              class="white--text align-end"
+              height="400px"
+              src="@/assets/lotions/sp4.png"
+            >
+            </v-img>
+          </v-col>
+        </v-row>
+      </v-container>
+
+      <v-container fluid class="item-container" v-if="selectedIndex == 0">
         <v-row>
           <v-col cols="12" md="4">
             <v-card class="mx-auto service-card" max-width="344">
-              <v-img src="@/assets/services/standup.jpg" height="200px"></v-img>
+              <v-img src="@/assets/services/standup.jpg" height="300px"></v-img>
 
-              <v-card-title> Stand Up Tanning </v-card-title>
-              <v-card-text>
-                Tanning đứng với máy SunCapsule đến từ CHLB Đức.
-              </v-card-text>
               <v-card-actions>
-                <v-btn
-                  color="orange lighten-2"
-                  class="xemthem"
-                  text
-                  @click="detail1"
-                >
-                  xem thêm
+                <v-btn color="black" class="xemthem" text @click="detail1">
+                  Stand up Tanning
                 </v-btn>
                 <v-spacer></v-spacer>
                 <v-icon color="blue darken-2"> mdi-arrow-right </v-icon>
@@ -61,20 +83,12 @@
 
           <v-col cols="12" md="4">
             <v-card class="mx-auto service-card" max-width="344">
-              <v-img src="@/assets/services/laydown.jpg" height="200px"></v-img>
+              <v-img src="@/assets/services/laydown.jpg" height="300px"></v-img>
 
-              <v-card-title> Lay Down Tanning </v-card-title>
-              <v-card-text>
-                Tanning nằm với máy high-powered SunCapsule 2 cấp độ.
-              </v-card-text>
+              <!-- <v-card-title> Lay Down Tanning </v-card-title> -->
               <v-card-actions>
-                <v-btn
-                  color="orange lighten-2"
-                  class="xemthem"
-                  text
-                  @click="detail2"
-                >
-                  xem thêm
+                <v-btn color="black" class="xemthem" text @click="detail2">
+                  Lay Down Tanning
                 </v-btn>
 
                 <v-spacer></v-spacer>
@@ -85,20 +99,11 @@
 
           <v-col cols="12" md="4">
             <v-card class="mx-auto service-card" max-width="344">
-              <v-img src="@/assets/services/spray.jpg" height="200px"></v-img>
+              <v-img src="@/assets/services/spray.jpg" height="300px"></v-img>
 
-              <v-card-title> Spray Tanning </v-card-title>
-              <v-card-text>
-                Da tan hoàn toàn đồng đều chỉ trong 90 giây với Spray Tanning.
-              </v-card-text>
               <v-card-actions>
-                <v-btn
-                  color="orange lighten-2"
-                  class="xemthem"
-                  text
-                  @click="detail3"
-                >
-                  xem thêm
+                <v-btn color="black" class="xemthem" text @click="detail3">
+                  Spray Tanning
                 </v-btn>
                 <v-spacer></v-spacer>
                 <v-icon color="blue darken-2"> mdi-arrow-right </v-icon>
@@ -113,9 +118,11 @@
 </template>
 
 <script>
+// import Products from "@/components/Home/products";
 export default {
   components: {
     // Services,
+    // Products,
   },
   name: "menu-explore",
   props: ["isVisible", "isHoverOut"],
