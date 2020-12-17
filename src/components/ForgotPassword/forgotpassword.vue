@@ -1,9 +1,6 @@
 <template>
   <v-row justify="center">
-    <v-dialog
-      v-model="dialog"
-      content-class="login-register-dialog"
-    >
+    <v-dialog v-model="dialog" content-class="login-register-dialog">
       <template v-slot:activator="{ on, attrs }">
         <a href="#" menu-btn-cta v-bind="attrs" v-on="on">Quên mật khẩu</a>
       </template>
@@ -17,7 +14,9 @@
             <v-stepper-content step="1">
               <v-card class="step-1-card">
                 <v-card-title class="justify-center flex-column">
-                  <div class="text-center">Điền email đã đăng kí khi tạo tài khoản</div>
+                  <div class="text-center">
+                    Điền email đã đăng kí khi tạo tài khoản
+                  </div>
                 </v-card-title>
                 <v-card-text>
                   <v-container>
@@ -26,7 +25,7 @@
                         v-model="email"
                         prepend-inner-icon="mdi-email"
                         label="Email của bạn"
-                        :rules="[rules.required]"
+                        :rules="[rules.required, rules.emailRules]"
                         outlined
                         required
                       ></v-text-field>
@@ -143,7 +142,12 @@ export default {
         min: (v) => v.length >= 8 || "Ít nhất 8 kí tự",
         passWordMatch: (val) =>
           val === this.password || `Mật khẩu đã nhập không khớp`,
+        emailRules: (v) =>
+          !v ||
+          /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) ||
+          "Email của bạn không đúng định dạng Example@domain.com",
       },
+
       checkStep1: false,
       checkStep2: false,
       checkStep3: false,

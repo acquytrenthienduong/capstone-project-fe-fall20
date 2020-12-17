@@ -11,7 +11,7 @@
           :class="{ active: selectedIndex == 0 }"
           @mouseover="selectedIndex = 0"
         >
-          <a href="http://localhost:8080/#/schedule/1">DỊCH VỤ</a>
+          DỊCH VỤ 
         </li>
         <li
           :class="{ active: selectedIndex == 1 }"
@@ -29,7 +29,7 @@
           :class="{ active: selectedIndex == 3 }"
           @mouseover="selectedIndex = 3"
         >
-          VỀ CHÚNG TÔI
+          VỀ CHÚNG TÔI 
         </li>
       </ul>
     </div>
