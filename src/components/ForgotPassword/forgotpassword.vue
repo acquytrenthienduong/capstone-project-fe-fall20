@@ -23,7 +23,7 @@
                         v-model="email"
                         prepend-inner-icon="mdi-email"
                         label="Email của bạn"
-                        :rules="[rules.required]"
+                        :rules="[rules.required, rules.emailRules]"
                         outlined
                         required
                       ></v-text-field>
@@ -137,7 +137,12 @@ export default {
         started: (v) => v.startsWith("+84") || "Bắt đầu bằng +84",
         min: (v) => v.length >= 8 || "Ít nhất 8 kí tự",
         passWordMatch: (val) => val === this.password || `Mật khẩu đã nhập không khớp`,
+        emailRules: (v) =>
+          !v ||
+          /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) ||
+          "Email của bạn không đúng định dạng Example@domain.com",
       },
+
       checkStep1: false,
       checkStep2: false,
       checkStep3: false,
