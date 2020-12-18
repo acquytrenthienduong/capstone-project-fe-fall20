@@ -16,9 +16,7 @@
             <v-col cols="12" md="4" class="text-center">
               <img
                 class="service-image"
-                :src="
-                  `https://source.unsplash.com/random/278x278?${item.reservation_id}`
-                "
+                :src="`https://source.unsplash.com/random/278x278?${item.reservation_id}`"
                 alt="demo"
               />
             </v-col>
@@ -81,9 +79,10 @@
           </v-row>
         </div>
       </v-row>
+      <h1 class="no-item" v-if="history.length === 0">Bạn chưa có lịch hẹn</h1>
     </v-container>
-    <v-container class="mb-10">
-      <v-pagination v-model="page" :length="6"></v-pagination>
+    <v-container v-if="history.length != 0" class="mb-10">
+      <v-pagination v-model="page" :length="2"></v-pagination>
     </v-container>
   </div>
 </template>
@@ -127,15 +126,12 @@ export default {
           axios
             .post(this.host + "/createNotification", {
               content:
-                "Khách hàng có SĐT " +
-                this.phoneNumber +
-                " muốn thay đổi lịch hẹn",
+                "Khách hàng có SĐT " + this.phoneNumber + " muốn thay đổi lịch hẹn",
             })
             .then(() => {
               swal("Yêu càu đổi lịch đã được gửi!", {
                 icon: "success",
-                text:
-                  "yêu cầu của bạn đã được gửi, chúng tôi sẽ liên hệ lại ngay!",
+                text: "yêu cầu của bạn đã được gửi, chúng tôi sẽ liên hệ lại ngay!",
               });
             });
         }
@@ -230,5 +226,10 @@ export default {
 .change {
   color: #e5e5e5;
   background-color: blue !important;
+}
+
+.no-item {
+  display: flex;
+  justify-content: space-around;
 }
 </style>

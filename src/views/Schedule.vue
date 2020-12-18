@@ -68,22 +68,16 @@
           <div class="option-price">
             {{ money | priceVndFormat }}
           </div>
-          <button
-            v-if="customerName"
-            class="cta-btn"
-            @click="showScheduleModal"
-          >
-            Đặt lịch ngay
-          </button>
-          <h3 v-if="!customerName">
+          <button class="cta-btn" @click="showScheduleModal">Đặt lịch ngay</button>
+          <!-- <h3 v-if="!customerName">
             Hãy tạo tài khoản hoặc đăng nhập trước nhé!
-          </h3>
+          </h3> -->
         </div>
       </v-col>
     </v-row>
     <Step />
     <Products />
-    
+
     <Socials />
   </div>
 </template>
@@ -95,6 +89,7 @@ import Step from "@/components/Home/step";
 
 import axios from "axios";
 import config from "../confighost/config";
+import swal from "sweetalert";
 
 export default {
   name: "product-detail",
@@ -151,7 +146,7 @@ export default {
           clickable: true,
         },
         breakpoints: {
-          "768": {
+          768: {
             direction: "vertical",
           },
         },
@@ -190,7 +185,11 @@ export default {
         });
     },
     showScheduleModal() {
-      this.$store.commit("toggleScheduleModal", true);
+      if (!this.customerName) {
+        swal("Rất tiếc!", "Bạn phải đăng nhập đã nhé !", "warning");
+      } else {
+        this.$store.commit("toggleScheduleModal", true);
+      }
     },
 
     init() {
@@ -205,11 +204,11 @@ export default {
   },
 
   watch: {
-    selectType: function(val) {
+    selectType: function (val) {
       this.loadSubService(val);
     },
 
-    selectedDuration: function(val) {
+    selectedDuration: function (val) {
       axios
         .get(this.host + "/subServiceFindOne/" + val)
         .then((res) => {
@@ -239,7 +238,6 @@ export default {
       }
     }
     .rightarea {
-      
       display: flex;
       margin-top: 3%;
       align-items: center;
@@ -298,12 +296,11 @@ export default {
   }
 }
 
-.container{
+.container {
   margin-left: 15% !important;
 }
 .service {
   margin-top: -19%;
-  
 }
 @media (min-width: 768px) {
   .root {
