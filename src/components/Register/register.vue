@@ -112,7 +112,7 @@
                 outlined
                 required
               ></v-text-field>
-              <h3 v-if="checkStep3">Hãy điền nhập email và tên của bạn đã nhé!</h3>
+              <h3 v-if="checkStep3">Hãy điền nhập email hợp lệ và tên của bạn đã nhé!</h3>
               <div class="container--fluid align-content-stretch">
                 <v-btn class="blue white--text complete-profile-btn" @click="register"
                   >Hoàn tất
@@ -171,7 +171,11 @@ export default {
       // let minute = dateRaw.getMinutes();
       // let second = dateRaw.getSeconds();
 
-      if (this.email != "" && this.name != "") {
+      if (
+        this.email != "" &&
+        this.name != "" &&
+        /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(this.email)
+      ) {
         axios
           .post(this.host + `/register`, {
             account: this.phone,
