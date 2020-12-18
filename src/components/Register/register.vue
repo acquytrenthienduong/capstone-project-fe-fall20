@@ -221,8 +221,8 @@ export default {
 
     sendCode: function () {
       if (
-        this.phone.length < 12 &&
-        this.phone.length > 10 &&
+        this.phone.length <= 12 &&
+        this.phone.length >= 10 &&
         this.phone.startsWith("+84") &&
         this.password != "" &&
         this.repassword != ""
