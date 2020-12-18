@@ -18,13 +18,9 @@
           <v-tab-item>
             <div class="container">
               <div class="text-center py-4">
-                <img
-                  class="logo-headline"
-                  src="@/assets/logo-black.svg"
-                  alt="logo"
-                />
+                <img class="logo-headline" src="@/assets/logo-black.svg" alt="logo" />
               </div>
-              <v-card class=" elevation-0">
+              <v-card class="elevation-0">
                 <v-card-title class="justify-center">
                   Đăng nhập bằng tài khoản của bạn
                 </v-card-title>
@@ -97,14 +93,13 @@ export default {
   data() {
     return {
       host: config.config.host,
-      username: "",
+      username: "+84",
       password: "",
       rules: {
         required: (value) => !!value || "Bắt buộc",
         started: (v) => v.startsWith("+84") || "Bắt đầu bằng +84",
         min: (v) => v.length >= 8 || "Ít nhất 8 kí tự",
-        passWordMatch: (val) =>
-          val === this.newPassWord || `Mật khẩu đã nhập không đúng`,
+        passWordMatch: (val) => val === this.newPassWord || `Mật khẩu đã nhập không đúng`,
       },
       check: false,
       selectedTab: 0,
@@ -175,8 +170,8 @@ export default {
       z-index: 2;
     }
     .dialog-tabs {
-      box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2),
-        0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12);
+      box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14),
+        0 9px 46px 8px rgba(0, 0, 0, 0.12);
       .tab-title {
         width: 50%;
       }

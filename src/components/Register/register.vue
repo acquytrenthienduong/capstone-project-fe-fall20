@@ -43,7 +43,9 @@
                     required
                   ></v-text-field>
                 </v-form>
-                <h3 v-if="checkStep1">Hãy điền hết thông tin nhé!</h3>
+                <h3 v-if="checkStep1">
+                  Hãy dùng SĐT của việt nam và điền đầy đủ thông tin nhé!
+                </h3>
                 <h3 v-if="checkMatchPW">Xác nhận mật khẩu mới không đúng!</h3>
               </v-container>
             </v-card-text>
@@ -218,7 +220,13 @@ export default {
     },
 
     sendCode: function () {
-      if (this.phone != "" && this.password != "" && this.repassword != "") {
+      if (
+        this.phone.length < 12 &&
+        this.phone.length > 10 &&
+        this.phone.startsWith("+84") &&
+        this.password != "" &&
+        this.repassword != ""
+      ) {
         if (this.password === this.repassword) {
           this.checkMatchPW = false;
           axios.get(this.host + "/findOne/" + this.phone).then((response) => {
@@ -249,7 +257,7 @@ export default {
     },
 
     reset() {
-      this.phone = "";
+      this.phone = "+84";
       this.code = "";
       this.password = "";
       this.repassword = "";
@@ -273,7 +281,7 @@ export default {
       mdiLock: mdiLock,
       mdiClose: mdiCloseBox,
       error: [],
-      phone: "",
+      phone: "+84",
       code: "",
       password: "",
       repassword: "",
