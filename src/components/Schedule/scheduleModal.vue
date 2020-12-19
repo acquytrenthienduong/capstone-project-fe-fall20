@@ -239,6 +239,7 @@ export default {
                   "Lịch của bạn đã được đặt thành công. Chúng tôi sẽ thông báo lại ngay nếu có vấn đề.",
                   "success"
                 );
+                this.reset();
               }, 1000);
               axios
                 .post(this.host + "/createNotification", {
@@ -262,6 +263,14 @@ export default {
     },
     closeModal() {
       this.$store.commit("toggleScheduleModal", false);
+    },
+
+    reset() {
+      this.selectType = null;
+      this.selectedDuration = 0;
+      this.date = new Date().toISOString().substr(0, 10);
+      this.time = null;
+      this.numOfPeople = 0;
     },
 
     transform(time) {
