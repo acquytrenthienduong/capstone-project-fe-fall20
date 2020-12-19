@@ -1,9 +1,9 @@
 <template>
   <div class="root">
     <div class="container">
-      <div class="row justify-space-between">
+      <div class="row justify-space-between center">
         <div class="col-md-8 col-12">
-         <Map />
+          <Map />
         </div>
         <div class="col-md-4 col-12">
           <v-card max-width="400" class="mx-auto">
@@ -12,9 +12,7 @@
                 <v-spacer></v-spacer>
 
                 <v-card-title class="white--text pl-12 pt-12">
-                  <div class="display-1 pl-12 pt-12">
-                    Ali Conners
-                  </div>
+                  <div class="display-1 pl-12 pt-12">Ali Conners</div>
                 </v-card-title>
               </v-row>
             </v-img>
@@ -22,9 +20,7 @@
             <v-list two-line>
               <v-list-item>
                 <v-list-item-icon>
-                  <v-icon color="black">
-                    mdi-phone
-                  </v-icon>
+                  <v-icon color="black"> mdi-phone </v-icon>
                 </v-list-item-icon>
 
                 <v-list-item-content>
@@ -46,9 +42,7 @@
 
               <v-list-item>
                 <v-list-item-icon>
-                  <v-icon color="black">
-                    mdi-email
-                  </v-icon>
+                  <v-icon color="black"> mdi-email </v-icon>
                 </v-list-item-icon>
 
                 <v-list-item-content>
@@ -70,9 +64,7 @@
 
               <v-list-item>
                 <v-list-item-icon>
-                  <v-icon color="black">
-                    mdi-map-marker
-                  </v-icon>
+                  <v-icon color="black"> mdi-map-marker </v-icon>
                 </v-list-item-icon>
 
                 <v-list-item-content>
@@ -89,14 +81,13 @@
 </template>
 
 <script>
-
 import Map from "@/components/Home/maps";
 export default {
   name: "contact",
   data() {
     return {};
   },
-  components:{Map}
+  components: { Map },
 };
 </script>
 <style lang="scss" scoped>
@@ -108,7 +99,8 @@ h1 {
   margin: 20%;
 }
 
-.mx-auto{
-    margin-top: 15% !important;
+.center {
+  display: flex;
+  align-items: center;
 }
 </style>
