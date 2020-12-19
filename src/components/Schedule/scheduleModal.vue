@@ -106,22 +106,13 @@
                   required
                 ></v-text-field>
               </v-col>
-              <v-col
-                cols="12"
-                md="6"
-                class="justify-center align-center d-flex"
-              >
-              </v-col>
+              <v-col cols="12" md="6" class="justify-center align-center d-flex"> </v-col>
             </v-row>
           </v-col>
 
           <!-- right -->
           <v-col cols="12" md="4" class="right-col pa-8" v-if="showReceipt">
-            <img
-              class="logo-headline"
-              src="@/assets/logo-black.svg"
-              alt="logo"
-            />
+            <img class="logo-headline" src="@/assets/logo-black.svg" alt="logo" />
             <p class="title">Thông tin thanh toán</p>
             <div class="customer">
               <p class="customerTitle font-weight-bold">KHÁCH HÀNG</p>
@@ -149,19 +140,14 @@
             <hr />
             <div class="total d-flex flex-row py-8">
               <div class="flex-grow-1 font-weight-bold">THÀNH TIỀN</div>
-              <div
-                class="align-right red--text font-weight-bold text--darken-4"
-              >
+              <div class="align-right red--text font-weight-bold text--darken-4">
                 {{ money | priceVndFormat }}
               </div>
             </div>
           </v-col>
         </v-row>
         <div>
-          <v-btn
-            class="center-position black white--text"
-            @click="createNewReservation"
-          >
+          <v-btn class="center-position black white--text" @click="createNewReservation">
             ĐẶT HẸN
           </v-btn>
         </div>
@@ -250,14 +236,13 @@ export default {
                 this.overlay = false;
                 swal(
                   "Đặt lịch thành công!",
-                  "Lịch của bạn đa được đặt thành công chúng tôi sẽ thông báo lại ngay nếu có vấn đề gì !",
+                  "Lịch của bạn đã được đặt thành công. Chúng tôi sẽ thông báo lại ngay nếu có vấn đề.",
                   "success"
                 );
               }, 1000);
               axios
                 .post(this.host + "/createNotification", {
-                  content:
-                    "Khách Hàng " + this.customerName + " muốn đặt 1 cuộc hẹn",
+                  content: "Khách Hàng " + this.customerName + " muốn đặt 1 cuộc hẹn",
                 })
                 .then(() => {});
             } else {
@@ -272,11 +257,7 @@ export default {
             this.errors.push(e);
           });
       } else {
-        swal(
-          "Tạo lịch không thành công!",
-          " Hãy điền đầy đủ thông tin nhé!!",
-          "warning"
-        );
+        swal("Tạo lịch không thành công!", " Hãy điền đầy đủ thông tin nhé!!", "warning");
       }
     },
     closeModal() {
@@ -301,11 +282,11 @@ export default {
       }
     },
 
-    selectType: function(val) {
+    selectType: function (val) {
       this.loadSubService(val);
     },
 
-    selectedDuration: function(val) {
+    selectedDuration: function (val) {
       axios
         .get(this.host + "/subServiceFindOne/" + val)
         .then((res) => {
