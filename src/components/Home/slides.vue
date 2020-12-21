@@ -1,158 +1,37 @@
 <template>
   <div class="root">
-    <swiper ref="mySwiper" :options="swiperOptions" class="slider">
-      <swiper-slide class="slide">
-        <v-skeleton-loader type="image">
-          <v-img
-            src="@/assets/home/cover_1.png"
-            class="slide-img d-none d-md-block"
-            :aspect-ratio="16 / 9"
-            alt="banner"
-          >
-          </v-img>
-          <v-img
-            src="@/assets/home/cover_1.png"
-            class="slide-img d-md-none"
-            :aspect-ratio="9 / 16"
-            alt="banner"
-          >
-          </v-img>
-        </v-skeleton-loader>
-
-        <div class="slide-content">
-          <div class="slide-title">TANNING STUDIO ĐẦU TIÊN TẠI VIỆT NAM</div>
-          <button
-            v-if="customerName"
-            class="slide-cta-btn"
-            @click="showScheduleModal"
-          >
-            Đặt lịch ngay
-          </button>
-          <button
-            v-if="!customerName"
-            class="slide-cta-btn"
-            @click="showWhenNotLogin"
-          >
-            Đặt lịch ngay
-          </button>
-        </div>
-      </swiper-slide>
-      <div class="swiper-pagination" slot="pagination"></div>
-
-      <swiper-slide class="slide">
-        <v-skeleton-loader type="image">
-          <v-img
-            src="@/assets/home/cover_2.png"
-            class="slide-img d-none d-md-block"
-            :aspect-ratio="16 / 9"
-            alt="banner"
-          >
-          </v-img>
-          <v-img
-            src="@/assets/home/cover_2.png"
-            class="slide-img d-md-none"
-            :aspect-ratio="9 / 16"
-            alt="banner"
-          >
-          </v-img>
-        </v-skeleton-loader>
-
-        <div class="slide-content">
-          <div class="slide-title"></div>
-          <button
-            v-if="customerName"
-            class="slide-cta-btn"
-            @click="showScheduleModal"
-          >
-            Đặt lịch ngay
-          </button>
-          <button
-            v-if="!customerName"
-            class="slide-cta-btn"
-            @click="showWhenNotLogin"
-          >
-            Đặt lịch ngay
-          </button>
-        </div>
-      </swiper-slide>
-      <div class="swiper-pagination" slot="pagination"></div>
-
-      <swiper-slide class="slide">
-        <v-skeleton-loader type="image">
-          <v-img
-            src="@/assets/home/cover_7.jpg"
-            class="slide-img d-none d-md-block"
-            :aspect-ratio="16 / 9"
-            alt="banner"
-          >
-          </v-img>
-          <v-img
-            src="@/assets/home/cover_7.jpg"
-            class="slide-img d-md-none"
-            :aspect-ratio="9 / 16"
-            alt="banner"
-          >
-          </v-img>
-        </v-skeleton-loader>
-
-        <div class="slide-content">
-          <div class="slide-title"></div>
-          <button
-            v-if="customerName"
-            class="slide-cta-btn"
-            @click="showScheduleModal"
-          >
-            Đặt lịch ngay
-          </button>
-          <button
-            v-if="!customerName"
-            class="slide-cta-btn"
-            @click="showWhenNotLogin"
-          >
-            Đặt lịch ngay
-          </button>
-        </div>
-      </swiper-slide>
-      <div class="swiper-pagination" slot="pagination"></div>
-
-      <swiper-slide class="slide">
-        <v-skeleton-loader type="image">
-          <v-img
-            src="@/assets/home/cover_6.jpg"
-            class="slide-img d-none d-md-block"
-            :aspect-ratio="16 / 9"
-            alt="banner"
-          >
-          </v-img>
-          <v-img
-            src="@/assets/home/cover_6.jpg"
-            class="slide-img d-md-none"
-            :aspect-ratio="9 / 16"
-            alt="banner"
-          >
-          </v-img>
-        </v-skeleton-loader>
-
-        <div class="slide-content">
-          <div class="slide-title"></div>
-          <button
-            v-if="customerName"
-            class="slide-cta-btn"
-            @click="showScheduleModal"
-          >
-            Đặt lịch ngay
-          </button>
-          <button
-            v-if="!customerName"
-            class="slide-cta-btn"
-            @click="showWhenNotLogin"
-          >
-            Đặt lịch ngay
-          </button>
-        </div>
-      </swiper-slide>
-      <div class="swiper-pagination" slot="pagination"></div>
-    </swiper>
+    <v-carousel
+      cycle
+      hide-delimiter-background
+      show-arrows-on-hover
+      style="height: 100%"
+    >
+      <v-carousel-item v-for="(slide, i) in items" :src="slide.src" :key="i">
+        <v-jumbotron dark>
+          <v-container fill-height>
+            <v-layout align-center>
+              <v-flex>
+                <h3 class="display-3">{{ slide.title }}</h3>
+                <button
+                  v-if="customerName"
+                  class="slide-cta-btn"
+                  @click="showScheduleModal"
+                >
+                  Đặt lịch ngay
+                </button>
+                <button
+                  v-if="!customerName"
+                  class="slide-cta-btn"
+                  @click="showWhenNotLogin"
+                >
+                  Đặt lịch ngay
+                </button>
+              </v-flex>
+            </v-layout>
+          </v-container>
+        </v-jumbotron>
+      </v-carousel-item>
+    </v-carousel>
   </div>
 </template>
 
@@ -173,20 +52,25 @@ export default {
   },
   data() {
     return {
-      swiperOptions: {
-        // autoplay: {
-        // delay: 13500,
-        //   disableOnInteraction: false,
-        // },
-        pagination: {
-          el: ".swiper-pagination",
-        },
-        slidesPerView: 1,
-        spaceBetween: 30,
-        loop: true,
-      },
-      slides: [1, 2, 3, 4, 5],
       customerName: localStorage.getItem("customerName"),
+      items: [
+        {
+          title: "Tanning Studio đầu tiên tại Việt Nam",
+          src: require("@/assets/home/cover_1.png"),
+        },
+        {
+          title: "Love your body, love your skin",
+          src: require("@/assets/home/cover_2.png"),
+        },
+        {
+          title: "An toàn hiệu quả nhanh chóng",
+          src: require("@/assets/home/cover_6.jpg"),
+        },
+        {
+          title: "Khỏe mạnh, gợi cảm, thời thượng",
+          src: require("@/assets/home/cover_7.jpg"),
+        },
+      ],
     };
   },
 };
@@ -224,20 +108,20 @@ export default {
           font-size: 32px;
           margin-bottom: 24px;
         }
-        .slide-cta-btn {
-          color: #ffffff;
-          background: rgba(197, 197, 197, 0.4);
-          border: 1px solid #ffffff;
-          border-radius: 2px;
-          padding: 12px 24px;
-          text-transform: uppercase;
-          font-weight: bold;
-          background-color: #000;
-          font-size: larger;
-        }
       }
     }
   }
+}
+.slide-cta-btn {
+  color: #ffffff;
+  background: rgba(197, 197, 197, 0.4);
+  border: 1px solid #ffffff;
+  border-radius: 2px;
+  padding: 12px 24px;
+  text-transform: uppercase;
+  font-weight: bold;
+  background-color: #000;
+  font-size: larger;
 }
 @media (max-width: 768px) {
   .root {
