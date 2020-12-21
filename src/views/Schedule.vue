@@ -20,46 +20,16 @@
 
       <v-col cols="12" md="6" class="rightarea">
         <div class="container">
-          <div v-if="detailType === '1'" class="service">
-            <h1>{{ dataServices[0].title }}</h1>
+          <div class="service">
+            <h1>{{ dataServices[detailType - 1].title }}</h1>
             <v-divider></v-divider>
             <br />
             <p>
-              {{ dataServices[0].intro }}
+              {{ dataServices[detailType - 1].intro }}
             </p>
-            <h3>Tips làn da tanning hoàn hảo và an toàn</h3>
+            <h3>{{ dataServices[detailType - 1].tips }}</h3>
             <ul>
-              <li v-for="(list, i) in dataServices[0].ul" :key="i">
-                {{ list }}
-              </li>
-            </ul>
-          </div>
-
-          <div v-if="detailType === '2'" class="service">
-            <h1>{{ dataServices[1].title }}</h1>
-            <v-divider></v-divider>
-            <br />
-            <p>
-              {{ dataServices[1].intro }}
-            </p>
-            <h3>Thông tin dịch vụ</h3>
-            <ul>
-              <li v-for="(list, i) in dataServices[1].ul" :key="i">
-                {{ list }}
-              </li>
-            </ul>
-          </div>
-
-          <div v-if="detailType === '3'" class="service">
-            <h1>{{ dataServices[2].title }}</h1>
-            <v-divider></v-divider>
-            <br />
-            <p>
-              {{ dataServices[2].intro }}
-            </p>
-            <h3>Thông tin dịch vụ</h3>
-            <ul>
-              <li v-for="(list, i) in dataServices[2].ul" :key="i">
+              <li v-for="(list, i) in dataServices[detailType - 1].ul" :key="i">
                 {{ list }}
               </li>
             </ul>
@@ -87,7 +57,6 @@ import Products from "@/components/Home/products";
 import Socials from "@/components/Home/socials";
 import Step from "@/components/Home/step";
 
-import axios from "axios";
 import config from "../confighost/config";
 import swal from "sweetalert";
 
@@ -106,6 +75,7 @@ export default {
           title: "STAND UP TANNING",
           intro:
             "Stand up Tanning là phương pháp làm tanning chiều thẳng đứng từ sâu bên trong có sự hỗ trợ của máy nhuộm hiện đại được sản xuất tại Đức giúp đưa các dưỡng chất thẩm thấu sâu vào da nhờ tác động nhiệt của ánh sáng đỏ đem đến tác dụng hiệu quả tuyệt vời.",
+          tips: "Tips làn da tanning hoàn hảo và an toàn",
           ul: [
             "Chọn nguồn năng lượng UV an toàn",
             "Dưỡng ẩm đầy đủ",
@@ -118,6 +88,7 @@ export default {
           title: "LAY DOWN TANNING",
           intro:
             "Hiện tại ở Navatan có ba cấp độ nằm khác nhau để lựa chọn - cả ba đều là giường Ergoline kết hợp hiệu suất tanning & sự thoải mái để tạo ra trải nghiệm tuyệt vời cho bạn",
+          tips: "Thông tin dịch vụ",
           ul: [
             "15 phút phơi sáng tối đa / 9 phút phiên trung bình",
             "Đèn cao áp toàn thân 10 x 620 watt",
@@ -130,6 +101,7 @@ export default {
           title: "SPRAY TANNING",
           intro:
             "Tanning dạng xịt là một hình thức tanning khi một lớp sương mịn được phun lên cơ thể của bạn. Dạng tanning này cho phép bạn tự do lựa chọn một trong các giải pháp nhuộm màu trong, tối hoặc màu venetian tại Navatan.",
+          tips: "Thông tin dịch vụ",
           ul: [
             "Sẽ tạo ra một làn da sáng tự nhiên và phát triển trong khoảng thời gian 24 giờ. Được đề xuất cho tông màu da trung bình sáng.",
             "Một làn da rám nắng từ trung bình đến sẫm giống như cách bạn xuất hiện sau nhiều tuần rám nắng hoặc “màu ngoài bãi biển” xuất hiện ngay lập tức. Khuyên dùng cho tông da trung bình tối.",
@@ -161,29 +133,6 @@ export default {
   },
 
   methods: {
-    loadSubService(type) {
-      axios
-        .get(this.host + "/getAllSubService/" + type)
-        .then((res) => {
-          this.durationOptions = [];
-          res.data.forEach((element) => {
-            let selectItem = {};
-            if (element.type === 1) {
-              selectItem.name = element.time;
-              selectItem.value = element.sub_service_id;
-              selectItem.money = element.money;
-            } else {
-              selectItem.name = element.session;
-              selectItem.value = element.sub_service_id;
-              selectItem.money = element.money;
-            }
-            this.durationOptions.push(selectItem);
-          });
-        })
-        .catch((e) => {
-          this.errors.push(e);
-        });
-    },
     showScheduleModal() {
       if (!this.customerName) {
         swal("Rất tiếc!", "Bạn phải đăng nhập đã nhé !", "warning");
@@ -194,29 +143,15 @@ export default {
 
     init() {
       console.log("xxxxxxxxxxxxxxxxxx", this.$route.params);
-      this.detailType = this.$route.params.type;
+      this.detailType = parseInt(this.$route.params.type, 10);
     },
   },
-
   mounted() {
-    this.loadSubService(1);
     this.init();
   },
-
   watch: {
-    selectType: function (val) {
-      this.loadSubService(val);
-    },
-
-    selectedDuration: function (val) {
-      axios
-        .get(this.host + "/subServiceFindOne/" + val)
-        .then((res) => {
-          this.money = res.data.money;
-        })
-        .catch((e) => {
-          this.errors.push(e);
-        });
+    $route() {
+      this.init();
     },
   },
 };
