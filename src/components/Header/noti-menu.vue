@@ -18,11 +18,7 @@
       <v-divider></v-divider>
 
       <v-list>
-        <v-list-item
-          v-for="noti in listNoti"
-          :key="noti.notification_id"
-          class="pa-2"
-        >
+        <v-list-item v-for="noti in listNoti" :key="noti.notification_id" class="pa-2">
           <div class="container--fluid">
             <a href="#" @click="seenNoti(noti)">
               {{ noti.content }}
@@ -34,8 +30,7 @@
 
       <v-card-actions>
         <v-spacer></v-spacer>
-
-        <v-btn color="primary" text> Đã xem </v-btn>
+        <!-- <v-btn color="primary" text @click="seeAll"> Đã xem </v-btn> -->
       </v-card-actions>
     </v-card>
   </v-menu>
@@ -43,7 +38,7 @@
 
 <script>
 import axios from "axios";
-import config from '../../confighost/config';
+import config from "../../confighost/config";
 
 export default {
   name: "noti-menu",
@@ -60,8 +55,7 @@ export default {
     loadNotificationOfCustomer() {
       axios
         .get(
-          this.host + "/findNotificationForCustomer/" +
-            localStorage.getItem("customerId")
+          this.host + "/findNotificationForCustomer/" + localStorage.getItem("customerId")
         )
         .then((response) => {
           this.listNoti = response.data;
@@ -86,6 +80,8 @@ export default {
           this.errors.push(e);
         });
     },
+
+    seeAll() {},
   },
 
   mounted() {

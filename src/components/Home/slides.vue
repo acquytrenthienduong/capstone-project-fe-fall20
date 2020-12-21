@@ -10,29 +10,14 @@
             alt="banner"
           >
           </v-img>
-          <v-img
-            src="@/assets/home/cover_1.png"
-            class="slide-img d-md-none"
-            :aspect-ratio="9 / 16"
-            alt="banner"
-          >
-          </v-img>
         </v-skeleton-loader>
 
         <div class="slide-content">
           <div class="slide-title">TANNING STUDIO ĐẦU TIÊN TẠI VIỆT NAM</div>
-          <button
-            v-if="customerName"
-            class="slide-cta-btn"
-            @click="showScheduleModal"
-          >
+          <button v-if="customerName" class="slide-cta-btn" @click="showScheduleModal">
             Đặt lịch ngay
           </button>
-          <button
-            v-if="!customerName"
-            class="slide-cta-btn"
-            @click="showWhenNotLogin"
-          >
+          <button v-if="!customerName" class="slide-cta-btn" @click="showWhenNotLogin">
             Đặt lịch ngay
           </button>
         </div>
@@ -48,29 +33,14 @@
             alt="banner"
           >
           </v-img>
-          <v-img
-            src="@/assets/home/cover_2.png"
-            class="slide-img d-md-none"
-            :aspect-ratio="9 / 16"
-            alt="banner"
-          >
-          </v-img>
         </v-skeleton-loader>
 
         <div class="slide-content">
           <div class="slide-title"></div>
-          <button
-            v-if="customerName"
-            class="slide-cta-btn"
-            @click="showScheduleModal"
-          >
+          <button v-if="customerName" class="slide-cta-btn" @click="showScheduleModal">
             Đặt lịch ngay
           </button>
-          <button
-            v-if="!customerName"
-            class="slide-cta-btn"
-            @click="showWhenNotLogin"
-          >
+          <button v-if="!customerName" class="slide-cta-btn" @click="showWhenNotLogin">
             Đặt lịch ngay
           </button>
         </div>
@@ -86,29 +56,14 @@
             alt="banner"
           >
           </v-img>
-          <v-img
-            src="@/assets/home/cover_7.jpg"
-            class="slide-img d-md-none"
-            :aspect-ratio="9 / 16"
-            alt="banner"
-          >
-          </v-img>
         </v-skeleton-loader>
 
         <div class="slide-content">
           <div class="slide-title"></div>
-          <button
-            v-if="customerName"
-            class="slide-cta-btn"
-            @click="showScheduleModal"
-          >
+          <button v-if="customerName" class="slide-cta-btn" @click="showScheduleModal">
             Đặt lịch ngay
           </button>
-          <button
-            v-if="!customerName"
-            class="slide-cta-btn"
-            @click="showWhenNotLogin"
-          >
+          <button v-if="!customerName" class="slide-cta-btn" @click="showWhenNotLogin">
             Đặt lịch ngay
           </button>
         </div>
@@ -124,29 +79,14 @@
             alt="banner"
           >
           </v-img>
-          <v-img
-            src="@/assets/home/cover_6.jpg"
-            class="slide-img d-md-none"
-            :aspect-ratio="9 / 16"
-            alt="banner"
-          >
-          </v-img>
         </v-skeleton-loader>
 
         <div class="slide-content">
           <div class="slide-title"></div>
-          <button
-            v-if="customerName"
-            class="slide-cta-btn"
-            @click="showScheduleModal"
-          >
+          <button v-if="customerName" class="slide-cta-btn" @click="showScheduleModal">
             Đặt lịch ngay
           </button>
-          <button
-            v-if="!customerName"
-            class="slide-cta-btn"
-            @click="showWhenNotLogin"
-          >
+          <button v-if="!customerName" class="slide-cta-btn" @click="showWhenNotLogin">
             Đặt lịch ngay
           </button>
         </div>

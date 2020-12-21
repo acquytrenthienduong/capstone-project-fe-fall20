@@ -7,28 +7,16 @@
     <div class="left-menu">
       <p class="title">KHÁM PHÁ</p>
       <ul>
-        <li
-          :class="{ active: selectedIndex == 0 }"
-          @mouseover="selectedIndex = 0"
-        >
+        <li :class="{ active: selectedIndex == 0 }" @mouseover="selectedIndex = 0">
           DỊCH VỤ
         </li>
-        <li
-          :class="{ active: selectedIndex == 1 }"
-          @mouseover="selectedIndex = 1"
-        >
+        <li :class="{ active: selectedIndex == 1 }" @mouseover="selectedIndex = 1">
           SẢN PHẨM
         </li>
-        <li
-          :class="{ active: selectedIndex == 2 }"
-          @mouseover="selectedIndex = 2"
-        >
+        <li :class="{ active: selectedIndex == 2 }" @mouseover="selectedIndex = 2">
           HỢP TÁC
         </li>
-        <li
-          :class="{ active: selectedIndex == 3 }"
-          @mouseover="selectedIndex = 3"
-        >
+        <li :class="{ active: selectedIndex == 3 }" @mouseover="selectedIndex = 3">
           VỀ CHÚNG TÔI
         </li>
       </ul>
@@ -72,7 +60,7 @@
               <v-img src="@/assets/services/standup.jpg" height="300px"></v-img>
 
               <v-card-actions>
-                <v-btn color="black" class="xemthem" text @click="detail1">
+                <v-btn color="black" class="xemthem" text @click="go2Detail(1)">
                   Stand up Tanning
                 </v-btn>
                 <v-spacer></v-spacer>
@@ -87,7 +75,7 @@
 
               <!-- <v-card-title> Lay Down Tanning </v-card-title> -->
               <v-card-actions>
-                <v-btn color="black" class="xemthem" text @click="detail2">
+                <v-btn color="black" class="xemthem" text @click="go2Detail(2)">
                   Lay Down Tanning
                 </v-btn>
 
@@ -102,7 +90,7 @@
               <v-img src="@/assets/services/spray.jpg" height="300px"></v-img>
 
               <v-card-actions>
-                <v-btn color="black" class="xemthem" text @click="detail3">
+                <v-btn color="black" class="xemthem" text @click="go2Detail(3)">
                   Spray Tanning
                 </v-btn>
                 <v-spacer></v-spacer>
@@ -130,14 +118,9 @@ export default {
     return { selectedIndex: 0 };
   },
   methods: {
-    detail1() {
-      this.$router.push({ name: "Schedule", params: { type: "1" } });
-    },
-    detail2() {
-      this.$router.push({ name: "Schedule", params: { type: "2" } });
-    },
-    detail3() {
-      this.$router.push({ name: "Schedule", params: { type: "3" } });
+    go2Detail(id) {
+      this.$router.push({ name: "Schedule", params: { type: id } });
+      this.$nextTick();
     },
   },
   mounted() {
