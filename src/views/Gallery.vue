@@ -1,7 +1,12 @@
 <template>
   <div>
     <v-row>
-      <v-col v-for="(image, i) in images" :key="i" class="d-flex child-flex" cols="4">
+      <v-col
+        v-for="(image, i) in images"
+        :key="i"
+        class="d-flex child-flex"
+        cols="4"
+      >
         <v-img
           :src="image"
           :lazy-src="`https://picsum.photos/10/6?image=${i * 5 + 10}`"
@@ -18,7 +23,6 @@
             </v-row>
           </template>
         </v-img>
-        <h3>Chú thich</h3>
       </v-col>
     </v-row>
     <vue-gallery-slideshow
@@ -45,12 +49,14 @@ export default {
   data() {
     return {
       images: [
-        require("@/assets/lotions/sp1.png"),
-        require("@/assets/lotions/sp2.png"),
-        require("@/assets/lotions/sp3.png"),
-        require("@/assets/lotions/sp4.png"),
-        require("@/assets/lotions/sp5.png"),
-        require("@/assets/lotions/sp6.png"),
+        require("@/assets/gallery/ga8.jpg"),
+        require("@/assets/gallery/ga11.jpg"),
+        require("@/assets/gallery/ga3.jpg"),
+        require("@/assets/gallery/ga12.jpg"),
+        require("@/assets/gallery/ga5.jpg"),
+        require("@/assets/gallery/ga6.jpg"),
+        require("@/assets/gallery/ga4.jpg"),
+        require("@/assets/gallery/ga10.jpg"),
       ],
       index: 0,
     };
