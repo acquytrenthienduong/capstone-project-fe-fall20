@@ -1,12 +1,26 @@
 <template>
   <div>
-    <img
-      class="image"
-      v-for="(image, i) in images"
-      :src="image"
-      @click="onClick(i)"
-      v-bind:key="i"
-    />
+    <v-row>
+      <v-col v-for="(image, i) in images" :key="i" class="d-flex child-flex" cols="4">
+        <v-img
+          :src="image"
+          :lazy-src="`https://picsum.photos/10/6?image=${i * 5 + 10}`"
+          aspect-ratio="1"
+          class="d-flex child-flex"
+          @click="onClick(i)"
+        >
+          <template v-slot:placeholder>
+            <v-row class="fill-height ma-0" align="center" justify="center">
+              <v-progress-circular
+                indeterminate
+                color="grey lighten-5"
+              ></v-progress-circular>
+            </v-row>
+          </template>
+        </v-img>
+        <h3>Chú thich</h3>
+      </v-col>
+    </v-row>
     <vue-gallery-slideshow
       :images="images"
       :index="index"
@@ -44,5 +58,7 @@ export default {
 };
 </script>
 <style scoped>
-
+.d-flex {
+  margin-top: 5%;
+}
 </style>
