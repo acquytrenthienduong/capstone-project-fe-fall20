@@ -1,8 +1,5 @@
 <template>
   <div class="root">
-    <sequential-entrance fromRight>
-      <div class="title">7 BƯỚC TANNING TẠI NAVATAN</div>
-    </sequential-entrance>
     <v-row no-gutters class="details">
       <v-col cols="12" md="6" class="leftarea">
         <div>
@@ -153,7 +150,7 @@ img {
 
 .v-expansion-panels {
   z-index: unset !important;
-  margin-left: 5%;
+  margin-left: 10%;
 }
 
 .v-expansion-panel {

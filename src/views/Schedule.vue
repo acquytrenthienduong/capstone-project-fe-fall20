@@ -2,20 +2,13 @@
   <div class="root">
     <v-row no-gutters class="details">
       <v-col cols="12" md="6" class="leftarea">
-        <swiper ref="mySwiper" :options="swiperOptions" class="product-images">
-          <swiper-slide class="product-image-slide">
-            <img src="@/assets/services/service1.jpg" alt="navatan1" />
-          </swiper-slide>
-          <swiper-slide class="product-image-slide">
-            <img src="@/assets/services/slide.jpg" alt="navatan2" />
-          </swiper-slide>
-          <swiper-slide class="product-image-slide">
-            <img src="@/assets/services/slide2.jpg" alt="navatan3" />
-          </swiper-slide>
-          <swiper-slide class="product-image-slide">
-            <img src="@/assets/services/slide3.jpg" alt="navatan4" />
-          </swiper-slide>
-        </swiper>
+        <div class="product-images">
+          <v-img
+            class="product-image-slide"
+            :src="dataServices[detailType - 1].src"
+            alt="navatan1"
+          />
+        </div>
       </v-col>
 
       <v-col cols="12" md="6" class="rightarea">
@@ -38,14 +31,22 @@
           <div class="option-price">
             {{ money | priceVndFormat }}
           </div>
-          <button class="cta-btn" @click="showScheduleModal">Đặt lịch ngay</button>
+          <button class="cta-btn" @click="showScheduleModal">
+            Đặt lịch ngay
+          </button>
           <!-- <h3 v-if="!customerName">
             Hãy tạo tài khoản hoặc đăng nhập trước nhé!
           </h3> -->
         </div>
       </v-col>
     </v-row>
+    <sequential-entrance fromRight>
+      <div class="title">7 BƯỚC TANNING TẠI NAVATAN</div>
+    </sequential-entrance>
     <Step />
+    <sequential-entrance fromRight>
+      <div class="title">Sản phẩm dưỡng da</div>
+    </sequential-entrance>
     <Products />
 
     <Socials />
@@ -72,6 +73,7 @@ export default {
     return {
       dataServices: [
         {
+          src: require("@/assets/services/img.jpg"),
           title: "STAND UP TANNING",
           intro:
             "Stand up Tanning là phương pháp làm tanning chiều thẳng đứng từ sâu bên trong có sự hỗ trợ của máy nhuộm hiện đại được sản xuất tại Đức giúp đưa các dưỡng chất thẩm thấu sâu vào da nhờ tác động nhiệt của ánh sáng đỏ đem đến tác dụng hiệu quả tuyệt vời.",
@@ -85,6 +87,7 @@ export default {
           ],
         },
         {
+          src: require("@/assets/services/img2.jpg"),
           title: "LAY DOWN TANNING",
           intro:
             "Hiện tại ở Navatan có ba cấp độ nằm khác nhau để lựa chọn - cả ba đều là giường Ergoline kết hợp hiệu suất tanning & sự thoải mái để tạo ra trải nghiệm tuyệt vời cho bạn",
@@ -98,6 +101,7 @@ export default {
           ],
         },
         {
+          src: require("@/assets/services/img3.jpg"),
           title: "SPRAY TANNING",
           intro:
             "Tanning dạng xịt là một hình thức tanning khi một lớp sương mịn được phun lên cơ thể của bạn. Dạng tanning này cho phép bạn tự do lựa chọn một trong các giải pháp nhuộm màu trong, tối hoặc màu venetian tại Navatan.",
@@ -158,6 +162,15 @@ export default {
 </script>
 <style lang="scss" scoped>
 .root {
+  .title {
+    margin-top: 5%;
+    margin-bottom: -3%;
+    padding: 0 0;
+    text-align: center;
+    font-size: 30px !important;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
   .details {
     background-image: url("~@/assets/Background.jpg");
     background-size: cover;
@@ -169,6 +182,8 @@ export default {
         margin-top: 8%;
         .product-image-slide {
           text-align: center;
+          inline-size: fit-content;
+          margin-left: 15%;
         }
       }
     }
@@ -178,7 +193,7 @@ export default {
       align-items: center;
       .container {
         max-width: 500px;
-        margin-left: 0;
+        margin-left: 10% !important;
       }
       .myTitle {
         // font-family: "SVN-Gotham", sans-serif;
@@ -235,7 +250,7 @@ export default {
   margin-left: 15% !important;
 }
 .service {
-  margin-top: -19%;
+  margin-top: -30%;
 }
 @media (min-width: 768px) {
   .root {

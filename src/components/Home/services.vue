@@ -1,142 +1,138 @@
 <template>
   <div class="root">
-    <sequential-entrance fromRight>
-      <div class="title">Dịch vụ tại Navatan</div>
-    </sequential-entrance>
-
-    <div class="services">
-      <v-container class="serviceContainer">
-        <sequential-entrance fromLeft>
-          <v-row>
-            <v-col cols="12" md="4">
-              <v-card class="mx-auto service-card" max-width="344">
-                <v-img
-                  src="@/assets/services/standup.jpg"
-                  height="200px"
-                ></v-img>
-
-                <v-card-title> Stand Up Tanning </v-card-title>
-                <v-card-text>
-                  Tanning đứng với máy SunCapsule đến từ CHLB Đức.
-                </v-card-text>
-                <v-card-actions>
-                  <v-btn
-                    color="orange lighten-2"
-                    class="xemthem"
-                    text
-                    @click="detail1"
+    <sequential-entrance fromLeft>
+      <div class="serviceContainer">
+        <v-container class="pa-4 text-center">
+          <v-row class="fill-height" align="center" justify="center">
+            <template v-for="(item, i) in items">
+              <v-col :key="i" cols="12" md="4">
+                <v-hover v-slot="{ hover }">
+                  <v-card
+                    :elevation="hover ? 12 : 2"
+                    :class="{ 'on-hover': hover }"
                   >
-                    xem thêm
-                  </v-btn>
-                  <v-spacer></v-spacer>
-                  <v-icon color="blue darken-2"> mdi-arrow-right </v-icon>
-                </v-card-actions>
-              </v-card>
-            </v-col>
-
-            <v-col cols="12" md="4">
-              <v-card class="mx-auto service-card" max-width="344">
-                <v-img
-                  src="@/assets/services/laydown.jpg"
-                  height="200px"
-                ></v-img>
-
-                <v-card-title> Lay Down Tanning </v-card-title>
-                <v-card-text>
-                  Tanning nằm với máy high-powered SunCapsule 2 cấp độ.
-                </v-card-text>
-                <v-card-actions>
-                  <v-btn
-                    color="orange lighten-2"
-                    class="xemthem"
-                    text
-                    @click="detail2"
-                  >
-                    xem thêm
-                  </v-btn>
-
-                  <v-spacer></v-spacer>
-                  <v-icon color="blue darken-2"> mdi-arrow-right </v-icon>
-                </v-card-actions>
-              </v-card>
-            </v-col>
-
-            <v-col cols="12" md="4">
-              <v-card class="mx-auto service-card" max-width="344">
-                <v-img src="@/assets/services/spray.jpg" height="200px"></v-img>
-
-                <v-card-title> Spray Tanning </v-card-title>
-                <v-card-text>
-                  Da tan hoàn toàn đồng đều chỉ trong 90 giây với Spray Tanning.
-                </v-card-text>
-                <v-card-actions>
-                  <v-btn
-                    color="orange lighten-2"
-                    class="xemthem"
-                    text
-                    @click="detail3"
-                  >
-                    xem thêm
-                  </v-btn>
-                  <v-spacer></v-spacer>
-                  <v-icon color="blue darken-2"> mdi-arrow-right </v-icon>
-                </v-card-actions>
-              </v-card>
-            </v-col>
+                    <v-img :src="item.img" height="300px">
+                      <v-card-title class="title white--text">
+                        <v-row
+                          class="fill-height flex-column"
+                          justify="space-between"
+                        >
+                          <h1 class="mt-4 subheading text-center text-service">
+                            {{ item.title }}
+                          </h1>
+                          <button
+                            class="slide-cta-btn text-center"
+                            @click="detail1(i + 1)"
+                          >
+                            Xem thêm
+                          </button>
+                        </v-row>
+                      </v-card-title>
+                    </v-img>
+                  </v-card>
+                </v-hover>
+              </v-col>
+            </template>
           </v-row>
-        </sequential-entrance>
-      </v-container>
-    </div>
+        </v-container>
+      </div>
+    </sequential-entrance>
   </div>
 </template>
 
 <script>
 export default {
-  data() {
-    return {};
-  },
-
   methods: {
-    detail1() {
-      this.$router.push({ name: "Schedule", params: { type: "1" } });
-    },
-    detail2() {
-      this.$router.push({ name: "Schedule", params: { type: "2" } });
-    },
-    detail3() {
-      this.$router.push({ name: "Schedule", params: { type: "3" } });
+    detail1(service) {
+      this.$router.push({ name: "Schedule", params: { type: service } });
     },
   },
+  components: {},
+  data: () => ({
+    items: [
+      {
+        title: "Stand Up",
+        img: require("@/assets/services/standup.jpg"),
+      },
+      {
+        title: "Lay Down",
+        img: require("@/assets/services/laydown.jpg"),
+      },
+      {
+        title: "Spray",
+        img: require("@/assets/services/spray.jpg"),
+      },
+    ],
+    transparent: "rgba(255, 255, 255, 0.5)",
+  }),
 };
 </script>
 
 <style lang="scss" scoped>
-.serviceContainer{
+.serviceContainer {
   max-width: 100%;
   background-color: white;
-  margin-bottom: -2%;
+  margin-bottom: -5%;
+}
+
+.pa-4 {
+  padding: 0% !important;
 }
 
 .root {
   padding-top: 48px;
   padding-bottom: 48px;
-  .title {
-    padding: 16px 0;
-    text-align: center;
-    font-size: 30px !important;
-    font-weight: bold;
-    text-transform: uppercase;
-  }
-  .subtitle {
-    text-align: center;
-    margin-bottom: 24px;
-  }
-  .service-card {
-    margin-left: auto;
-    margin-right: auto;
-  }
-  .xemthem {
-    margin-top: -25px;
-  }
+}
+
+.v-card {
+  transition: opacity 0.4s ease-in-out;
+}
+
+.fill-height .flex-column {
+  margin-top: 15% !important;
+}
+
+.text-service {
+  font-family: "Dancing Script";
+  font-size: 320%;
+  animation:text-shadow-pop-top .6s both
+}
+
+
+@keyframes text-shadow-pop-top{0%{text-shadow:0 0 #555,0 0 #555,0 0 #555,0 0 #555,0 0 #555,0 0 #555,0 0 #555,0 0 #555;transform:translateY(0)}100%{text-shadow:0 -1px #555,0 -2px #555,0 -3px #555,0 -4px #555,0 -5px #555,0 -6px #555,0 -7px #555,0 -8px #555;transform:translateY(8px)}}
+.v-card:not(.on-hover) {
+  opacity: 0.8;
+}
+
+.show-btns {
+  color: rgba(255, 255, 255, 1) !important;
+}
+
+.slide-cta-btn {
+  color: #ffffff;
+  background: rgba(197, 197, 197, 0.5);
+  border: 1px solid #ffffff;
+  border-radius: 2px;
+  padding: 12px 24px;
+  /* text-transform: uppercase; */
+  /* font-weight: bold; */
+  background-color: transparent;
+  /* font-size: larger; */
+  transition-duration: 0.4s;
+  margin: 30% !important;
+  margin-top: 2% !important;
+  animation: slide-cta-btn 0.6s both;
+}
+.slide-cta-btn:hover {
+  color: black;
+  background: rgba(197, 197, 197, 0.5);
+  border: 1px solid #ffffff;
+  border-radius: 2px;
+  padding: 12px 24px;
+  /* text-transform: uppercase; */
+  /* font-weight: bold; */
+  background-color: white;
+  /* font-size: larger; */
+  animation: slide-cta-btn 0.3s linear infinite both;
 }
 </style>
