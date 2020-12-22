@@ -161,8 +161,8 @@ export default {
 <style lang="scss" scoped>
 .root {
   .title {
-    margin-top: 5%;
-    margin-bottom: -3%;
+    margin-top: 4%;
+    margin-bottom: 1%;
     padding: 0 0;
     text-align: center;
     font-size: 30px !important;
