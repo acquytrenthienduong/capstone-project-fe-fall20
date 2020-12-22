@@ -54,6 +54,10 @@ export default {
   margin-bottom: -1%;
 }
 
+.v-icon{
+  font-size: 35px !important;
+}
+
 .text-center {
   margin: 8%;
 }

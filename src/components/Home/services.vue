@@ -11,7 +11,7 @@
                     :elevation="hover ? 12 : 2"
                     :class="{ 'on-hover': hover }"
                   >
-                    <v-img :src="item.img" height="300px">
+                    <v-img :src="item.img" height="400px">
                       <v-card-title class="title white--text">
                         <v-row
                           class="fill-height flex-column"

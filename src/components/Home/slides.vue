@@ -81,11 +81,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
-.display-3{
-   font-family: "Montserrat" !important;
-   margin-block: 3% !important;
-   
+.display-3 {
+  font-family: "Montserrat" !important;
+  font-weight: bold !important;
+  text-transform: uppercase;
+  margin-block: 3% !important;
+  font-size: 275% !important;
 }
 
 .slide-cta-btn {
@@ -101,10 +102,10 @@ export default {
   transition-duration: 0.4s;
   margin-left: 0% !important;
   margin-top: 2% !important;
-  animation:slide-cta-btn .6s both
+  animation: slide-cta-btn 0.6s both;
 }
 .slide-cta-btn:hover {
-  color:black;
+  color: black;
   background: rgba(197, 197, 197, 0.5);
   border: 1px solid #ffffff;
   border-radius: 2px;
@@ -113,11 +114,35 @@ export default {
   font-weight: bold;
   background-color: white;
   font-size: larger;
-  
 }
 
+@keyframes text-shadow-drop-center {
+  0% {
+    text-shadow: 0 0 0 transparent;
+  }
+  100% {
+    text-shadow: 0 0 18px rgba(0, 0, 0, 0.35);
+  }
+}
 
-@keyframes text-shadow-drop-center{0%{text-shadow:0 0 0 transparent}100%{text-shadow:0 0 18px rgba(0,0,0,.35)}}
-
-@keyframes slide-cta-btn{0%{transform:translate(0)}20%{transform:translate(-2px,2px)}40%{transform:translate(-2px,-2px)}60%{transform:translate(2px,2px)}80%{transform:translate(2px,-2px)}100%{transform:translate(0)}}
+@keyframes slide-cta-btn {
+  0% {
+    transform: translate(0);
+  }
+  20% {
+    transform: translate(-2px, 2px);
+  }
+  40% {
+    transform: translate(-2px, -2px);
+  }
+  60% {
+    transform: translate(2px, 2px);
+  }
+  80% {
+    transform: translate(2px, -2px);
+  }
+  100% {
+    transform: translate(0);
+  }
+}
 </style>

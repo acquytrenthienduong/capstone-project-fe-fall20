@@ -7,7 +7,7 @@
             <v-card class="product-card" max-width="400">
               <v-img
                 class="white--text align-end"
-                height="300px"
+                height="230px"
                 :src="product.src"
               >
               </v-img>
@@ -105,7 +105,7 @@ export default {
   margin: auto;
 }
 .root {
-  padding-top: 48px;
+  padding-top: 0px;
   padding-bottom: 48px;
 
   .title {

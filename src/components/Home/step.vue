@@ -143,8 +143,7 @@ img {
 }
 
 .root {
-  
-  margin-top: 8%;
+  margin-top: 0%;
   margin-bottom: 3%;
 }
 
