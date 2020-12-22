@@ -13,10 +13,39 @@
       <v-row v-for="item in history" :key="item.reservation_id" class="order">
         <div class="container my-4">
           <v-row>
-            <v-col cols="12" md="4" class="text-center">
+            <v-col
+              cols="12"
+              md="4"
+              class="text-center"
+              v-if="item.sub_service.type == 1"
+            >
               <img
                 class="service-image"
-                :src="`https://source.unsplash.com/random/278x278?${item.reservation_id}`"
+                src="@/assets/services/1.jpg"
+                alt="demo"
+              />
+            </v-col>
+            <v-col
+              cols="12"
+              md="4"
+              class="text-center"
+              v-if="item.sub_service.type == 2"
+            >
+              <img
+                class="service-image"
+                src="@/assets/services/2.jpg"
+                alt="demo"
+              />
+            </v-col>
+            <v-col
+              cols="12"
+              md="4"
+              class="text-center"
+              v-if="item.sub_service.type == 3"
+            >
+              <img
+                class="service-image"
+                src="@/assets/services/3.jpg"
                 alt="demo"
               />
             </v-col>
@@ -25,7 +54,8 @@
                 <v-row
                   ><v-col cols="12" md="6"
                     ><span class="created-date"
-                      >Ngày đặt {{ item.reservation_date }}</span
+                      >Ngày đặt {{ item.reservation_date }}
+                      {{ item.sub_service.type }}</span
                     ></v-col
                   ></v-row
                 >
@@ -126,12 +156,15 @@ export default {
           axios
             .post(this.host + "/createNotification", {
               content:
-                "Khách hàng có SĐT " + this.phoneNumber + " muốn thay đổi lịch hẹn",
+                "Khách hàng có SĐT " +
+                this.phoneNumber +
+                " muốn thay đổi lịch hẹn",
             })
             .then(() => {
               swal("Yêu càu đổi lịch đã được gửi!", {
                 icon: "success",
-                text: "yêu cầu của bạn đã được gửi, chúng tôi sẽ liên hệ lại ngay!",
+                text:
+                  "yêu cầu của bạn đã được gửi, chúng tôi sẽ liên hệ lại ngay!",
               });
             });
         }

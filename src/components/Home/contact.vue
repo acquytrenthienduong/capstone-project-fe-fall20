@@ -46,7 +46,7 @@
                 </v-list-item-icon>
 
                 <v-list-item-content>
-                  <v-list-item-title>aliconnors@example.com</v-list-item-title>
+                  <v-list-item-title>hoangtronganh23@gmail.com</v-list-item-title>
                   <v-list-item-subtitle>Personal</v-list-item-subtitle>
                 </v-list-item-content>
               </v-list-item>
@@ -55,7 +55,7 @@
                 <v-list-item-action></v-list-item-action>
 
                 <v-list-item-content>
-                  <v-list-item-title>ali_connors@example.com</v-list-item-title>
+                  <v-list-item-title>navatan_tanning@gmail.com</v-list-item-title>
                   <v-list-item-subtitle>Work</v-list-item-subtitle>
                 </v-list-item-content>
               </v-list-item>
@@ -68,8 +68,8 @@
                 </v-list-item-icon>
 
                 <v-list-item-content>
-                  <v-list-item-title>1400 Main Street</v-list-item-title>
-                  <v-list-item-subtitle>Orlando, FL 79938</v-list-item-subtitle>
+                  <v-list-item-title>số 6 Hàng Muối</v-list-item-title>
+                  <v-list-item-subtitle>Hoàn Kiếm, Hà Nội</v-list-item-subtitle>
                 </v-list-item-content>
               </v-list-item>
             </v-list>
