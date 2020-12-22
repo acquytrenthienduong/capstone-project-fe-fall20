@@ -55,8 +55,7 @@
                   ><v-col cols="12" md="6"
                     ><span class="created-date"
                       >Ngày đặt {{ item.reservation_date }}
-                      {{ item.sub_service.type }}</span
-                    ></v-col
+                    </span></v-col
                   ></v-row
                 >
                 <v-row>

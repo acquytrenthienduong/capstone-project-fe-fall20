@@ -67,11 +67,11 @@ export default {
           src: require("@/assets/home/cover_2.png"),
         },
         {
-          title: "An toàn hiệu quả nhanh chóng",
+          title: "An toàn, hiệu quả, nhanh chóng",
           src: require("@/assets/home/cover_6.jpg"),
         },
         {
-          title: "Khỏe mạnh gợi cảm thời thượng",
+          title: "Khỏe mạnh, gợi cảm, thời thượng",
           src: require("@/assets/home/cover_7.jpg"),
         },
       ],
@@ -87,6 +87,7 @@ export default {
   text-transform: uppercase;
   margin-block: 3% !important;
   font-size: 275% !important;
+  animation:text-shadow-drop-center .6s both
 }
 
 .slide-cta-btn {

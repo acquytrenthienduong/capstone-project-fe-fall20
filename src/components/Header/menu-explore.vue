@@ -7,48 +7,153 @@
     <div class="left-menu">
       <p class="title">KHÁM PHÁ</p>
       <ul>
-        <li :class="{ active: selectedIndex == 0 }" @mouseover="selectedIndex = 0">
+        <li
+          :class="{ active: selectedIndex == 0 }"
+          @mouseover="selectedIndex = 0"
+        >
           DỊCH VỤ
         </li>
-        <li :class="{ active: selectedIndex == 1 }" @mouseover="selectedIndex = 1">
+        <li
+          :class="{ active: selectedIndex == 1 }"
+          @mouseover="selectedIndex = 1"
+        >
           SẢN PHẨM
         </li>
-        <li :class="{ active: selectedIndex == 2 }" @mouseover="selectedIndex = 2">
-          HỢP TÁC
+        <li
+          :class="{ active: selectedIndex == 2 }"
+          @mouseover="selectedIndex = 2"
+        >
+          ƯU ĐÃI
         </li>
-        <li :class="{ active: selectedIndex == 3 }" @mouseover="selectedIndex = 3" @click="go2AboutUs">
+        <li
+          :class="{ active: selectedIndex == 3 }"
+          @mouseover="selectedIndex = 3"
+          @click="go2AboutUs"
+        >
           VỀ CHÚNG TÔI
         </li>
       </ul>
     </div>
     <div class="right-items">
+      <!-- hover for ưu đãi -->
+      <v-container fluid class="item-container" v-if="selectedIndex == 2">
+        <v-row>
+          <v-col cols="12" md="4">
+            <v-card
+              class="mx-auto service-card"
+              max-width="344"
+              @click="go2Product"
+            >
+              <v-img src="@/assets/lotions/khampha3.jpg" height="400px"></v-img>
+
+              <v-card-actions>
+                <v-btn color="black" class="xemthem" text>
+                  Sale 10%
+                </v-btn>
+                <v-spacer></v-spacer>
+                <v-icon color="black"> mdi-arrow-right </v-icon>
+              </v-card-actions>
+            </v-card>
+          </v-col>
+
+          <v-col cols="12" md="4">
+            <v-card
+              class="mx-auto service-card"
+              max-width="344"
+              @click="go2Product"
+            >
+              <v-img src="@/assets/lotions/khampha1.jpg" height="400px"></v-img>
+
+              <!-- <v-card-title> Lay Down Tanning </v-card-title> -->
+              <v-card-actions>
+                <v-btn color="black" class="xemthem" text @click="go2Detail(2)">
+                  Sale 20%
+                </v-btn>
+
+                <v-spacer></v-spacer>
+                <v-icon color="black"> mdi-arrow-right </v-icon>
+              </v-card-actions>
+            </v-card>
+          </v-col>
+
+          <v-col cols="12" md="4">
+            <v-card
+              class="mx-auto service-card"
+              max-width="344"
+              @click="go2Product"
+            >
+              <v-img src="@/assets/lotions/khampha2.jpg" height="400px"></v-img>
+
+              <v-card-actions>
+                <v-btn color="black" class="xemthem" text @click="go2Detail(3)">
+                  Sale 50%
+                </v-btn>
+                <v-spacer></v-spacer>
+                <v-icon color="black"> mdi-arrow-right </v-icon>
+              </v-card-actions>
+            </v-card>
+          </v-col>
+        </v-row>
+      </v-container>
+
+      <!-- sdsds -->
       <v-container fluid class="item-container" v-if="selectedIndex == 1">
         <v-row>
-          <v-col class="product-card-container" cols="12" md="4">
-            <v-img
-              class="white--text align-end"
-              height="400px"
-              src="@/assets/lotions/sp1.png"
+          <v-col cols="12" md="4">
+            <v-card
+              class="mx-auto service-card"
+              max-width="344"
+              @click="go2Product"
             >
-            </v-img>
+              <v-img src="@/assets/lotions/sp1.png" height="400px"></v-img>
+
+              <v-card-actions>
+                <v-btn color="black" class="xemthem" text >
+                  Sản phẩm yêu thích
+                </v-btn>
+
+                <v-spacer></v-spacer>
+                <v-icon color="black"> mdi-arrow-right </v-icon>
+              </v-card-actions>
+            </v-card>
           </v-col>
 
-          <v-col class="product-card-container" cols="12" md="4">
-            <v-img
-              class="white--text align-end"
-              height="400px"
-              src="@/assets/lotions/sp2.png"
+          <v-col cols="12" md="4">
+            <v-card
+              class="mx-auto service-card"
+              max-width="344"
+              @click="go2Product"
             >
-            </v-img>
+              <v-img src="@/assets/lotions/sp5.png" height="400px"></v-img>
+
+              <v-card-actions>
+                <v-btn color="black" class="xemthem" text >
+                  Hàng mới về
+                </v-btn>
+
+                <v-spacer></v-spacer>
+                <v-icon color="black"> mdi-arrow-right </v-icon>
+              </v-card-actions>
+            </v-card>
           </v-col>
 
-          <v-col class="product-card-container" cols="12" md="4">
-            <v-img
-              class="white--text align-end"
-              height="400px"
-              src="@/assets/lotions/sp4.png"
+          <v-col cols="12" md="4">
+            <v-card
+              class="mx-auto service-card"
+              max-width="344"
+              @click="go2Product"
             >
-            </v-img>
+              <v-img src="@/assets/lotions/sp8.png" height="400px"></v-img>
+
+              <v-card-actions>
+                <v-btn color="black" class="xemthem" text>
+                  Sản phẩm chuyên dụng
+                </v-btn>
+
+                <v-spacer></v-spacer>
+                <v-icon color="black"> mdi-arrow-right </v-icon>
+              </v-card-actions>
+            </v-card>
           </v-col>
         </v-row>
       </v-container>
@@ -57,21 +162,21 @@
         <v-row>
           <v-col cols="12" md="4">
             <v-card class="mx-auto service-card" max-width="344">
-              <v-img src="@/assets/services/standup.jpg" height="300px"></v-img>
+              <v-img src="@/assets/services/standup.jpg" height="400px"></v-img>
 
               <v-card-actions>
                 <v-btn color="black" class="xemthem" text @click="go2Detail(1)">
                   Stand up Tanning
                 </v-btn>
                 <v-spacer></v-spacer>
-                <v-icon color="blue darken-2"> mdi-arrow-right </v-icon>
+                <v-icon color="black"> mdi-arrow-right </v-icon>
               </v-card-actions>
             </v-card>
           </v-col>
 
           <v-col cols="12" md="4">
             <v-card class="mx-auto service-card" max-width="344">
-              <v-img src="@/assets/services/laydown.jpg" height="300px"></v-img>
+              <v-img src="@/assets/services/laydown.jpg" height="400px"></v-img>
 
               <!-- <v-card-title> Lay Down Tanning </v-card-title> -->
               <v-card-actions>
@@ -80,21 +185,21 @@
                 </v-btn>
 
                 <v-spacer></v-spacer>
-                <v-icon color="blue darken-2"> mdi-arrow-right </v-icon>
+                <v-icon color="black"> mdi-arrow-right </v-icon>
               </v-card-actions>
             </v-card>
           </v-col>
 
           <v-col cols="12" md="4">
             <v-card class="mx-auto service-card" max-width="344">
-              <v-img src="@/assets/services/spray.jpg" height="300px"></v-img>
+              <v-img src="@/assets/services/spray.jpg" height="400px"></v-img>
 
               <v-card-actions>
                 <v-btn color="black" class="xemthem" text @click="go2Detail(3)">
                   Spray Tanning
                 </v-btn>
                 <v-spacer></v-spacer>
-                <v-icon color="blue darken-2"> mdi-arrow-right </v-icon>
+                <v-icon color="black"> mdi-arrow-right </v-icon>
               </v-card-actions>
             </v-card>
           </v-col>
@@ -122,9 +227,12 @@ export default {
       this.$router.push({ name: "Schedule", params: { type: id } });
       this.$nextTick();
     },
-    go2AboutUs(){
-       this.$router.push({ name: "ContactUs" });
-    }
+    go2Product() {
+      this.$router.push({ name: "Products" });
+    },
+    go2AboutUs() {
+      this.$router.push({ name: "ContactUs" });
+    },
   },
   mounted() {
     // Instead of calling the method we emit an event
@@ -133,6 +241,13 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+.service-card {
+  border-radius: unset !important;
+}
+.mx-auto {
+  border-radius: unset !important;
+}
+
 .rootMenu {
   display: none;
   position: absolute;
