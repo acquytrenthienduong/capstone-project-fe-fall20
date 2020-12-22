@@ -9,12 +9,11 @@
       ></v-img>
       <h3>Câu chuyện của Navatan</h3>
       <p>
-        NAVATAN STUDIO hiện nay là studio tắm nắng nhân tạo đầu tiên và duy nhất
-        tại Việt Nam. Công nghệ giường tắm nắng nhân tạo và các sản phẩm độc
-        quyền từ Đức. Xu hướng da nâu căng bóng quyến rũ mới là
-        những gì các siêu mẫu, hot blogger trong và ngoài nước cũng như giới trẻ
-        đang theo đuổi. Đây chính là lý do Navatan được thành lập ra, Navatan
-        chính là người bạn thân giúp bạn đạt được làn da trendy mong ước của
+        NAVATAN STUDIO hiện nay là studio tắm nắng nhân tạo đầu tiên và duy nhất tại Việt
+        Nam. Công nghệ giường tắm nắng nhân tạo và các sản phẩm độc quyền từ Đức. Xu hướng
+        da nâu căng bóng quyến rũ mới là những gì các siêu mẫu, hot blogger trong và ngoài
+        nước cũng như giới trẻ đang theo đuổi. Đây chính là lý do Navatan được thành lập
+        ra, Navatan chính là người bạn thân giúp bạn đạt được làn da trendy mong ước của
         nhiều cô gái,chàng trai một cách hoàn hảo và an toàn
       </p>
     </div>
@@ -58,6 +57,7 @@ h3 {
 
 .avatar {
   margin-left: 48%;
+  margin-bottom: 13px;
 }
 .text-center {
   margin: 4%;
