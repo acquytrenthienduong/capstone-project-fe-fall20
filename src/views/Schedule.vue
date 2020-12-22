@@ -31,9 +31,7 @@
           <div class="option-price">
             {{ money | priceVndFormat }}
           </div>
-          <button class="cta-btn" @click="showScheduleModal">
-            Đặt lịch ngay
-          </button>
+          <button class="cta-btn" @click="showScheduleModal">Đặt lịch ngay</button>
           <!-- <h3 v-if="!customerName">
             Hãy tạo tài khoản hoặc đăng nhập trước nhé!
           </h3> -->

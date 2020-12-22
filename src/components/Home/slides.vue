@@ -101,8 +101,6 @@ export default {
   font-size: larger;
   transition-duration: 0.4s;
   margin-left: 0% !important;
-  margin-top: 2% !important;
-  animation: slide-cta-btn 0.6s both;
 }
 .slide-cta-btn:hover {
   color: black;

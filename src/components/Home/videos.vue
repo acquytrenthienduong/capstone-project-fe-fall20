@@ -27,6 +27,7 @@ export default {
   position: relative;
 
   .framer {
+    background: black;
     position: relative;
     width: 100%;
     padding-top: 56.25%;
