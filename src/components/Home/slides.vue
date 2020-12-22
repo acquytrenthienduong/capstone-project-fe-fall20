@@ -83,9 +83,9 @@ export default {
 <style lang="scss" scoped>
 
 .display-3{
-   font-family: "Bangers" !important;
+   font-family: "Montserrat" !important;
    margin-block: 3% !important;
-   animation:text-shadow-drop-center .6s both;
+   
 }
 
 .slide-cta-btn {
@@ -99,7 +99,7 @@ export default {
   background-color: transparent;
   font-size: larger;
   transition-duration: 0.4s;
-  margin-left: 41% !important;
+  margin-left: 0% !important;
   margin-top: 2% !important;
   animation:slide-cta-btn .6s both
 }
@@ -113,13 +113,11 @@ export default {
   font-weight: bold;
   background-color: white;
   font-size: larger;
-  animation:slide-cta-btn .3s linear infinite both;
+  
 }
 
 
 @keyframes text-shadow-drop-center{0%{text-shadow:0 0 0 transparent}100%{text-shadow:0 0 18px rgba(0,0,0,.35)}}
-
-@keyframes text-shadow-pop-top{0%{text-shadow:0 0 #555,0 0 #555,0 0 #555,0 0 #555,0 0 #555,0 0 #555,0 0 #555,0 0 #555;transform:translateY(0)}100%{text-shadow:0 -1px #555,0 -2px #555,0 -3px #555,0 -4px #555,0 -5px #555,0 -6px #555,0 -7px #555,0 -8px #555;transform:translateY(8px)}}
 
 @keyframes slide-cta-btn{0%{transform:translate(0)}20%{transform:translate(-2px,2px)}40%{transform:translate(-2px,-2px)}60%{transform:translate(2px,2px)}80%{transform:translate(2px,-2px)}100%{transform:translate(0)}}
 </style>

@@ -49,7 +49,7 @@ export default {
 .root {
   .title {
     margin-top: 5%;
-    margin-bottom: -3%;
+    margin-bottom: 0%;
     padding: 0 0;
     text-align: center;
     font-size: 30px !important;

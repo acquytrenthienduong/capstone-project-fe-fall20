@@ -51,7 +51,7 @@ export default {
 }
 
 h3 {
-  font-family: monospace;
+  font-family: "Dancing Script";
   font-size: 160%;
   text-transform: uppercase;
 }

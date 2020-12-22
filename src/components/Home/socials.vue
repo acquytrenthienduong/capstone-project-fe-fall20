@@ -14,7 +14,7 @@
         </v-btn>
       </div>
     </v-img>
-    <div class="text">HAHA</div>
+  
   </div>
 </template>
 
