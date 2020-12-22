@@ -16,7 +16,7 @@
         <li :class="{ active: selectedIndex == 2 }" @mouseover="selectedIndex = 2">
           HỢP TÁC
         </li>
-        <li :class="{ active: selectedIndex == 3 }" @mouseover="selectedIndex = 3">
+        <li :class="{ active: selectedIndex == 3 }" @mouseover="selectedIndex = 3" @click="go2AboutUs">
           VỀ CHÚNG TÔI
         </li>
       </ul>
@@ -122,6 +122,9 @@ export default {
       this.$router.push({ name: "Schedule", params: { type: id } });
       this.$nextTick();
     },
+    go2AboutUs(){
+       this.$router.push({ name: "ContactUs" });
+    }
   },
   mounted() {
     // Instead of calling the method we emit an event

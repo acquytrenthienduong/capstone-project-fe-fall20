@@ -7,7 +7,7 @@
             <v-card class="product-card" max-width="400">
               <v-img
                 class="white--text align-end"
-                height="230px"
+                height="280px"
                 :src="product.src"
               >
               </v-img>
