@@ -135,8 +135,8 @@ export default {
   position: absolute;
   background: white;
   top: 100%;
-  left: 16px;
-  right: 16px;
+  left: 0px;
+  right: 0px;
   padding: 2% 1%;
   z-index: 10;
   &.visible {
