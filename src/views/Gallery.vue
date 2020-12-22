@@ -1,12 +1,7 @@
 <template>
   <div>
     <v-row>
-      <v-col
-        v-for="(image, i) in images"
-        :key="i"
-        class="d-flex child-flex"
-        cols="4"
-      >
+      <v-col v-for="(image, i) in images" :key="i" class="d-flex child-flex" cols="4">
         <v-img
           :src="image"
           :lazy-src="`https://picsum.photos/10/6?image=${i * 5 + 10}`"
@@ -30,7 +25,9 @@
       :index="index"
       @close="index = null"
       id="show"
-    ></vue-gallery-slideshow>
+      class="margin-top"
+    >
+    </vue-gallery-slideshow>
   </div>
 </template>
 
@@ -63,8 +60,12 @@ export default {
   },
 };
 </script>
-<style scoped>
+<style lang="scss">
 .d-flex {
   margin-top: 5%;
+}
+
+.vgs__container {
+  margin-top: 7% !important;
 }
 </style>

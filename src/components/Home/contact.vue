@@ -6,7 +6,7 @@
           <Map />
         </div>
         <div class="col-md-4 col-12">
-          <v-card max-width="400" class="mx-auto">
+          <v-card max-width="400" class="mx-auto margin-bottom">
             <v-img src="@/assets/header-logo.png" height="85" width="100%" dark>
               <v-row class="fill-height">
                 <v-spacer></v-spacer>
@@ -102,5 +102,9 @@ h1 {
 .center {
   display: flex;
   align-items: center;
+}
+
+.margin-bottom {
+  margin-bottom: 10px;
 }
 </style>

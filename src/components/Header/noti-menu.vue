@@ -17,12 +17,20 @@
       <div class="title mb-2"><v-icon>mdi-bell</v-icon> Thông báo</div>
       <v-divider></v-divider>
 
-      <v-list>
+      <v-list v-if="listNoti.length > 0">
         <v-list-item v-for="noti in listNoti" :key="noti.notification_id" class="pa-2">
           <div class="container--fluid">
             <a href="#" @click="seenNoti(noti)">
               {{ noti.content }}
             </a>
+            <!-- You have successfully scheduled a session! -->
+          </div>
+        </v-list-item>
+      </v-list>
+      <v-list v-if="listNoti.length == 0">
+        <v-list-item class="pa-2">
+          <div class="container--fluid">
+            Không có thông báo mới
             <!-- You have successfully scheduled a session! -->
           </div>
         </v-list-item>
