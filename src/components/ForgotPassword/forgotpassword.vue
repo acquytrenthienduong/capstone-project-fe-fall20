@@ -232,10 +232,9 @@ export default {
         axios.get(this.host + "/loadCustomerByEmail/" + this.email).then((response) => {
           console.log("response123333", response);
           var customer = response.data;
-          customer.password = this.password;
           axios
-            .post(this.host + "/updateProfile/" + customer.customer_id, {
-              customer,
+            .post(this.host + "/resetPassword/" + customer.customer_id, {
+              newpassword: this.password,
             })
             .then((response) => {
               console.log("res", response);
