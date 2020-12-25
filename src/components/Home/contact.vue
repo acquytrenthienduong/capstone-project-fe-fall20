@@ -6,74 +6,62 @@
           <Map />
         </div>
         <div class="col-md-4 col-12">
-          <v-card max-width="400" class="mx-auto margin-bottom">
-            <v-img src="@/assets/header-logo.png" height="85" width="100%" dark>
-              <v-row class="fill-height">
-                <v-spacer></v-spacer>
+          <v-list two-line>
+            <v-list-item>
+              <v-list-item-icon>
+                <v-icon color="black"> mdi-phone </v-icon>
+              </v-list-item-icon>
 
-                <v-card-title class="white--text pl-12 pt-12">
-                  <div class="display-1 pl-12 pt-12">Ali Conners</div>
-                </v-card-title>
-              </v-row>
-            </v-img>
+              <v-list-item-content>
+                <v-list-item-title>(650) 555-1234</v-list-item-title>
+                <v-list-item-subtitle>Mobile</v-list-item-subtitle>
+              </v-list-item-content>
+            </v-list-item>
 
-            <v-list two-line>
-              <v-list-item>
-                <v-list-item-icon>
-                  <v-icon color="black"> mdi-phone </v-icon>
-                </v-list-item-icon>
+            <v-list-item>
+              <v-list-item-action></v-list-item-action>
 
-                <v-list-item-content>
-                  <v-list-item-title>(650) 555-1234</v-list-item-title>
-                  <v-list-item-subtitle>Mobile</v-list-item-subtitle>
-                </v-list-item-content>
-              </v-list-item>
+              <v-list-item-content>
+                <v-list-item-title>(323) 555-6789</v-list-item-title>
+                <v-list-item-subtitle>Work</v-list-item-subtitle>
+              </v-list-item-content>
+            </v-list-item>
 
-              <v-list-item>
-                <v-list-item-action></v-list-item-action>
+            <v-divider inset></v-divider>
 
-                <v-list-item-content>
-                  <v-list-item-title>(323) 555-6789</v-list-item-title>
-                  <v-list-item-subtitle>Work</v-list-item-subtitle>
-                </v-list-item-content>
-              </v-list-item>
+            <v-list-item>
+              <v-list-item-icon>
+                <v-icon color="black"> mdi-email </v-icon>
+              </v-list-item-icon>
 
-              <v-divider inset></v-divider>
+              <v-list-item-content>
+                <v-list-item-title>hoangtronganh23@gmail.com</v-list-item-title>
+                <v-list-item-subtitle>Personal</v-list-item-subtitle>
+              </v-list-item-content>
+            </v-list-item>
 
-              <v-list-item>
-                <v-list-item-icon>
-                  <v-icon color="black"> mdi-email </v-icon>
-                </v-list-item-icon>
+            <v-list-item>
+              <v-list-item-action></v-list-item-action>
 
-                <v-list-item-content>
-                  <v-list-item-title>hoangtronganh23@gmail.com</v-list-item-title>
-                  <v-list-item-subtitle>Personal</v-list-item-subtitle>
-                </v-list-item-content>
-              </v-list-item>
+              <v-list-item-content>
+                <v-list-item-title>navatan_tanning@gmail.com</v-list-item-title>
+                <v-list-item-subtitle>Work</v-list-item-subtitle>
+              </v-list-item-content>
+            </v-list-item>
 
-              <v-list-item>
-                <v-list-item-action></v-list-item-action>
+            <v-divider inset></v-divider>
 
-                <v-list-item-content>
-                  <v-list-item-title>navatan_tanning@gmail.com</v-list-item-title>
-                  <v-list-item-subtitle>Work</v-list-item-subtitle>
-                </v-list-item-content>
-              </v-list-item>
+            <v-list-item>
+              <v-list-item-icon>
+                <v-icon color="black"> mdi-map-marker </v-icon>
+              </v-list-item-icon>
 
-              <v-divider inset></v-divider>
-
-              <v-list-item>
-                <v-list-item-icon>
-                  <v-icon color="black"> mdi-map-marker </v-icon>
-                </v-list-item-icon>
-
-                <v-list-item-content>
-                  <v-list-item-title>số 6 Hàng Muối</v-list-item-title>
-                  <v-list-item-subtitle>Hoàn Kiếm, Hà Nội</v-list-item-subtitle>
-                </v-list-item-content>
-              </v-list-item>
-            </v-list>
-          </v-card>
+              <v-list-item-content>
+                <v-list-item-title>số 6 Hàng Muối</v-list-item-title>
+                <v-list-item-subtitle>Hoàn Kiếm, Hà Nội</v-list-item-subtitle>
+              </v-list-item-content>
+            </v-list-item>
+          </v-list>
         </div>
       </div>
     </div>
