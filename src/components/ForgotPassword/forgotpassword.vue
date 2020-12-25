@@ -87,7 +87,7 @@
                     v-model="password"
                     prepend-inner-icon="mdi-shield-check"
                     label="Mật khẩu mới"
-                    type="text"
+                    type="password"
                     outlined
                     :rules="[rules.required, rules.min]"
                   ></v-text-field>
@@ -95,7 +95,7 @@
                     v-model="repassword"
                     prepend-inner-icon="mdi-shield-check"
                     label="Nhập lại mật khẩu mới"
-                    type="text"
+                    type="password"
                     outlined
                     :rules="[rules.required, rules.min, rules.passWordMatch]"
                   ></v-text-field>
