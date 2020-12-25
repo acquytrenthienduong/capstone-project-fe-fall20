@@ -215,48 +215,52 @@ export default {
       let month = dateRaw.getMonth() + 1;
       let dt = dateRaw.getDate();
       if (this.selectedDuration > 0 && this.time != null) {
-        axios
-          .post(this.host + "/createNewReservation", {
-            customer_id: parseInt(localStorage.getItem("customerId"), 10),
-            checkin_time: this.time,
-            reservation_date: this.date,
-            status: 0,
-            sub_service_sub_service_id: this.selectedDuration,
-            is_access: 0,
-            year: year,
-            month: month,
-            day: dt,
-          })
-          .then((response) => {
-            console.log(response);
-            if (response.status === 200) {
-              this.overlay = true;
-              setTimeout(() => {
-                this.closeModal();
-                this.overlay = false;
+        if (this.compareDate(this.date)) {
+          axios
+            .post(this.host + "/createNewReservation", {
+              customer_id: parseInt(localStorage.getItem("customerId"), 10),
+              checkin_time: this.time,
+              reservation_date: this.date,
+              status: 0,
+              sub_service_sub_service_id: this.selectedDuration,
+              is_access: 0,
+              year: year,
+              month: month,
+              day: dt,
+            })
+            .then((response) => {
+              console.log(response);
+              if (response.status === 200) {
+                this.overlay = true;
+                setTimeout(() => {
+                  this.closeModal();
+                  this.overlay = false;
+                  swal(
+                    "Đặt lịch thành công!",
+                    "Lịch của bạn đã được đặt thành công. Chúng tôi sẽ thông báo lại ngay nếu có vấn đề.",
+                    "success"
+                  );
+                  this.reset();
+                }, 1000);
+                axios
+                  .post(this.host + "/createNotification", {
+                    content: "Khách Hàng " + this.customerName + " muốn đặt 1 cuộc hẹn",
+                  })
+                  .then(() => {});
+              } else {
                 swal(
-                  "Đặt lịch thành công!",
-                  "Lịch của bạn đã được đặt thành công. Chúng tôi sẽ thông báo lại ngay nếu có vấn đề.",
-                  "success"
+                  "Rất tiếc!",
+                  "Khung giờ này chúng tôi đã kín lịch rồi hãy rời lên 1 hoặc 2 h nhé !",
+                  "warning"
                 );
-                this.reset();
-              }, 1000);
-              axios
-                .post(this.host + "/createNotification", {
-                  content: "Khách Hàng " + this.customerName + " muốn đặt 1 cuộc hẹn",
-                })
-                .then(() => {});
-            } else {
-              swal(
-                "Rất tiếc!",
-                "Khung giờ này chúng tôi đã kín lịch rồi hãy rời lên 1 hoặc 2 h nhé !",
-                "warning"
-              );
-            }
-          })
-          .catch((e) => {
-            this.errors.push(e);
-          });
+              }
+            })
+            .catch((e) => {
+              this.errors.push(e);
+            });
+        } else {
+          swal("Opss ...!", "Hãy chọn 1 ngày trong tương lai !", "warning");
+        }
       } else {
         swal("Tạo lịch không thành công!", " Hãy điền đầy đủ thông tin nhé!!", "warning");
       }
@@ -280,6 +284,16 @@ export default {
       // Hours are worth 60 minutes.
       var minutes = +a[0] * 60 + +a[1] + " phút";
       return minutes;
+    },
+
+    compareDate(date) {
+      let today = new Date();
+      let dateRaw = new Date(date);
+      if (today > dateRaw) {
+        return false;
+      } else {
+        return true;
+      }
     },
   },
   watch: {

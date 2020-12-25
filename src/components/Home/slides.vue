@@ -1,12 +1,7 @@
 <template>
   <div class="root">
     <v-carousel cycle hide-delimiter-background show-arrows-on-hover height="700px">
-      <v-carousel-item
-        v-for="(slide, i) in items"
-        :src="slide.src"
-        :key="i"
-        transition="fade-transition"
-      >
+      <v-carousel-item v-for="(slide, i) in items" :src="slide.src" :key="i">
         <v-container class="img_cover" fill-height>
           <v-layout align-center>
             <v-flex>
