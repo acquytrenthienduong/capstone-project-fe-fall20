@@ -13,41 +13,14 @@
       <v-row v-for="item in history" :key="item.reservation_id" class="order">
         <div class="container my-4">
           <v-row>
-            <v-col
-              cols="12"
-              md="4"
-              class="text-center"
-              v-if="item.sub_service.type == 1"
-            >
-              <img
-                class="service-image"
-                src="@/assets/services/1.jpg"
-                alt="demo"
-              />
+            <v-col cols="12" md="4" class="text-center" v-if="item.sub_service.type == 1">
+              <img class="service-image" src="@/assets/services/1.jpg" alt="demo" />
             </v-col>
-            <v-col
-              cols="12"
-              md="4"
-              class="text-center"
-              v-if="item.sub_service.type == 2"
-            >
-              <img
-                class="service-image"
-                src="@/assets/services/2.jpg"
-                alt="demo"
-              />
+            <v-col cols="12" md="4" class="text-center" v-if="item.sub_service.type == 2">
+              <img class="service-image" src="@/assets/services/2.jpg" alt="demo" />
             </v-col>
-            <v-col
-              cols="12"
-              md="4"
-              class="text-center"
-              v-if="item.sub_service.type == 3"
-            >
-              <img
-                class="service-image"
-                src="@/assets/services/3.jpg"
-                alt="demo"
-              />
+            <v-col cols="12" md="4" class="text-center" v-if="item.sub_service.type == 3">
+              <img class="service-image" src="@/assets/services/3.jpg" alt="demo" />
             </v-col>
             <v-col cols="12" md="8" class="d-flex flex-column">
               <v-container>
@@ -110,9 +83,9 @@
       </v-row>
       <h1 class="no-item" v-if="history.length === 0">Bạn chưa có lịch hẹn</h1>
     </v-container>
-    <v-container v-if="history.length != 0" class="mb-10">
+    <!-- <v-container v-if="history.length != 0" class="mb-10">
       <v-pagination v-model="page" :length="2"></v-pagination>
-    </v-container>
+    </v-container> -->
   </div>
 </template>
 
@@ -155,15 +128,12 @@ export default {
           axios
             .post(this.host + "/createNotification", {
               content:
-                "Khách hàng có SĐT " +
-                this.phoneNumber +
-                " muốn thay đổi lịch hẹn",
+                "Khách hàng có SĐT " + this.phoneNumber + " muốn thay đổi lịch hẹn",
             })
             .then(() => {
               swal("Yêu càu đổi lịch đã được gửi!", {
                 icon: "success",
-                text:
-                  "yêu cầu của bạn đã được gửi, chúng tôi sẽ liên hệ lại ngay!",
+                text: "yêu cầu của bạn đã được gửi, chúng tôi sẽ liên hệ lại ngay!",
               });
             });
         }

@@ -93,7 +93,7 @@
                 </v-menu>
               </v-col>
             </v-row>
-            <v-row>
+            <!-- <v-row>
               <v-col cols="12" md="6">
                 <p class="font-weight-bold">Số lượng người</p>
                 <v-text-field
@@ -107,7 +107,7 @@
                 ></v-text-field>
               </v-col>
               <v-col cols="12" md="6" class="justify-center align-center d-flex"> </v-col>
-            </v-row>
+            </v-row> -->
           </v-col>
 
           <!-- right -->
@@ -131,10 +131,10 @@
                 </v-list-item>
               </v-list>
             </div>
-            <div class="numberOfPackages">
+            <!-- <div class="numberOfPackages">
               <p class="title">SỐ LƯỢNG KHÁCH</p>
               <p>{{ numOfPeople }}</p>
-            </div>
+            </div> -->
 
             <v-spacer></v-spacer>
             <hr />
