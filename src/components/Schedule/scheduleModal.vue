@@ -18,7 +18,7 @@
                   :items="chooseServices"
                   item-text="name"
                   item-value="value"
-                  label="Service"
+                  label="Dịch vụ"
                   class="duration-selector"
                   outlined
                   v-model="selectType"
@@ -29,7 +29,7 @@
                   :items="durationOptions"
                   item-text="name"
                   item-value="value"
-                  label="Duration"
+                  label="Gói"
                   class="duration-selector"
                   outlined
                   v-model="selectedDuration"
@@ -215,7 +215,7 @@ export default {
       let month = dateRaw.getMonth() + 1;
       let dt = dateRaw.getDate();
       if (this.selectedDuration > 0 && this.time != null) {
-        if (this.compareDate(this.date)) {
+        if (!this.compareDate(this.date)) {
           axios
             .post(this.host + "/createNewReservation", {
               customer_id: parseInt(localStorage.getItem("customerId"), 10),
@@ -289,11 +289,20 @@ export default {
     compareDate(date) {
       let today = new Date();
       let dateRaw = new Date(date);
-      if (today > dateRaw) {
-        return false;
-      } else {
+
+      if (today.getFullYear() > dateRaw.getFullYear()) {
         return true;
       }
+
+      if (today.getMonth() > dateRaw.getMonth()) {
+        return true;
+      }
+
+      if (today.getDate() > dateRaw.getDate()) {
+        return true;
+      }
+
+      return false;
     },
   },
   watch: {
