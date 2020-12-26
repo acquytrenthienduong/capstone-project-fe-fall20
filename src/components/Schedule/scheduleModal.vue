@@ -289,7 +289,8 @@ export default {
     compareDate(date) {
       let today = new Date();
       let dateRaw = new Date(date);
-
+      let temp = [];
+      temp = this.time.split(":");
       if (today.getFullYear() > dateRaw.getFullYear()) {
         return true;
       }
@@ -299,6 +300,14 @@ export default {
       }
 
       if (today.getDate() > dateRaw.getDate()) {
+        return true;
+      }
+
+      if (today.getHours() > parseInt(temp[0], 10)) {
+        return true;
+      }
+
+      if (today.getMinutes() > parseInt(temp[1], 10)) {
         return true;
       }
 
