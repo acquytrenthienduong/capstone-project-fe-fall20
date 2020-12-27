@@ -302,13 +302,14 @@ export default {
       if (today.getDate() > dateRaw.getDate()) {
         return true;
       }
+      if (today.getDate() === dateRaw.getDate()) {
+        if (today.getHours() > parseInt(temp[0], 10)) {
+          return true;
+        }
 
-      if (today.getHours() > parseInt(temp[0], 10)) {
-        return true;
-      }
-
-      if (today.getMinutes() > parseInt(temp[1], 10)) {
-        return true;
+        if (today.getMinutes() > parseInt(temp[1], 10)) {
+          return true;
+        }
       }
 
       return false;
