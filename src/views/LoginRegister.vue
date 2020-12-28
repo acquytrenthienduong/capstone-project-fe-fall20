@@ -124,8 +124,7 @@ export default {
           window.location.reload();
           this.$router.push("/navatan");
         })
-        .catch((error) => {
-          console.log(error);
+        .catch(() => {
           this.check = true;
         });
     },

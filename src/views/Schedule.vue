@@ -144,7 +144,6 @@ export default {
     },
 
     init() {
-      console.log("xxxxxxxxxxxxxxxxxx", this.$route.params);
       this.detailType = parseInt(this.$route.params.type, 10);
     },
   },

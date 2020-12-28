@@ -229,7 +229,6 @@ export default {
               day: dt,
             })
             .then((response) => {
-              console.log(response);
               if (response.status === 200) {
                 this.overlay = true;
                 setTimeout(() => {
@@ -302,6 +301,7 @@ export default {
       if (today.getDate() > dateRaw.getDate()) {
         return true;
       }
+
       if (today.getDate() === dateRaw.getDate()) {
         if (today.getHours() > parseInt(temp[0], 10)) {
           return true;
@@ -311,7 +311,6 @@ export default {
           return true;
         }
       }
-
       return false;
     },
   },

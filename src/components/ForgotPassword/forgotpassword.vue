@@ -166,10 +166,6 @@ export default {
       this.selectedTab = value;
     },
 
-    register() {
-      console.log("register");
-    },
-
     reset() {
       this.phone = "";
       this.code = "";
@@ -203,8 +199,7 @@ export default {
                 From: "anh.dinhhoangquang@gmail.com",
                 Subject: "Mã Xác Nhận Của Bạn Là: ",
                 Body: otp,
-              }).then((message) => {
-                console.log("messge", message);
+              }).then(() => {
                 this.checkStep1 = false;
                 this.step = 2;
               });
@@ -230,14 +225,12 @@ export default {
     updateCustomer() {
       if (this.password != "" && this.repassword != "") {
         axios.get(this.host + "/loadCustomerByEmail/" + this.email).then((response) => {
-          console.log("response123333", response);
           var customer = response.data;
           axios
             .post(this.host + "/resetPassword/" + customer.customer_id, {
               newpassword: this.password,
             })
-            .then((response) => {
-              console.log("res", response);
+            .then(() => {
               swal("Thành công", "Cập nhật mật khẩu thành công!", "success");
               this.reset();
               this.dialog = false;

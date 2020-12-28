@@ -78,8 +78,7 @@ export default {
         .post(this.host + `/UserSeenNoti/` + noti.notification_id, {
           noti,
         })
-        .then((response) => {
-          console.log(response);
+        .then(() => {
           this.menu = false;
           this.loadNotificationOfCustomer();
           this.$router.push("/orders");

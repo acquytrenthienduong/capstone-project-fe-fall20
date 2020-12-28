@@ -182,7 +182,6 @@ export default {
 
     updateCustomer() {
       axios.get(this.host + "/loadCustomer/" + this.customerId).then((response) => {
-        console.log("response", response);
         var customer = response.data;
         customer.name = this.name;
         customer.email = this.email;
@@ -193,8 +192,7 @@ export default {
           .post(this.host + "/updateProfile/" + this.customerId, {
             customer,
           })
-          .then((response) => {
-            console.log("res", response);
+          .then(() => {
             swal("Thành công", "Cập nhật thông tin thành công!", "success");
             this.dialog = false;
           })
@@ -225,7 +223,6 @@ export default {
               newpassword: this.newPassWord,
             })
             .then((response) => {
-              console.log(response);
               if (response.status === 200) {
                 this.reset();
               } else {

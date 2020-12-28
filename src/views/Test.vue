@@ -25,7 +25,6 @@ import { fb } from "@/firebase";
 import axios from "axios";
 import config from "../confighost/config";
 
-
 export default {
   name: "Preview",
   data: () => ({
@@ -42,24 +41,20 @@ export default {
   },
 
   methods: {
-    sendCode: function() {
+    sendCode: function () {
       // For Firebase JS SDK v7.20.0 and later, measurementId is optional
       let phone = this.phone;
       firebase
         .auth()
         .signInWithPhoneNumber(phone, window.recaptchaVerifier)
-        .then(function(confirmationResult) {
-          console.log("sdas", confirmationResult.verificationId);
+        .then(function (confirmationResult) {
           window.confirmationResult = confirmationResult;
         })
-        .catch((error) => {
-          console.log("loi");
-        });
+        .catch(() => {});
     },
 
-    enterCode: function() {
+    enterCode: function () {
       let code = this.code;
-      console.log("code", code);
       var credential = firebase.auth.PhoneAuthProvider.credential(
         confirmationResult.verificationId,
         code
@@ -68,7 +63,6 @@ export default {
         .auth()
         .signInWithCredential(credential)
         .then((credential) => {
-          console.log("asdasdas", credential);
           axios
             .post(this.host + `/register`, {
               account: this.phone,
@@ -77,9 +71,7 @@ export default {
               gender: 1,
               name: this.name,
             })
-            .then((response) => {
-              console.log(response);
-            })
+            .then(() => {})
             .catch((e) => {
               this.errors.push(e);
             });
@@ -95,8 +87,7 @@ export default {
           gender: 1,
           name: this.name,
         })
-        .then((response) => {
-        })
+        .then((response) => {})
         .catch((e) => {
           this.errors.push(e);
         });
