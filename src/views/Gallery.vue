@@ -2,7 +2,7 @@
   <v-container style="padding-top:64px">
     <v-row style="padding:32px">
       <v-col>
-        <h2 class="text-center">GALLERY</h2>
+        <h2 class="text-center">NAVATAN GALLERY</h2>
       </v-col>
     </v-row>
     <v-row>

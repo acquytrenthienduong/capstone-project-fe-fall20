@@ -1,10 +1,15 @@
 <template>
   <div class="root">
-    <div class="header">
+    <!-- <div class="header">
       <div class="inner-content">
-        <div class="category-title">SẢN PHẨM LOTION</div>
+        <div class="category-title">SẢN PHẨM TANNING</div>
       </div>
-    </div>
+    </div> -->
+    <v-row class="titleProduct">
+      <v-col>
+        <h2 class="text-center">SẢN PHẨM DƯỠNG DA</h2>
+      </v-col>
+    </v-row>
     <sequential-entrance fromLeft class="bao">
       <v-container class="products py-10" v-if="page == 1">
         <div
@@ -104,6 +109,11 @@ export default {
   display: flex;
   justify-content: center;
 }
+.titleProduct {
+  padding: 0px;
+  margin-top: 7%;
+}
+
 .root {
   .header {
     position: relative;
