@@ -31,7 +31,9 @@
           <div class="option-price">
             {{ money | priceVndFormat }}
           </div>
-          <button class="cta-btn" @click="showScheduleModal">Đặt lịch ngay</button>
+          <button class="cta-btn" @click="showScheduleModal">
+            Đặt lịch ngay
+          </button>
           <!-- <h3 v-if="!customerName">
             Hãy tạo tài khoản hoặc đăng nhập trước nhé!
           </h3> -->
@@ -74,7 +76,7 @@ export default {
           src: require("@/assets/services/img.jpg"),
           title: "STAND UP TANNING",
           intro:
-            "Stand up Tanning là phương pháp làm tanning chiều thẳng đứng từ sâu bên trong có sự hỗ trợ của máy nhuộm hiện đại được sản xuất tại Đức giúp đưa các dưỡng chất thẩm thấu sâu vào da nhờ tác động nhiệt của ánh sáng đỏ đem đến tác dụng hiệu quả tuyệt vời.",
+            "Stand up Tanning là phương pháp làm tanning chiều thẳng đứng từ sâu bên trong có sự hỗ trợ của máy nhuộm hiện đại được sản xuất tại Đức giúp đưa các dưỡng chất thẩm thấu sâu vào da nhờ tác động nhiệt của ánh sáng đỏ đem đến tác dụng hiệu quả tuyệt vời. Bạn có thể lựa chọn các gói thời gian (20 phút, 50 phút, 90 phút) tùy thuộc vào màu da bạn muốn",
           tips: "Tips làn da tanning hoàn hảo và an toàn",
           ul: [
             "Chọn nguồn năng lượng UV an toàn",
@@ -88,7 +90,7 @@ export default {
           src: require("@/assets/services/img2.jpg"),
           title: "LAY DOWN TANNING",
           intro:
-            "Hiện tại ở Navatan có ba cấp độ nằm khác nhau để lựa chọn - cả ba đều là giường Ergoline kết hợp hiệu suất tanning & sự thoải mái để tạo ra trải nghiệm tuyệt vời cho bạn",
+            "Hiện tại ở Navatan có ba cấp độ nằm khác nhau để lựa chọn - cả ba đều là giường Ergoline kết hợp hiệu suất tanning & sự thoải mái để tạo ra trải nghiệm tuyệt vời cho bạn. Bạn có thể sử dụng dịch vụ với 3 gói theo thời gian (20 phút, 50 phút, 90 phút)",
           tips: "Thông tin dịch vụ",
           ul: [
             "15 phút phơi sáng tối đa / 9 phút phiên trung bình",
@@ -102,12 +104,12 @@ export default {
           src: require("@/assets/services/img3.jpg"),
           title: "SPRAY TANNING",
           intro:
-            "Tanning dạng xịt là một hình thức tanning khi một lớp sương mịn được phun lên cơ thể của bạn. Dạng tanning này cho phép bạn tự do lựa chọn một trong các giải pháp nhuộm màu trong, tối hoặc màu venetian tại Navatan.",
+            "Tanning dạng xịt là một hình thức tanning khi một lớp sương mịn được phun lên cơ thể của bạn. Dạng tanning này cho phép bạn tự do lựa chọn một trong các giải pháp nhuộm màu trong, tối hoặc màu venetian với 3 cấp độ.",
           tips: "Thông tin dịch vụ",
           ul: [
-            "Sẽ tạo ra một làn da sáng tự nhiên và phát triển trong khoảng thời gian 24 giờ. Được đề xuất cho tông màu da trung bình sáng.",
-            "Một làn da rám nắng từ trung bình đến sẫm giống như cách bạn xuất hiện sau nhiều tuần rám nắng hoặc “màu ngoài bãi biển” xuất hiện ngay lập tức. Khuyên dùng cho tông da trung bình tối.",
-            "Sử dụng SunCapsule 220 trong 4 phút sau khi xịt sẽ đẩy nhanh quá trình hấp thụ dung dịch cũng như giúp tăng màu sắc của bạn với tia UV tự nhiên",
+            "Level 1: Sẽ tạo ra một làn da sáng tự nhiên và phát triển trong khoảng thời gian 24 giờ. Được đề xuất cho tông màu da trung bình sáng.",
+            "Level 2: Một làn da rám nắng từ trung bình đến sẫm giống như cách bạn xuất hiện sau nhiều tuần rám nắng hoặc “màu ngoài bãi biển” xuất hiện ngay lập tức. Khuyên dùng cho tông da trung bình tối.",
+            "Level 3: Sử dụng SunCapsule 220 trong 4 phút sau khi xịt sẽ đẩy nhanh quá trình hấp thụ dung dịch cũng như giúp tăng màu sắc của bạn với tia UV tự nhiên",
           ],
         },
       ],
