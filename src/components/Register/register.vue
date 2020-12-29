@@ -325,6 +325,10 @@ export default {
   padding-bottom: 40px;
 }
 
+#recaptcha-container {
+  margin-bottom: 10px !important;
+}
+
 h3 {
   color: red;
 }

@@ -4,7 +4,7 @@
       <v-container class="productContainer">
         <splide :options="options" class="sliderProduct">
           <splide-slide v-for="(product, i) in productMocks" :key="i">
-            <v-card class="product-card" max-width="400">
+            <v-card class="product-card" max-width="400" @click="goProduct">
               <v-img
                 class="white--text align-end"
                 height="280px"
@@ -41,6 +41,11 @@ export default {
   components: {
     Splide,
     SplideSlide,
+  },
+  methods: {
+    goProduct() {
+      this.$router.push({ name: "Products" });
+    },
   },
   data() {
     return {
