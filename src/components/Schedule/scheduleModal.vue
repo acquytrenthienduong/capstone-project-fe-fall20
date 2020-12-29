@@ -265,6 +265,7 @@ export default {
       }
     },
     closeModal() {
+      this.reset();
       this.$store.commit("toggleScheduleModal", false);
     },
 
