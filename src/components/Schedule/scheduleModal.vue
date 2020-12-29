@@ -301,12 +301,6 @@ export default {
       if (today.getDate() > dateRaw.getDate()) {
         return true;
       }
-      console.log("today.getDate()", today.getDate());
-      console.log("dateRaw.getDate()", dateRaw.getDate());
-      console.log("today.getHours()", today.getHours());
-      console.log("parseInt(temp[0], 10)", parseInt(temp[0], 10));
-      console.log("today.getMinutes()", today.getMinutes());
-      console.log("parseInt(temp[1], 10)", parseInt(temp[1], 10));
 
       if (today.getDate() === dateRaw.getDate()) {
         if (today.getHours() > parseInt(temp[0], 10)) {
