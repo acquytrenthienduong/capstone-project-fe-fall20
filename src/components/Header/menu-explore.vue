@@ -97,6 +97,25 @@
       </v-container>
 
       <!-- sdsds -->
+      <v-container fluid class="item-container" v-if="selectedIndex == 3">
+        <v-row>
+          <div class="text-center" style="margin:4%">
+            
+            <h3>Câu chuyện của Navatan</h3>
+            <p>
+              NAVATAN STUDIO hiện nay là studio tắm nắng nhân tạo đầu tiên và
+              duy nhất tại Việt Nam. Công nghệ giường tắm nắng nhân tạo và các
+              sản phẩm độc quyền từ Đức. Xu hướng da nâu căng bóng quyến rũ mới
+              là những gì các siêu mẫu, hot blogger trong và ngoài nước cũng như
+              giới trẻ đang theo đuổi. Đây chính là lý do Navatan được thành lập
+              ra, Navatan chính là người bạn thân giúp bạn đạt được làn da
+              trendy mong ước của nhiều cô gái,chàng trai một cách hoàn hảo và
+              an toàn
+            </p>
+          </div>
+        </v-row>
+      </v-container>
+
       <v-container fluid class="item-container" v-if="selectedIndex == 1">
         <v-row>
           <v-col cols="12" md="4">
@@ -108,7 +127,7 @@
               <v-img src="@/assets/lotions/sp1.png" height="400px"></v-img>
 
               <v-card-actions>
-                <v-btn color="black" class="xemthem" text >
+                <v-btn color="black" class="xemthem" text>
                   Sản phẩm yêu thích
                 </v-btn>
 
@@ -127,7 +146,7 @@
               <v-img src="@/assets/lotions/sp5.png" height="400px"></v-img>
 
               <v-card-actions>
-                <v-btn color="black" class="xemthem" text >
+                <v-btn color="black" class="xemthem" text>
                   Hàng mới về
                 </v-btn>
 
@@ -241,6 +260,34 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+ 
+.social {
+  font-family: "Dancing Script";
+  font-size: 252%;
+  margin-bottom: -1%;
+}
+
+h3 {
+  font-family: "Dancing Script";
+  font-size: 155%;
+  text-transform: uppercase;
+  margin-bottom: 2%;
+}
+
+.avatar {
+  margin-left: 48%;
+  margin-bottom: 13px;
+}
+
+.text-center {
+  animation:text-focus-in 0.5s cubic-bezier(.55,.085,.68,.53) both;
+}
+
+
+@keyframes text-focus-in{0%{filter:blur(12px);opacity:0}100%{filter:blur(0);opacity:1}}
+
+@keyframes tracking-in-contract{0%{letter-spacing:1em;opacity:0}40%{opacity:.6}100%{letter-spacing:normal;opacity:1}}
+
 .service-card {
   border-radius: unset !important;
 }
